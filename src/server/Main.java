@@ -28,10 +28,12 @@ public class Main {
                 = new BufferedReader(
                 new InputStreamReader(System.in));
 
+        Book book = new Book("Hlava 22");
+
         // server executes continuously
         while(true) {
 
-            String str, str1;
+            String str, str1, str2;
 
             // repeat as long as the client
             // does not send a null string
@@ -39,6 +41,20 @@ public class Main {
             // read from client
             while((str = br.readLine()) != null) {
                 System.out.println(str);
+
+                if(str.equals("1")){
+                    System.out.println("testing if if() works");
+                    System.out.println("meno knizky je " + book.getName());
+                }
+
+                if(str.equals("2")){
+                    str2 = "Zadaj nazov knizky";
+                    ps.println(str2);
+                    str = br.readLine();
+                    Book test = new Book(str);
+                    System.out.println(test.getName());
+                }
+
                 str1 = kb.readLine();
 
                 // send to client
