@@ -40,7 +40,7 @@ public class Main {
 
             // read from client
             while((str = br.readLine()) != null) {
-                System.out.println(str);
+                //System.out.println(str);
                 switch(str){
                     case "1":
                         ps.println("meno knizky je " + book.getName());
@@ -53,6 +53,8 @@ public class Main {
                         ps.println(test.getName());
                         break;
                     default:
+                        ps.println("Wrong command, try again");
+                        break;
                 }
                 /*
                 if(str.equals("1")){
