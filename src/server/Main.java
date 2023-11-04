@@ -41,7 +41,20 @@ public class Main {
             // read from client
             while((str = br.readLine()) != null) {
                 System.out.println(str);
-
+                switch(str){
+                    case "1":
+                        ps.println("meno knizky je " + book.getName());
+                        break;
+                    case "2":
+                        str2 = "Zadaj nazov knizky";
+                        ps.println(str2);
+                        str = br.readLine();
+                        Book test = new Book(str);
+                        ps.println(test.getName());
+                        break;
+                    default:
+                }
+                /*
                 if(str.equals("1")){
                     System.out.println("testing if if() works");
                     System.out.println("meno knizky je " + book.getName());
@@ -54,11 +67,12 @@ public class Main {
                     Book test = new Book(str);
                     System.out.println(test.getName());
                 }
-
                 str1 = kb.readLine();
 
                 // send to client
                 ps.println(str1);
+
+                 */
             }
 
             // close connection
