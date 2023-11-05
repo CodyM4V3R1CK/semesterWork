@@ -43,57 +43,144 @@ public class Main {
                 return o1.getName().compareTo(o2.getName());
             }
         };
+        Collections.sort(bookList,c);//binary search needs sorted list
 
-        Collections.sort(bookList,c);
+        LinkedList<Student> studentList = new LinkedList<>();
+        studentList.add(new Student("0Admin"));
+        studentList.add(new Student("Fero"));
+        studentList.add(new Student("Palo"));
+        studentList.get(0).setPassword("heslo");
+        studentList.get(1).setPhone("123");
+        studentList.get(2).setEmail("abc");
+        Comparator<Student> sc = new Comparator<Student>() {
+            @Override
+            public int compare(Student o1, Student o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        };
+        Collections.sort(studentList,sc);//binary search needs sorted list
+
+        int status = -1;//-1 not signed in, 0 admin, 1+ user
 
         // server executes continuously
         while(true) {
-
-            String str, str1, str2;
-
-            // repeat as long as the client
-            // does not send a null string
-
-            // read from client
-            while((str = br.readLine()) != null) {
-                System.out.println(str);
-                int index=0;
-                switch(str){
-                    case "getBooks"://this function gives us names of all saved books
-                        Iterator<Book> iterator = bookList.iterator();//this allows us to go through all the saved books one by one
-                        str2="";//variable where we gonna save the books
-                        while(iterator.hasNext()){//while loop that gets book names one by one and saves them in string
-                            str2+=iterator.next().getName()+"#";
-                        }
-                        ps.println(str2);//this returns the list of books
-                        break;
-                    case "getBookInfo"://this function asks for name of a book and it returns info about the book
-                        ps.println("Zadaj nazov knizky");
-                        index = Collections.binarySearch(bookList,new Book(br.readLine()),c);//here we are using binary search to find index of book with the choosen name
-                        ps.println(bookList.get(index).getAuthor()+"#"+bookList.get(index).getOwner());//here we are returning book info
-                        break;
-                    case "addBook"://this function allows us to add a new book to our list
-                        ps.println("Zadaj nazov knizky");//ask for name
-                        str = br.readLine();//get name
-                        bookList.add(new Book(str));//create new book with choosen name
-                        Collections.sort(bookList,c);
-                        index = Collections.binarySearch(bookList,new Book(str),c);//get index of the new book
-                        ps.println("Zadaj nazov autora");//ask for author
-                        bookList.get(index).setAuthor(br.readLine());//add author name to this book
-                        ps.println("Zadaj nazov vlastnika");//ask for owner
-                        bookList.get(index).setOwner(br.readLine());//add owner name to this book
-                        ps.println("Hotovo");//confirm
-                        break;
-                    case "removeBook"://this function allows us to remove books
-                        ps.println("Zadaj nazov knizky");//ask for name
-                        index = Collections.binarySearch(bookList,new Book(br.readLine()),c);//find index of the book
-                        bookList.remove(index);//remove it
-                        ps.println("Hotovo");//confirm
-                        break;
-                    default:
-                        ps.println("Unknown command");
-                        break;
+            if(status > 0){
+    
+                String str, str1, str2;
+    
+                // repeat as long as the client
+                // does not send a null string
+    
+                // read from client
+                while ((str = br.readLine()) != null) {
+                    System.out.println(str);
+                    int index = 0;
+                    switch (str) {
+                        case "getBooks"://this function gives us names of all saved books
+                            Iterator<Book> iterator = bookList.iterator();//this allows us to go through all the saved books one by one
+                            str2 = "";//variable where we gonna save the books
+                            while (iterator.hasNext()) {//while loop that gets book names one by one and saves them in string
+                                str2 += iterator.next().getName() + "#";
+                            }
+                            ps.println(str2);//this returns the list of books
+                            break;
+                        case "getBookInfo"://this function asks for name of a book and it returns info about the book
+                            ps.println("Zadaj nazov knizky");
+                            index = Collections.binarySearch(bookList, new Book(br.readLine()), c);//here we are using binary search to find index of book with the choosen name
+                            ps.println(bookList.get(index).getAuthor() + "#" + bookList.get(index).getOwner());//here we are returning book info
+                            break;
+                        case "addBook"://this function allows us to add a new book to our list
+                            ps.println("Zadaj nazov knizky");//ask for name
+                            str = br.readLine();//get name
+                            bookList.add(new Book(str));//create new book with choosen name
+                            Collections.sort(bookList, c);
+                            index = Collections.binarySearch(bookList, new Book(str), c);//get index of the new book
+                            ps.println("Zadaj nazov autora");//ask for author
+                            bookList.get(index).setAuthor(br.readLine());//add author name to this book
+                            ps.println("Zadaj nazov vlastnika");//ask for owner
+                            bookList.get(index).setOwner(br.readLine());//add owner name to this book
+                            ps.println("Hotovo");//confirm
+                            break;
+                        default:
+                            ps.println("Unknown command. Avaiable commands: getBooks, getBookInfo and addBook");
+                            break;
+                    }
                 }
+            } else if (status == 0) {
+
+                String str, str1, str2;
+
+                // repeat as long as the client
+                // does not send a null string
+
+                // read from client
+                while ((str = br.readLine()) != null) {
+                    System.out.println(str);
+                    int index = 0;
+                    switch (str) {
+                        case "getBooks"://this function gives us names of all saved books
+                            Iterator<Book> iterator = bookList.iterator();//this allows us to go through all the saved books one by one
+                            str2 = "";//variable where we gonna save the books
+                            while (iterator.hasNext()) {//while loop that gets book names one by one and saves them in string
+                                str2 += iterator.next().getName() + "#";
+                            }
+                            ps.println(str2);//this returns the list of books
+                            break;
+                        case "getBookInfo"://this function asks for name of a book and it returns info about the book
+                            ps.println("Zadaj nazov knizky");
+                            index = Collections.binarySearch(bookList, new Book(br.readLine()), c);//here we are using binary search to find index of book with the choosen name
+                            ps.println(bookList.get(index).getAuthor() + "#" + bookList.get(index).getOwner());//here we are returning book info
+                            break;
+                        case "addBook"://this function allows us to add a new book to our list
+                            ps.println("Zadaj nazov knizky");//ask for name
+                            str = br.readLine();//get name
+                            bookList.add(new Book(str));//create new book with choosen name
+                            Collections.sort(bookList, c);
+                            index = Collections.binarySearch(bookList, new Book(str), c);//get index of the new book
+                            ps.println("Zadaj nazov autora");//ask for author
+                            bookList.get(index).setAuthor(br.readLine());//add author name to this book
+                            ps.println("Zadaj nazov vlastnika");//ask for owner
+                            bookList.get(index).setOwner(br.readLine());//add owner name to this book
+                            ps.println("Hotovo");//confirm
+                            break;
+                        case "removeBook"://this function allows us to remove books
+                            ps.println("Zadaj nazov knizky");//ask for name
+                            index = Collections.binarySearch(bookList, new Book(br.readLine()), c);//find index of the book
+                            bookList.remove(index);//remove it
+                            ps.println("Hotovo");//confirm
+                            break;
+                        default:
+                            ps.println("Unknown command. Avaiable commands: getBooks, getBookInfo, addBook and removeBook");
+                            break;
+                    }
+                }
+                
+            }else{
+
+                String str, str1, str2;
+
+                // repeat as long as the client
+                // does not send a null string
+
+                // read from client
+                while ((str = br.readLine()) != null) {
+                    System.out.println(str);
+                    int index = 0;
+                    switch (str) {
+                        case "signIn":
+                            ps.println("Zadaj meno:");
+                            str=br.readLine();
+                            break;
+                        case "register":
+                            status=0;
+                            ps.println("si admin");
+                            break;
+                        default:
+                            ps.println("You need to sign in [signIn] or register [register]");
+                            break;
+                    }
+                }
+
             }
 
             // close connection
