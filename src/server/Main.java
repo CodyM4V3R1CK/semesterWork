@@ -37,12 +37,24 @@ public class Main {
         bookList.get(0).setOwner("Fero");
         bookList.get(1).setAuthor("Newton");
         bookList.get(1).setOwner("Palo");
+
         Comparator<Book> c = new Comparator<Book>() {
+            /**
+             * @param o1 the first object to be compared.
+             * @param o2 the second object to be compared.
+             * @return
+             */
             @Override
             public int compare(Book o1, Book o2) {
                 return o1.getName().compareTo(o2.getName());
             }
         };
+
+        LinkedList<Student> studentList = new LinkedList<>();
+        studentList.add(new Student("Cody"));
+        studentList.add(new Student("Zajlord"));
+        studentList.get(0).setDormRoom(101);
+        studentList.get(1).setDormRoom(102);
 
         // server executes continuously
         while(true) {
@@ -57,36 +69,56 @@ public class Main {
                 System.out.println(str);
                 int index=0;
                 switch(str){
-                    case "getBooks"://this function gives us names of all saved books
-                        Iterator<Book> iterator = bookList.iterator();//this allows us to go through all the saved books one by one
-                        str2="";//variable where we gonna save the books
-                        while(iterator.hasNext()){//while loop that gets book names one by one and saves them in string
-                            str2+=iterator.next().getName()+"#";
+                    case "getBooks":    //this function gives us names of all saved books
+                        Iterator<Book> iteratorBook = bookList.iterator();  //this allows us to go through all the saved books one by one
+                        str2="";    //variable where we gonna save the books
+
+                        while(iteratorBook.hasNext()){  //while loop that gets book names one by one and saves them in string
+                            str2+=iteratorBook.next().getName()+"#";
                         }
-                        ps.println(str2);//this returns the list of books
+
+                        ps.println(str2);   //this returns the list of books
                         break;
-                    case "getBookInfo"://this function asks for name of a book and it returns info about the book
+
+                    case "getBookInfo": //this function asks for name of a book and it returns info about the book
                         ps.println("Zadaj nazov knizky");
-                        index = Collections.binarySearch(bookList,new Book(br.readLine()),c);//here we are using binary search to find index of book with the choosen name
-                        ps.println(bookList.get(index).getAuthor()+"#"+bookList.get(index).getOwner());//here we are returning book info
+                        index = Collections.binarySearch(bookList,new Book(br.readLine()),c);   //here we are using binary search to find index of book with the choosen name
+                        ps.println(bookList.get(index).getAuthor()+"#"+bookList.get(index).getOwner()); //here we are returning book info
                         break;
-                    case "addBook"://this function allows us to add a new book to our list
-                        ps.println("Zadaj nazov knizky");//ask for name
-                        str = br.readLine();//get name
-                        bookList.add(new Book(str));//create new book with choosen name
-                        index = Collections.binarySearch(bookList,new Book(str),c);//get index of the new book
-                        ps.println("Zadaj nazov autora");//ask for author
-                        bookList.get(index).setAuthor(br.readLine());//add author name to this book
-                        ps.println("Zadaj nazov vlastnika");//ask for owner
-                        bookList.get(index).setOwner(br.readLine());//add owner name to this book
-                        ps.println("Hotovo");//confirm
+
+                    case "addBook": //this function allows us to add a new book to our list
+                        ps.println("Zadaj nazov knizky");   //ask for name
+                        str = br.readLine();    //get name
+                        bookList.add(new Book(str));    //create new book with choosen name
+                        index = Collections.binarySearch(bookList,new Book(str),c); //get index of the new book
+
+                        ps.println("Zadaj nazov autora");   //ask for author
+                        bookList.get(index).setAuthor(br.readLine());   //add author name to this book
+                        ps.println("Zadaj nazov vlastnika");    //ask for owner
+                        bookList.get(index).setOwner(br.readLine());    //add owner name to this book
+
+                        ps.println("Hotovo");   //confirm
                         break;
-                    case "removeBook"://this function allows us to remove books
+
+                    case "removeBook":  //this function allows us to remove books
                         ps.println("Zadaj nazov knizky");//ask for name
                         index = Collections.binarySearch(bookList,new Book(br.readLine()),c);//find index of the book
                         bookList.remove(index);//remove it
+
                         ps.println("Hotovo");//confirm
                         break;
+
+                    case "getStudents":
+                        Iterator<Student> iteratorStudent = studentList.iterator();    //this allows us to go through all the saved students one by one
+                        str2="";    //variable where we will save the students
+
+                        while(iteratorStudent.hasNext()){  //while loop that gets student names one by one and saves them in string
+                            str2 += iteratorStudent.next().getName()+"#";
+                        }
+
+                        ps.println(str2);   //this returns the list of students
+                        break;
+
                     default:
                         ps.println("Unknown command");
                         break;
