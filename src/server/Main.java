@@ -86,7 +86,7 @@ public class Main {
                         str2="";    //variable where we're going to save the books
 
                         while(iteratorBook.hasNext()){  //while loop that gets book names one by one and saves them in string
-                            str2 += iteratorBook.next().getName()+"#";
+                            str2 += iteratorBook.next().getName() + "#";
                         }
 
                         ps.println(str2);   //this returns the list of books
@@ -95,7 +95,7 @@ public class Main {
                     case "getBookInfo": //this function asks for name of a book, and it returns info about the book
                         ps.println("Zadaj nazov knizky");
                         index = Collections.binarySearch(bookList, new Book(br.readLine()), cBook);   //here we are using binary search to find index of book with the chosen name
-                        ps.println(bookList.get(index).getAuthor()+"#"+bookList.get(index).getOwner()); //here we are returning book info
+                        ps.println("Autor: " + bookList.get(index).getAuthor( )+ "#" + "Vlastnik: " + bookList.get(index).getOwner()); //here we are returning book info
                         break;
 
                     case "addBook": //this function allows us to add a new book to our list
@@ -125,7 +125,7 @@ public class Main {
                         str2="";    //variable where we will save the students
 
                         while(iteratorStudent.hasNext()){  //while loop that gets student names one by one and saves them in string
-                            str2 += iteratorStudent.next().getName()+"#";
+                            str2 += iteratorStudent.next().getName() + "#";
                         }
 
                         ps.println(str2);   //this returns the list of students
@@ -140,6 +140,7 @@ public class Main {
                         ps.println("Zadaj izbu");   //ask for dorm room
                         studentList.get(index).setDormRoom(br.readLine());   //add author name to this book
 
+                        ps.println("Hotovo");//confirm
                         break;
 
                     default:
