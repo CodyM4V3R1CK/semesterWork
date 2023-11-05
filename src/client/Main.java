@@ -36,7 +36,7 @@ public class Main {
             // receive from the server
             str1 = br.readLine();
 
-            System.out.println(str1);
+            System.out.println(str1.replace("#","\n"));
         }
 
         // close connection.
