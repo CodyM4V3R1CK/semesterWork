@@ -37,7 +37,12 @@ public class Main {
         bookList.get(0).setOwner("Fero");
         bookList.get(1).setAuthor("Newton");
         bookList.get(1).setOwner("Palo");
-        Comparator<Book> c = new Comparator<Book>() {
+
+        Comparator<Book> cBook = new Comparator<Book>() {
+            /**
+             * @param o1 the first object to be compared.
+             * @param o2 the second object to be compared.
+             */
             @Override
             public int compare(Book o1, Book o2) {
                 return o1.getName().compareTo(o2.getName());
@@ -46,10 +51,27 @@ public class Main {
 
         Collections.sort(bookList,c);
 
+        LinkedList<Student> studentList = new LinkedList<>();
+        studentList.add(new Student("Cody"));
+        studentList.add(new Student("Zajlord"));
+        studentList.get(0).setDormRoom("101");
+        studentList.get(1).setDormRoom("102");
+
+        Comparator<Student> cStudent = new Comparator<Student>() {
+            /**
+             * @param o1 the first object to be compared.
+             * @param o2 the second object to be compared.
+             */
+            @Override
+            public int compare(Student o1, Student o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        };
+
         // server executes continuously
         while(true) {
 
-            String str, str1, str2;
+            String str, str2;
 
             // repeat as long as the client
             // does not send a null string
@@ -57,21 +79,25 @@ public class Main {
             // read from client
             while((str = br.readLine()) != null) {
                 System.out.println(str);
-                int index=0;
+                int index;
                 switch(str){
-                    case "getBooks"://this function gives us names of all saved books
-                        Iterator<Book> iterator = bookList.iterator();//this allows us to go through all the saved books one by one
-                        str2="";//variable where we gonna save the books
-                        while(iterator.hasNext()){//while loop that gets book names one by one and saves them in string
-                            str2+=iterator.next().getName()+"#";
+                    case "getBooks":    //this function gives us names of all saved books
+                        Iterator<Book> iteratorBook = bookList.iterator();  //this allows us to go through all the saved books one by one
+                        str2="";    //variable where we're going to save the books
+
+                        while(iteratorBook.hasNext()){  //while loop that gets book names one by one and saves them in string
+                            str2 += iteratorBook.next().getName() + "#";
                         }
-                        ps.println(str2);//this returns the list of books
+
+                        ps.println(str2);   //this returns the list of books
                         break;
-                    case "getBookInfo"://this function asks for name of a book and it returns info about the book
+
+                    case "getBookInfo": //this function asks for name of a book, and it returns info about the book
                         ps.println("Zadaj nazov knizky");
-                        index = Collections.binarySearch(bookList,new Book(br.readLine()),c);//here we are using binary search to find index of book with the choosen name
-                        ps.println(bookList.get(index).getAuthor()+"#"+bookList.get(index).getOwner());//here we are returning book info
+                        index = Collections.binarySearch(bookList, new Book(br.readLine()), cBook);   //here we are using binary search to find index of book with the chosen name
+                        ps.println("Autor: " + bookList.get(index).getAuthor( )+ "#" + "Vlastnik: " + bookList.get(index).getOwner()); //here we are returning book info
                         break;
+
                     case "addBook"://this function allows us to add a new book to our list
                         ps.println("Zadaj nazov knizky");//ask for name
                         str = br.readLine();//get name
@@ -82,14 +108,71 @@ public class Main {
                         bookList.get(index).setAuthor(br.readLine());//add author name to this book
                         ps.println("Zadaj nazov vlastnika");//ask for owner
                         bookList.get(index).setOwner(br.readLine());//add owner name to this book
+                    
                         ps.println("Hotovo");//confirm
                         break;
-                    case "removeBook"://this function allows us to remove books
+
+                    case "addBook": //this function allows us to add a new book to our list
+                        ps.println("Zadaj nazov knizky");   //ask for name
+                        str = br.readLine();    //get name
+                        bookList.add(new Book(str));    //create new book with chosen name
+                        index = Collections.binarySearch(bookList, new Book(str), cBook); //get index of the new book
+
+                        ps.println("Zadaj nazov autora");   //ask for author
+                        bookList.get(index).setAuthor(br.readLine());   //add author name to this book
+                        ps.println("Zadaj nazov vlastnika");    //ask for owner
+                        bookList.get(index).setOwner(br.readLine());    //add owner name to this book
+
+                        ps.println("Hotovo");   //confirm
+                        break;
+
+                    case "removeBook":  //this function allows us to remove books
                         ps.println("Zadaj nazov knizky");//ask for name
-                        index = Collections.binarySearch(bookList,new Book(br.readLine()),c);//find index of the book
+                        index = Collections.binarySearch(bookList, new Book(br.readLine()), cBook);//find index of the book
                         bookList.remove(index);//remove it
+
                         ps.println("Hotovo");//confirm
                         break;
+
+                    case "getStudents":
+                        Iterator<Student> iteratorStudent = studentList.iterator();    //this allows us to go through all the saved students one by one
+                        str2="";    //variable where we will save the students
+
+                        while(iteratorStudent.hasNext()){  //while loop that gets student names one by one and saves them in string
+                            str2 += (iteratorStudent.next().getName() + "#");
+                        }
+
+                        ps.println(str2);   //this returns the list of students
+                        break;
+
+                    case "getStudentInfo":
+                        ps.println("Zadaj meno studenta");
+                        index = Collections.binarySearch(studentList, new Student(br.readLine()), cStudent);   //here we are using binary search to find index of student with the chosen name
+                        ps.println("Izba: " + studentList.get(index).getDormRoom()); //here we are returning student info
+
+                        break;
+
+                    case "addStudent":
+                        ps.println("Zadaj meno studenta");   //ask for name
+                        str = br.readLine();    //get name
+                        studentList.add(new Student(str));    //create new student with chosen name
+                        index = Collections.binarySearch(studentList, new Student(str), cStudent);  //get index of the new student
+                        if (index < 0) index = index * (-1);   //for some reason index was negative, so we put it to positive value
+
+                        ps.println("Zadaj izbu");   //ask for dorm room
+                        studentList.get(index).setDormRoom(br.readLine());   //add dorm room for the student
+
+                        ps.println("Hotovo");//confirm
+                        break;
+
+                    case "removeStudent":
+                        ps.println("Zadaj meno studenta");//ask for name
+                        index = Collections.binarySearch(studentList, new Student(br.readLine()), cStudent);//find index of the student
+                        studentList.remove(index);//remove it
+
+                        ps.println("Hotovo");//confirm
+                        break;
+
                     default:
                         ps.println("Unknown command");
                         break;
