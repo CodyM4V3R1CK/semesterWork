@@ -64,7 +64,6 @@ public class Main {
 
         // server executes continuously
         while(true) {
-            System.out.println(status);
             if(status > 0){
     
                 String str, str1, str2;
@@ -74,7 +73,6 @@ public class Main {
     
                 // read from client
                 while ((str = br.readLine()) != null) {
-                    System.out.println(str);
                     int index = 0;
                     switch (str) {
                         case "getBooks"://this function gives us names of all saved books
@@ -103,7 +101,7 @@ public class Main {
                             ps.println("Hotovo");//confirm
                             break;
                         default:
-                            ps.println("Unknown command. Avaiable commands: getBooks, getBookInfo and addBook");
+                            ps.println("Unknown command. Available commands: getBooks, getBookInfo and addBook");
                             break;
                     }
                 }
@@ -116,7 +114,6 @@ public class Main {
 
                 // read from client
                 while ((str = br.readLine()) != null) {
-                    System.out.println(str);
                     int index = 0;
                     switch (str) {
                         case "getBooks"://this function gives us names of all saved books
@@ -165,8 +162,6 @@ public class Main {
 
                 // read from client
                 while ((str = br.readLine()) != null && status == -1) {
-                    System.out.println(str);
-                    int index = 0;
                     switch (str) {
                         case "signIn":
                             ps.println("Zadaj meno:");
@@ -181,7 +176,7 @@ public class Main {
                             break;
                     }
                     if(status!=-1){
-                        ps.println("Prihlasujem");
+                        break;
                     }
                 }
 
