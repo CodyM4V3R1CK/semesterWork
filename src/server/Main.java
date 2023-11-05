@@ -86,8 +86,10 @@ public class Main {
                         index = Collections.binarySearch(bookList,new Book(br.readLine()),c);//find index of the book
                         bookList.remove(index);//remove it
                         ps.println("Hotovo");//confirm
+                        break;
                     default:
                         ps.println("Unknown command");
+                        break;
                 }
             }
 
