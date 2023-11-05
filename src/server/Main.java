@@ -44,6 +44,8 @@ public class Main {
             }
         };
 
+        Collections.sort(bookList,c);
+
         // server executes continuously
         while(true) {
 
@@ -74,6 +76,7 @@ public class Main {
                         ps.println("Zadaj nazov knizky");//ask for name
                         str = br.readLine();//get name
                         bookList.add(new Book(str));//create new book with choosen name
+                        Collections.sort(bookList,c);
                         index = Collections.binarySearch(bookList,new Book(str),c);//get index of the new book
                         ps.println("Zadaj nazov autora");//ask for author
                         bookList.get(index).setAuthor(br.readLine());//add author name to this book
