@@ -64,6 +64,7 @@ public class Main {
 
         // server executes continuously
         while(true) {
+            System.out.println(status);
             if(status > 0){
     
                 String str, str1, str2;
@@ -163,7 +164,7 @@ public class Main {
                 // does not send a null string
 
                 // read from client
-                while ((str = br.readLine()) != null) {
+                while ((str = br.readLine()) != null && status == -1) {
                     System.out.println(str);
                     int index = 0;
                     switch (str) {
@@ -179,19 +180,22 @@ public class Main {
                             ps.println("You need to sign in [signIn] or register [register]");
                             break;
                     }
+                    if(status!=-1){
+                        ps.println("Prihlasujem");
+                    }
                 }
 
             }
-
+            /*
             // close connection
             ps.close();
             br.close();
             kb.close();
             ss.close();
             s.close();
-
             // terminate application
             System.exit(0);
+            */
 
         } // end of while
     }
