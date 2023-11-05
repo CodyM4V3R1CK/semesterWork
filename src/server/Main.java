@@ -135,7 +135,7 @@ public class Main {
                         ps.println("Zadaj meno studenta");   //ask for name
                         str = br.readLine();    //get name
                         studentList.add(new Student(str));    //create new student with chosen name
-                        index = Collections.binarySearch(studentList, new Student(str), cStudent); //get index of the new student
+                        index = Collections.binarySearch(studentList, new Student(str), cStudent);  //get index of the new student
 
                         ps.println("Zadaj izbu");   //ask for dorm room
                         studentList.get(index).setDormRoom(br.readLine());   //add author name to this book
