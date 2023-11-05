@@ -2,6 +2,7 @@ package server;
 
 import java.io.*;
 import java.net.*;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception{
@@ -28,7 +29,20 @@ public class Main {
                 = new BufferedReader(
                 new InputStreamReader(System.in));
 
-        Book book = new Book("Hlava 22");
+        LinkedList<Book> bookList = new LinkedList<>();
+        bookList.add(new Book("Matematika1"));
+        bookList.add(new Book("Fyzika1"));
+        bookList.add(new Book("Matematika2"));
+        bookList.get(0).setAuthor("Polakovic");
+        bookList.get(0).setOwner("Fero");
+        bookList.get(1).setAuthor("Newton");
+        bookList.get(1).setOwner("Palo");
+        Comparator<Book> c = new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        };
 
         // server executes continuously
         while(true) {
@@ -41,38 +55,40 @@ public class Main {
             // read from client
             while((str = br.readLine()) != null) {
                 System.out.println(str);
+                int index=0;
                 switch(str){
-                    case "1":
-                        ps.println("meno knizky je " + book.getName());
-                        break;
-                    case "2":
-                        str2 = "Zadaj nazov knizky";
+                    case "getBooks":
+                        Iterator<Book> iterator = bookList.iterator();
+                        str2="";
+                        while(iterator.hasNext()){
+                            str2+=iterator.next().getName()+"#";
+                        }
                         ps.println(str2);
-                        str = br.readLine();
-                        Book test = new Book(str);
-                        ps.println(test.getName());
                         break;
+                    case "getBookInfo":
+                        ps.println("Zadaj nazov knizky");
+                        index = Collections.binarySearch(bookList,new Book(br.readLine()),c);
+                        ps.println(bookList.get(index).getAuthor()+"#"+bookList.get(index).getOwner());
+                        break;
+                    case "addBook":
+                        ps.println("Zadaj nazov knizky");
+                        str = br.readLine();
+                        bookList.add(new Book(str));
+                        index = Collections.binarySearch(bookList,new Book(str),c);
+                        ps.println("Zadaj nazov autora");
+                        bookList.get(index).setAuthor(br.readLine());
+                        ps.println("Zadaj nazov vlastnika");
+                        bookList.get(index).setOwner(br.readLine());
+                        ps.println("Hotovo");
+                        break;
+                    case "removeBook":
+                        ps.println("Zadaj nazov knizky");
+                        index = Collections.binarySearch(bookList,new Book(br.readLine()),c);
+                        bookList.remove(index);
+                        ps.println("Hotovo");
                     default:
+                        ps.println("Unknown command");
                 }
-                /*
-                if(str.equals("1")){
-                    System.out.println("testing if if() works");
-                    System.out.println("meno knizky je " + book.getName());
-                }
-
-                if(str.equals("2")){
-                    str2 = "Zadaj nazov knizky";
-                    ps.println(str2);
-                    str = br.readLine();
-                    Book test = new Book(str);
-                    System.out.println(test.getName());
-                }
-                str1 = kb.readLine();
-
-                // send to client
-                ps.println(str1);
-
-                 */
             }
 
             // close connection
