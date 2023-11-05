@@ -49,7 +49,7 @@ public class Main {
             }
         };
 
-        Collections.sort(bookList,c);
+        bookList.sort(cBook);
 
         LinkedList<Student> studentList = new LinkedList<>();
         studentList.add(new Student("Cody"));
@@ -67,6 +67,8 @@ public class Main {
                 return o1.getName().compareTo(o2.getName());
             }
         };
+
+        studentList.sort(cStudent);
 
         // server executes continuously
         while(true) {
@@ -102,28 +104,14 @@ public class Main {
                         ps.println("Zadaj nazov knizky");//ask for name
                         str = br.readLine();//get name
                         bookList.add(new Book(str));//create new book with choosen name
-                        Collections.sort(bookList,c);
-                        index = Collections.binarySearch(bookList,new Book(str),c);//get index of the new book
+                        bookList.sort(cBook);
+                        index = Collections.binarySearch(bookList,new Book(str), cBook);//get index of the new book
                         ps.println("Zadaj nazov autora");//ask for author
                         bookList.get(index).setAuthor(br.readLine());//add author name to this book
                         ps.println("Zadaj nazov vlastnika");//ask for owner
                         bookList.get(index).setOwner(br.readLine());//add owner name to this book
-                    
+
                         ps.println("Hotovo");//confirm
-                        break;
-
-                    case "addBook": //this function allows us to add a new book to our list
-                        ps.println("Zadaj nazov knizky");   //ask for name
-                        str = br.readLine();    //get name
-                        bookList.add(new Book(str));    //create new book with chosen name
-                        index = Collections.binarySearch(bookList, new Book(str), cBook); //get index of the new book
-
-                        ps.println("Zadaj nazov autora");   //ask for author
-                        bookList.get(index).setAuthor(br.readLine());   //add author name to this book
-                        ps.println("Zadaj nazov vlastnika");    //ask for owner
-                        bookList.get(index).setOwner(br.readLine());    //add owner name to this book
-
-                        ps.println("Hotovo");   //confirm
                         break;
 
                     case "removeBook":  //this function allows us to remove books
@@ -156,6 +144,7 @@ public class Main {
                         ps.println("Zadaj meno studenta");   //ask for name
                         str = br.readLine();    //get name
                         studentList.add(new Student(str));    //create new student with chosen name
+                        studentList.sort(cStudent);
                         index = Collections.binarySearch(studentList, new Student(str), cStudent);  //get index of the new student
                         if (index < 0) index = index * (-1);   //for some reason index was negative, so we put it to positive value
 
