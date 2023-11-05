@@ -2,12 +2,11 @@ package server;
 
 public class Student {
 
-    String name;
-    int dormRoom;
+    private String name;
+    private int dormRoom;
 
-    public Student(String name, int dormRoom) {
+    public Student(String name) {
         this.name = name;
-        this.dormRoom = dormRoom;
     }
 
     public String getName() {
