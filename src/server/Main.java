@@ -131,6 +131,10 @@ public class Main {
                         ps.println(str2);   //this returns the list of students
                         break;
 
+                    case "getStudentInfo":
+
+                        break;
+
                     case "addStudent":
                         ps.println("Zadaj meno studenta");   //ask for name
                         str = br.readLine();    //get name
@@ -140,6 +144,14 @@ public class Main {
 
                         ps.println("Zadaj izbu");   //ask for dorm room
                         studentList.get(index).setDormRoom(br.readLine());   //add dorm room for the student
+
+                        ps.println("Hotovo");//confirm
+                        break;
+
+                    case "removeStudent":
+                        ps.println("Zadaj meno studenta");//ask for name
+                        index = Collections.binarySearch(studentList, new Student(br.readLine()), cStudent);//find index of the student
+                        studentList.remove(index);//remove it
 
                         ps.println("Hotovo");//confirm
                         break;
