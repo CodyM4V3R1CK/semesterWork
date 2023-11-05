@@ -6,7 +6,6 @@ public class Book {
     private String author;
     private String owner;
 
-
     public Book(String name){
         this.name = name;
     }
@@ -18,6 +17,7 @@ public class Book {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getAuthor() {
         return author;
     }
@@ -25,6 +25,7 @@ public class Book {
     public void setAuthor(String author) {
         this.author = author;
     }
+
     public String getOwner() {
         return owner;
     }
