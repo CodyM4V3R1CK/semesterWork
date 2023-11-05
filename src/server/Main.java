@@ -42,7 +42,6 @@ public class Main {
             /**
              * @param o1 the first object to be compared.
              * @param o2 the second object to be compared.
-             * @return
              */
             @Override
             public int compare(Book o1, Book o2) {
@@ -60,7 +59,6 @@ public class Main {
             /**
              * @param o1 the first object to be compared.
              * @param o2 the second object to be compared.
-             * @return
              */
             @Override
             public int compare(Student o1, Student o2) {
@@ -71,7 +69,7 @@ public class Main {
         // server executes continuously
         while(true) {
 
-            String str, str1, str2;
+            String str, str2;
 
             // repeat as long as the client
             // does not send a null string
@@ -79,7 +77,7 @@ public class Main {
             // read from client
             while((str = br.readLine()) != null) {
                 System.out.println(str);
-                int index=0;
+                int index;
                 switch(str){
                     case "getBooks":    //this function gives us names of all saved books
                         Iterator<Book> iteratorBook = bookList.iterator();  //this allows us to go through all the saved books one by one
@@ -125,7 +123,7 @@ public class Main {
                         str2="";    //variable where we will save the students
 
                         while(iteratorStudent.hasNext()){  //while loop that gets student names one by one and saves them in string
-                            str2 += iteratorStudent.next().getName() + "#";
+                            str2 += (iteratorStudent.next().getName() + "#");
                         }
 
                         ps.println(str2);   //this returns the list of students
