@@ -132,6 +132,9 @@ public class Main {
                         break;
 
                     case "getStudentInfo":
+                        ps.println("Zadaj meno studenta");
+                        index = Collections.binarySearch(studentList, new Student(br.readLine()), cStudent);   //here we are using binary search to find index of student with the chosen name
+                        ps.println("Izba: " + studentList.get(index).getDormRoom()); //here we are returning student info
 
                         break;
 
