@@ -3,7 +3,7 @@ package server;
 public class Student {
 
     private String name;
-    private int dormRoom;
+    private String dormRoom;
 
     public Student(String name) {
         this.name = name;
@@ -17,11 +17,11 @@ public class Student {
         this.name = name;
     }
 
-    public int getDormRoom() {
+    public String getDormRoom() {
         return dormRoom;
     }
 
-    public void setDormRoom(int dormRoom) {
+    public void setDormRoom(String dormRoom) {
         this.dormRoom = dormRoom;
     }
 }
