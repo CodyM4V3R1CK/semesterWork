@@ -136,9 +136,10 @@ public class Main {
                         str = br.readLine();    //get name
                         studentList.add(new Student(str));    //create new student with chosen name
                         index = Collections.binarySearch(studentList, new Student(str), cStudent);  //get index of the new student
+                        index = index * (-1);   //for some reason index was negative, so we put it to positive value
 
                         ps.println("Zadaj izbu");   //ask for dorm room
-                        studentList.get(index).setDormRoom(br.readLine());   //add author name to this book
+                        studentList.get(index).setDormRoom(br.readLine());   //add dorm room for the student
 
                         ps.println("Hotovo");//confirm
                         break;
