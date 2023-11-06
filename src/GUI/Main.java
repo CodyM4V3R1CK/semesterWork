@@ -14,9 +14,9 @@ public class Main {
         crdl.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         cards.setSize(200, 200);
-        cards.setVisible(false);
+        cards.setVisible(true);
         cards.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        CardLayoutDemo.createAndShowGUI();
+        //CardLayoutDemo.createAndShowGUI();
     }
 }
