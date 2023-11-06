@@ -1,5 +1,7 @@
 package GUI;
 
+import javax.swing.*;
+
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Main {
@@ -12,7 +14,9 @@ public class Main {
         crdl.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         cards.setSize(200, 200);
-        cards.setVisible(true);
+        cards.setVisible(false);
         cards.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        CardLayoutDemo.createAndShowGUI();
     }
 }
