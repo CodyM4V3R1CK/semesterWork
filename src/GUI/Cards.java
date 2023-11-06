@@ -23,8 +23,8 @@ public class Cards extends JFrame implements ActionListener {
 
         login = new JButton("Login");
         register = new JButton("Register");
-        confirmLogin = new JButton("Login");
-        confirmRegister = new JButton("Register");
+        confirmLogin = new JButton("confirmLogin");
+        confirmRegister = new JButton("confirmRegister");
 
         login.addActionListener(this);
         register.addActionListener(this);
@@ -42,12 +42,17 @@ public class Cards extends JFrame implements ActionListener {
         cPane.add("confirmLogin", confirmLogin);
         cPane.add("confirmRegister", confirmRegister);
 
-        //cPane.add("a", login);
-        //cPane.add("b", register);
-
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        crd.next(cPane);
+        //crd.next(cPane);
+        String command = e.getActionCommand();
+        if(command.equals("Login")) {
+            crd.show(cPane, "confirmLogin");
+        }else if(command.equals("Register")){
+            crd.show(cPane, "confirmRegister");
+        }else{
+            crd.show(cPane, "loginSelection");
+        }
     }
 }
