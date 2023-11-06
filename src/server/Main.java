@@ -162,14 +162,38 @@ public class Main {
 
                 // read from client
                 while ((str = br.readLine()) != null && status == -1) {
+                    int index = 0;
                     switch (str) {
                         case "signIn":
                             ps.println("Zadaj meno:");
-                            str=br.readLine();
+                            index = Collections.binarySearch(studentList, new Student(br.readLine()), sc);
+                            ps.println("Zadaj heslo:");
+                            if(studentList.get(index).getPassword().compareTo(br.readLine())==0){
+                                if(index==0){
+                                    status=0;
+                                }else{
+                                    status=1;
+                                }
+                                ps.println("Si prihlaseny");
+                            }else{
+                                ps.println("Zle meno/heslo");
+                            }
                             break;
                         case "register":
-                            status=0;
-                            ps.println("si admin");
+                            ps.println("Zadaj meno:");
+                            str=br.readLine();
+                            studentList.add(new Student(str));
+                            Collections.sort(studentList, sc);
+                            index = Collections.binarySearch(studentList, new Student(str), sc);
+                            ps.println("Zadaj heslo:");
+                            studentList.get(index).setPassword(br.readLine());
+                            ps.println("Zadaj telefonne cislo:");
+                            studentList.get(index).setPhone(br.readLine());
+                            ps.println("Zadaj email:");
+                            studentList.get(index).setEmail(br.readLine());
+                            ps.println("Zadaj cislo izby:");
+                            studentList.get(index).setDormRoom(br.readLine());
+                            ps.println("Si zaregistrovany");
                             break;
                         default:
                             ps.println("You need to sign in [signIn] or register [register]");
