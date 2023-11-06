@@ -37,7 +37,12 @@ public class Main {
         bookList.get(0).setOwner("Fero");
         bookList.get(1).setAuthor("Newton");
         bookList.get(1).setOwner("Palo");
+
         Comparator<Book> c = new Comparator<Book>() {
+            /**
+             * @param o1 the first object to be compared.
+             * @param o2 the second object to be compared.
+             */
             @Override
             public int compare(Book o1, Book o2) {
                 return o1.getName().compareTo(o2.getName());
