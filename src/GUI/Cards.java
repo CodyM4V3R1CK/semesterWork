@@ -57,9 +57,9 @@ public class Cards extends JFrame implements ActionListener {
         String command = e.getActionCommand();
 
         if(command.equals("Login")) {
-            crd.show(cPane, "confirmLogin");
+            crd.show(cPane, "confirmLogin"); //change to confirmLogin on Login press
         }else if(command.equals("Register")){
-            crd.show(cPane, "confirmRegister");
+            crd.show(cPane, "confirmRegister"); //change to confirmRegister on Register press
         }else{
             crd.show(cPane, "loginSelection");
         }
