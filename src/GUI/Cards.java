@@ -13,31 +13,39 @@ public class Cards extends JFrame implements ActionListener {
     Container cPane;
 
     Cards(){
+
         cPane = getContentPane();
         crd = new CardLayout();
         cPane.setLayout(crd);
 
+        //creating panels
         loginSelection = new JPanel();
         loginScreen = new JPanel();
         registerScreen = new JPanel();
 
+        //creating buttons
         login = new JButton("Login");
         register = new JButton("Register");
         confirmLogin = new JButton("confirmLogin");
         confirmRegister = new JButton("confirmRegister");
 
+        //adding listeners to buttons
         login.addActionListener(this);
         register.addActionListener(this);
         confirmLogin.addActionListener(this);
         confirmRegister.addActionListener(this);
 
+        //adding stuff to loginSelection panel
         loginSelection.add(login);
         loginSelection.add(register);
 
+        //adding stuff to loginScreen panel
         loginScreen.add(confirmLogin);
 
+        //adding stuff to registerScreen panel
         registerScreen.add(confirmRegister);
 
+        //adding panels to cardLayout
         cPane.add("loginSelection", loginSelection);
         cPane.add("confirmLogin", confirmLogin);
         cPane.add("confirmRegister", confirmRegister);
@@ -45,8 +53,9 @@ public class Cards extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        //crd.next(cPane);
+        //get current command (command name = button text)
         String command = e.getActionCommand();
+
         if(command.equals("Login")) {
             crd.show(cPane, "confirmLogin");
         }else if(command.equals("Register")){
