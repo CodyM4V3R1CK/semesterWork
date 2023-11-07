@@ -4,13 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class Cards extends JFrame implements ActionListener {
 
     CardLayout crd;
     Container cPane;
     JButton login, register;    //main screen selection
-    JPanel loginSelection, loginScreen, registerScreen;
+    JPanel loginSelectionScreen, loginScreen, registerScreen, userScreen, getBooksScreen;
 
     //login screen GUI parts
     JButton confirmLogin;
@@ -22,6 +23,15 @@ public class Cards extends JFrame implements ActionListener {
     JTextField registerUsername, registerPassword, registerPhone, registerEmail, registerDorm;
     JLabel usernameRegisterL, passwordRegisterL, phoneRegisterL, emailRegisterL, dormRegisterL;
 
+    //user screen GUI parts
+    JButton getBooksButton;
+
+    //admin screen GUI parts
+
+    //getBooks screen GUI parts
+    JTextArea getBooksOutput;
+    JButton getBooksReturn;
+
     Cards(){
 
         cPane = getContentPane();
@@ -29,21 +39,27 @@ public class Cards extends JFrame implements ActionListener {
         cPane.setLayout(crd);
 
         //creating panels
-        loginSelection = new JPanel();
+        loginSelectionScreen = new JPanel();
         loginScreen = new JPanel();
         registerScreen = new JPanel();
+        userScreen = new JPanel();
+        getBooksScreen = new JPanel();
 
         //creating buttons
         login = new JButton("Login");
         register = new JButton("Register");
         confirmLogin = new JButton("confirmLogin");
         confirmRegister = new JButton("confirmRegister");
+        getBooksButton = new JButton("Get Books");
+        getBooksReturn = new JButton("Back");
 
         //adding listeners to buttons
         login.addActionListener(this);
         register.addActionListener(this);
         confirmLogin.addActionListener(this);
         confirmRegister.addActionListener(this);
+        getBooksButton.addActionListener(this);
+        getBooksReturn.addActionListener(this);
 
         //creating text fields
         loginUsername = new JTextField(40);
@@ -72,14 +88,17 @@ public class Cards extends JFrame implements ActionListener {
         emailRegisterL = new JLabel("Email address:");
         dormRegisterL = new JLabel("Dorm Room:");
 
-        //adding stuff to loginSelection panel
-        loginSelection.add(Box.createRigidArea(new Dimension(0, 50)));
-        loginSelection.add(login);
-        loginSelection.add(Box.createRigidArea(new Dimension(0, 50)));
-        loginSelection.add(register);
+        //creating text areas
+        getBooksOutput = new JTextArea();
 
-        loginSelection.setLayout(new BoxLayout(loginSelection, BoxLayout.Y_AXIS));
-        loginSelection.setBorder(BorderFactory.createEmptyBorder(125, 200, 0, 0));
+        //adding stuff to loginSelection panel
+        loginSelectionScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        loginSelectionScreen.add(login);
+        loginSelectionScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        loginSelectionScreen.add(register);
+
+        loginSelectionScreen.setLayout(new BoxLayout(loginSelectionScreen, BoxLayout.Y_AXIS));
+        loginSelectionScreen.setBorder(BorderFactory.createEmptyBorder(125, 200, 0, 0));
 
 
         //adding stuff to loginScreen panel
@@ -117,10 +136,25 @@ public class Cards extends JFrame implements ActionListener {
         registerScreen.setLayout(new BoxLayout(registerScreen, BoxLayout.Y_AXIS));
         registerScreen.setBorder(BorderFactory.createEmptyBorder(0, 75, 0, 0));
 
+        //adding stuff to userScreen panel
+        userScreen.add(getBooksButton);
+
+        userScreen.setLayout(new BoxLayout(userScreen, BoxLayout.Y_AXIS));
+
+        //adding stuff to getBooks panel
+        getBooksScreen.add(Box.createRigidArea(new Dimension(20, 20)));
+        getBooksScreen.add(getBooksOutput);
+        getBooksScreen.add(Box.createRigidArea(new Dimension(100, 20)));
+        getBooksScreen.add(getBooksReturn);
+
+        getBooksScreen.setLayout(new BoxLayout(getBooksScreen, BoxLayout.Y_AXIS));
+
         //adding panels to cardLayout
-        cPane.add("loginSelection", loginSelection);
+        cPane.add("loginSelection", loginSelectionScreen);
         cPane.add("confirmLogin", loginScreen);
         cPane.add("confirmRegister", registerScreen);
+        cPane.add("userScreen", userScreen);
+        cPane.add("getBooks", getBooksScreen);
     }
 
     /**
@@ -141,8 +175,14 @@ public class Cards extends JFrame implements ActionListener {
                 Test.testing();
                 loginUsername.setText("");
                 loginPassword.setText("");
-                crd.show(cPane, "loginSelection"); //change to confirmLogin on Login press
+                if (Objects.equals(username, "admin") && Objects.equals(password, "admin")) crd.show(cPane, "userScreen");
             }
+            case "Get Books" -> {
+                String test = "Hell0 World";
+                crd.show(cPane, "getBooks");
+                getBooksOutput.setText(test);
+            }
+            case "Back" -> crd.previous(cPane);
             case "confirmRegister" -> {
                 String username = registerUsername.getText();
                 String password = registerPassword.getText();
