@@ -51,6 +51,10 @@ public class Cards extends JFrame implements ActionListener {
         cPane.add("confirmRegister", confirmRegister);
 
     }
+
+    /**
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         //get current command (command name = button text)
