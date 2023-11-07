@@ -138,6 +138,7 @@ public class Cards extends JFrame implements ActionListener {
                 String username = loginUsername.getText();
                 String password = loginPassword.getText();
                 System.out.println(username + " " + password);
+                Test.testing();
                 loginUsername.setText("");
                 loginPassword.setText("");
                 crd.show(cPane, "loginSelection"); //change to confirmLogin on Login press
