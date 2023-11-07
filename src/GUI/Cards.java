@@ -58,8 +58,11 @@ public class Cards extends JFrame implements ActionListener {
 
         //adding panels to cardLayout
         cPane.add("loginSelection", loginSelection);
-        cPane.add("confirmLogin", confirmLogin);
-        cPane.add("confirmRegister", confirmRegister);
+        cPane.add("confirmLogin", loginScreen);
+        cPane.add("confirmRegister", registerScreen);
+
+        pack();
+        revalidate();
 
     }
 
