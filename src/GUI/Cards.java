@@ -12,6 +12,7 @@ public class Cards extends JFrame implements ActionListener {
     JButton login, register, confirmLogin, confirmRegister;
     JPanel loginSelection, loginScreen, registerScreen;
     JTextField loginUsername, loginPassword, registerUsername, registerPassword;
+    JLabel usernameL, passwordL;
 
     Cards(){
 
@@ -42,28 +43,34 @@ public class Cards extends JFrame implements ActionListener {
         registerUsername = new JTextField(20);
         registerPassword = new JTextField(20);
 
+        //creating labels
+        usernameL = new JLabel();
+        passwordL = new JLabel();
+
         //adding stuff to loginSelection panel
         loginSelection.add(login);
         loginSelection.add(register);
+
+        loginSelection.setLayout(new BoxLayout(loginSelection, BoxLayout.Y_AXIS));
 
         //adding stuff to loginScreen panel
         loginScreen.add(loginUsername);
         loginScreen.add(loginPassword);
         loginScreen.add(confirmLogin);
 
+        loginScreen.setLayout(new BoxLayout(loginScreen, BoxLayout.Y_AXIS));
+
         //adding stuff to registerScreen panel
         registerScreen.add(registerUsername);
         registerScreen.add(registerPassword);
         registerScreen.add(confirmRegister);
 
+        registerScreen.setLayout(new BoxLayout(registerScreen, BoxLayout.Y_AXIS));
+
         //adding panels to cardLayout
         cPane.add("loginSelection", loginSelection);
         cPane.add("confirmLogin", loginScreen);
         cPane.add("confirmRegister", registerScreen);
-
-        pack();
-        revalidate();
-
     }
 
     /**
