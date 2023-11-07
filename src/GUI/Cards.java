@@ -75,11 +75,15 @@ public class Cards extends JFrame implements ActionListener {
         loginScreen.setBorder(BorderFactory.createEmptyBorder(0, 75, 0, 0));
 
         //adding stuff to registerScreen panel
+        registerScreen.add(Box.createRigidArea(new Dimension(0, 100)));
         registerScreen.add(registerUsername);
+        registerScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         registerScreen.add(registerPassword);
+        registerScreen.add(Box.createRigidArea(new Dimension(75, 100)));
         registerScreen.add(confirmRegister);
 
         registerScreen.setLayout(new BoxLayout(registerScreen, BoxLayout.Y_AXIS));
+        registerScreen.setBorder(BorderFactory.createEmptyBorder(0, 75, 0, 0));
 
         //adding panels to cardLayout
         cPane.add("loginSelection", loginSelection);
