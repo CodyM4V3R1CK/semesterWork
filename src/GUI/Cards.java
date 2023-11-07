@@ -12,7 +12,7 @@ public class Cards extends JFrame implements ActionListener {
     JButton login, register, confirmLogin, confirmRegister;
     JPanel loginSelection, loginScreen, registerScreen;
     JTextField loginUsername, loginPassword, registerUsername, registerPassword;
-    JLabel usernameL, passwordL;
+    JLabel usernameRegisterL, passwordRegisterL, usernameLoginL, passwordLoginL;
 
     Cards(){
 
@@ -50,8 +50,10 @@ public class Cards extends JFrame implements ActionListener {
         registerPassword.setMaximumSize(registerPassword.getPreferredSize());
 
         //creating labels
-        usernameL = new JLabel();
-        passwordL = new JLabel();
+        usernameRegisterL = new JLabel("Username");
+        passwordRegisterL = new JLabel("Password");
+        usernameLoginL = new JLabel("Username");
+        passwordLoginL = new JLabel("Password");
 
         //adding stuff to loginSelection panel
         loginSelection.add(Box.createRigidArea(new Dimension(0, 50)));
@@ -65,8 +67,10 @@ public class Cards extends JFrame implements ActionListener {
 
         //adding stuff to loginScreen panel
         loginScreen.add(Box.createRigidArea(new Dimension(0, 100)));
+        loginScreen.add(usernameLoginL);
         loginScreen.add(loginUsername);
         loginScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        loginScreen.add(passwordLoginL);
         loginScreen.add(loginPassword);
         loginScreen.add(Box.createRigidArea(new Dimension(75, 100)));
         loginScreen.add(confirmLogin);
@@ -76,8 +80,10 @@ public class Cards extends JFrame implements ActionListener {
 
         //adding stuff to registerScreen panel
         registerScreen.add(Box.createRigidArea(new Dimension(0, 100)));
+        registerScreen.add(usernameRegisterL);
         registerScreen.add(registerUsername);
         registerScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        registerScreen.add(passwordRegisterL);
         registerScreen.add(registerPassword);
         registerScreen.add(Box.createRigidArea(new Dimension(75, 100)));
         registerScreen.add(confirmRegister);
