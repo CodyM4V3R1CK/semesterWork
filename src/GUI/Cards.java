@@ -9,10 +9,18 @@ public class Cards extends JFrame implements ActionListener {
 
     CardLayout crd;
     Container cPane;
-    JButton login, register, confirmLogin, confirmRegister;
+    JButton login, register;    //main screen selection
     JPanel loginSelection, loginScreen, registerScreen;
-    JTextField loginUsername, loginPassword, registerUsername, registerPassword;
-    JLabel usernameRegisterL, passwordRegisterL, usernameLoginL, passwordLoginL;
+
+    //login screen GUI parts
+    JButton confirmLogin;
+    JTextField loginUsername, loginPassword;
+    JLabel usernameRegisterL, passwordRegisterL;
+
+    //register screen GUI parts
+    JButton confirmRegister;
+    JTextField registerUsername, registerPassword;
+    JLabel usernameLoginL, passwordLoginL;
 
     Cards(){
 
