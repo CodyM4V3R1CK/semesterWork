@@ -8,9 +8,10 @@ import java.awt.event.ActionListener;
 public class Cards extends JFrame implements ActionListener {
 
     CardLayout crd;
+    Container cPane;
     JButton login, register, confirmLogin, confirmRegister;
     JPanel loginSelection, loginScreen, registerScreen;
-    Container cPane;
+    JTextField loginUsername, loginPassword, registerUsername, registerPassword;
 
     Cards(){
 
@@ -35,14 +36,24 @@ public class Cards extends JFrame implements ActionListener {
         confirmLogin.addActionListener(this);
         confirmRegister.addActionListener(this);
 
+        //creating text fields
+        loginUsername = new JTextField(20);
+        loginPassword = new JTextField(20);
+        registerUsername = new JTextField(20);
+        registerPassword = new JTextField(20);
+
         //adding stuff to loginSelection panel
         loginSelection.add(login);
         loginSelection.add(register);
 
         //adding stuff to loginScreen panel
+        loginScreen.add(loginUsername);
+        loginScreen.add(loginPassword);
         loginScreen.add(confirmLogin);
 
         //adding stuff to registerScreen panel
+        registerScreen.add(registerUsername);
+        registerScreen.add(registerPassword);
         registerScreen.add(confirmRegister);
 
         //adding panels to cardLayout
