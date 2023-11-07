@@ -15,12 +15,12 @@ public class Cards extends JFrame implements ActionListener {
     //login screen GUI parts
     JButton confirmLogin;
     JTextField loginUsername, loginPassword;
-    JLabel usernameRegisterL, passwordRegisterL;
+    JLabel usernameLoginL, passwordLoginL;
 
     //register screen GUI parts
     JButton confirmRegister;
-    JTextField registerUsername, registerPassword;
-    JLabel usernameLoginL, passwordLoginL;
+    JTextField registerUsername, registerPassword, registerPhone, registerEmail, registerDorm;
+    JLabel usernameRegisterL, passwordRegisterL, phoneRegisterL, emailRegisterL, dormRegisterL;
 
     Cards(){
 
@@ -50,18 +50,27 @@ public class Cards extends JFrame implements ActionListener {
         loginPassword = new JTextField(40);
         registerUsername = new JTextField(40);
         registerPassword = new JTextField(40);
+        registerPhone = new JTextField(40);
+        registerEmail = new JTextField(40);
+        registerDorm = new JTextField(40);
 
         //don't allow text fields to expand beyond given limit
         loginUsername.setMaximumSize(loginUsername.getPreferredSize());
         loginPassword.setMaximumSize(loginPassword.getPreferredSize());
         registerUsername.setMaximumSize(registerUsername.getPreferredSize());
         registerPassword.setMaximumSize(registerPassword.getPreferredSize());
+        registerPhone.setMaximumSize(registerPhone.getPreferredSize());
+        registerEmail.setMaximumSize(registerEmail.getPreferredSize());
+        registerDorm.setMaximumSize(registerDorm.getPreferredSize());
 
         //creating labels
-        usernameRegisterL = new JLabel("Username");
-        passwordRegisterL = new JLabel("Password");
-        usernameLoginL = new JLabel("Username");
-        passwordLoginL = new JLabel("Password");
+        usernameRegisterL = new JLabel("Username:");
+        passwordRegisterL = new JLabel("Password:");
+        usernameLoginL = new JLabel("Username:");
+        passwordLoginL = new JLabel("Password:");
+        phoneRegisterL = new JLabel("Phone Number:");
+        emailRegisterL = new JLabel("Email address:");
+        dormRegisterL = new JLabel("Dorm Room:");
 
         //adding stuff to loginSelection panel
         loginSelection.add(Box.createRigidArea(new Dimension(0, 50)));
@@ -87,13 +96,22 @@ public class Cards extends JFrame implements ActionListener {
         loginScreen.setBorder(BorderFactory.createEmptyBorder(0, 75, 0, 0));
 
         //adding stuff to registerScreen panel
-        registerScreen.add(Box.createRigidArea(new Dimension(0, 100)));
+        registerScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         registerScreen.add(usernameRegisterL);
         registerScreen.add(registerUsername);
-        registerScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        registerScreen.add(Box.createRigidArea(new Dimension(0, 40)));
         registerScreen.add(passwordRegisterL);
         registerScreen.add(registerPassword);
-        registerScreen.add(Box.createRigidArea(new Dimension(75, 100)));
+        registerScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        registerScreen.add(phoneRegisterL);
+        registerScreen.add(registerPhone);
+        registerScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        registerScreen.add(emailRegisterL);
+        registerScreen.add(registerEmail);
+        registerScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        registerScreen.add(dormRegisterL);
+        registerScreen.add(registerDorm);
+        registerScreen.add(Box.createRigidArea(new Dimension(75, 40)));
         registerScreen.add(confirmRegister);
 
         registerScreen.setLayout(new BoxLayout(registerScreen, BoxLayout.Y_AXIS));
@@ -127,10 +145,10 @@ public class Cards extends JFrame implements ActionListener {
             case "confirmRegister" -> {
                 String username = registerUsername.getText();
                 String password = registerPassword.getText();
-                String phoneNumber;
-                String email;
-                String dorm;
-                System.out.println(username + " " + password);
+                String phoneNumber = registerPhone.getText();
+                String email = registerEmail.getText();
+                String dorm = registerDorm.getText();
+                System.out.println(username + " " + password + " " + phoneNumber + " " + email + " " + dorm);
                 registerUsername.setText("");
                 registerPassword.setText("");
                 crd.show(cPane, "loginSelection"); //change to confirmRegister on Register press
