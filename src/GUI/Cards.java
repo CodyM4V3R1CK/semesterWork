@@ -105,12 +105,29 @@ public class Cards extends JFrame implements ActionListener {
         //get current command (command name = button text)
         String command = e.getActionCommand();
 
-        if(command.equals("Login")) {
-            crd.show(cPane, "confirmLogin"); //change to confirmLogin on Login press
-        }else if(command.equals("Register")){
-            crd.show(cPane, "confirmRegister"); //change to confirmRegister on Register press
-        }else{
-            crd.show(cPane, "loginSelection");
+        switch (command) {
+            case "Login" -> crd.show(cPane, "confirmLogin"); //change to confirmLogin on Login press
+            case "Register" -> crd.show(cPane, "confirmRegister"); //change to confirmRegister on Register press
+            case "confirmLogin" -> {
+                String username = loginUsername.getText();
+                String password = loginPassword.getText();
+                System.out.println(username + " " + password);
+                loginUsername.setText("");
+                loginPassword.setText("");
+                crd.show(cPane, "loginSelection"); //change to confirmLogin on Login press
+            }
+            case "confirmRegister" -> {
+                String username = registerUsername.getText();
+                String password = registerPassword.getText();
+                String phoneNumber;
+                String email;
+                String dorm;
+                System.out.println(username + " " + password);
+                registerUsername.setText("");
+                registerPassword.setText("");
+                crd.show(cPane, "loginSelection"); //change to confirmRegister on Register press
+            }
+            default -> crd.show(cPane, "loginSelection");
         }
     }
 }
