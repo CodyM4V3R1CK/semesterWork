@@ -38,27 +38,41 @@ public class Cards extends JFrame implements ActionListener {
         confirmRegister.addActionListener(this);
 
         //creating text fields
-        loginUsername = new JTextField(20);
-        loginPassword = new JTextField(20);
-        registerUsername = new JTextField(20);
-        registerPassword = new JTextField(20);
+        loginUsername = new JTextField(40);
+        loginPassword = new JTextField(40);
+        registerUsername = new JTextField(40);
+        registerPassword = new JTextField(40);
+
+        //don't allow text fields to expand beyond given limit
+        loginUsername.setMaximumSize(loginUsername.getPreferredSize());
+        loginPassword.setMaximumSize(loginPassword.getPreferredSize());
+        registerUsername.setMaximumSize(registerUsername.getPreferredSize());
+        registerPassword.setMaximumSize(registerPassword.getPreferredSize());
 
         //creating labels
         usernameL = new JLabel();
         passwordL = new JLabel();
 
         //adding stuff to loginSelection panel
+        loginSelection.add(Box.createRigidArea(new Dimension(0, 50)));
         loginSelection.add(login);
+        loginSelection.add(Box.createRigidArea(new Dimension(0, 50)));
         loginSelection.add(register);
 
         loginSelection.setLayout(new BoxLayout(loginSelection, BoxLayout.Y_AXIS));
+        loginSelection.setBorder(BorderFactory.createEmptyBorder(125, 200, 0, 0));
+
 
         //adding stuff to loginScreen panel
+        loginScreen.add(Box.createRigidArea(new Dimension(0, 100)));
         loginScreen.add(loginUsername);
+        loginScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         loginScreen.add(loginPassword);
+        loginScreen.add(Box.createRigidArea(new Dimension(75, 100)));
         loginScreen.add(confirmLogin);
 
         loginScreen.setLayout(new BoxLayout(loginScreen, BoxLayout.Y_AXIS));
+        loginScreen.setBorder(BorderFactory.createEmptyBorder(0, 75, 0, 0));
 
         //adding stuff to registerScreen panel
         registerScreen.add(registerUsername);
