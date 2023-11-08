@@ -68,6 +68,7 @@ public class Cards extends JFrame implements ActionListener {
         confirmLogin.addActionListener(this);
         confirmRegister.addActionListener(this);
         addBookButton.addActionListener(this);
+        addBookConfirm.addActionListener(this);
         addBookReturn.addActionListener(this);
         getBooksButton.addActionListener(this);
         getBooksReturn.addActionListener(this);
@@ -219,9 +220,13 @@ public class Cards extends JFrame implements ActionListener {
                 loginPassword.setText("");
                 if (Objects.equals(username, "admin") && Objects.equals(password, "admin")) crd.show(cPane, "userScreen");
             }
-            case "Add Book" -> {
-                //insert code for adding a book
-                crd.show(cPane, "addBook");
+            case "Add Book" -> crd.show(cPane, "addBook");
+            case "Add This Book" -> {
+                String bookName = addBookName.getText();
+                String bookAuthor = addBookAuthor.getText();
+                String bookOwner = addBookOwner.getText();
+                System.out.println(bookName + " " + bookAuthor + " " + bookOwner);
+                crd.show(cPane, "userScreen");
             }
             case "Get Books" -> {
                 String test = "Hell0 World";
