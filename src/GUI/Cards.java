@@ -46,6 +46,9 @@ public class Cards extends JFrame implements ActionListener {
     //removeBookAdmin screen GUI parts
 
     //addUserAdmin screen GUI parts
+    JButton addUserConfirmButtonAdmin;
+    JTextField addUserUsername, addUserPassword, addUserPhone, addUserEmail, addUserDorm;
+    JLabel addUserUsernameL, addUserPasswordL, addUserPhoneL, addUserEmailL, addUserDormL;
 
     Cards(){
 
@@ -80,6 +83,7 @@ public class Cards extends JFrame implements ActionListener {
         getBooksButtonAdmin = new JButton("Show All Books");
         removeBookButtonAdmin = new JButton("Remove Book");
         addUserButtonAdmin = new JButton("Add User");
+        addUserConfirmButtonAdmin = new JButton("Add This User");
 
         //adding listeners to buttons
         login.addActionListener(this);
@@ -95,6 +99,7 @@ public class Cards extends JFrame implements ActionListener {
         getBooksButtonAdmin.addActionListener(this);
         removeBookButtonAdmin.addActionListener(this);
         addUserButtonAdmin.addActionListener(this);
+        addUserConfirmButtonAdmin.addActionListener(this);
 
         //creating text fields
         loginUsername = new JTextField(40);
@@ -107,6 +112,12 @@ public class Cards extends JFrame implements ActionListener {
         addBookAuthor = new JTextField(40);
         addBookName = new JTextField(40);
         addBookOwner = new JTextField(40);
+        addUserUsername = new JTextField(40);
+        addUserPassword = new JTextField(40);
+        addUserPhone = new JTextField(40);
+        addUserEmail = new JTextField(40);
+        addUserDorm = new JTextField(40);
+
 
         //don't allow text fields to expand beyond given limit
         loginUsername.setMaximumSize(loginUsername.getPreferredSize());
@@ -119,6 +130,11 @@ public class Cards extends JFrame implements ActionListener {
         addBookAuthor.setMaximumSize(addBookAuthor.getPreferredSize());
         addBookName.setMaximumSize(addBookName.getPreferredSize());
         addBookOwner.setMaximumSize(addBookOwner.getPreferredSize());
+        addUserUsername.setMaximumSize(addUserUsername.getPreferredSize());
+        addUserPassword.setMaximumSize(addUserPassword.getPreferredSize());
+        addUserPhone.setMaximumSize(addUserPhone.getPreferredSize());
+        addUserEmail.setMaximumSize(addUserEmail.getPreferredSize());
+        addUserDorm.setMaximumSize(addUserDorm.getPreferredSize());
 
         //creating labels
         usernameRegisterL = new JLabel("Username:");
@@ -126,11 +142,16 @@ public class Cards extends JFrame implements ActionListener {
         usernameLoginL = new JLabel("Username:");
         passwordLoginL = new JLabel("Password:");
         phoneRegisterL = new JLabel("Phone Number:");
-        emailRegisterL = new JLabel("Email address:");
+        emailRegisterL = new JLabel("Email Address:");
         dormRegisterL = new JLabel("Dorm Room:");
         addBookNameL = new JLabel("Name");
         addBookAuthorL = new JLabel("Author:");
         addBookOwnerL = new JLabel("Book Owner:");
+        addUserUsernameL = new JLabel("User Username:");
+        addUserPasswordL = new JLabel("User Password:");
+        addUserPhoneL = new JLabel("User Phone Number:");
+        addUserEmailL = new JLabel("User Email Address:");
+        addUserDormL = new JLabel("User Dorm Room:");
 
         //creating text areas
         getBooksOutput = new JTextArea();
@@ -233,6 +254,26 @@ public class Cards extends JFrame implements ActionListener {
         //adding stuff to removeBookAdmin screen
 
         //adding stuff to addUserAdmin screen
+        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 20)));
+        addUserAdminScreen.add(addUserUsernameL);
+        addUserAdminScreen.add(addUserUsername);
+        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        addUserAdminScreen.add(addUserPasswordL);
+        addUserAdminScreen.add(addUserPassword);
+        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        addUserAdminScreen.add(addUserPhoneL);
+        addUserAdminScreen.add(addUserPhone);
+        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        addUserAdminScreen.add(addUserEmailL);
+        addUserAdminScreen.add(addUserEmail);
+        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        addUserAdminScreen.add(addUserDormL);
+        addUserAdminScreen.add(addUserDorm);
+        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        addUserAdminScreen.add(addUserConfirmButtonAdmin);
+
+        addUserAdminScreen.setLayout(new BoxLayout(addUserAdminScreen, BoxLayout.Y_AXIS));
+        addUserAdminScreen.setBorder(BorderFactory.createEmptyBorder(0, 125, 0, 0));
 
         //adding panels to cardLayout
         cPane.add("loginSelection", loginSelectionScreen);
@@ -287,6 +328,20 @@ public class Cards extends JFrame implements ActionListener {
             case "Show All Books" -> crd.show(cPane, "getBooksAdminScreen");
             case "Remove Book" -> crd.show(cPane, "removeBookAdminScreen");
             case "Add User" -> crd.show(cPane, "addUserAdminScreen");
+            case "Add This User" -> {
+                String newUserUsername = addUserUsername.getText();
+                String newUserPassword = addUserPassword.getText();
+                String newUserPhoneNumber = addUserPhone.getText();
+                String newUserEmail = addUserEmail.getText();
+                String newUserDorm = addUserDorm.getText();
+                System.out.println(newUserUsername + " " + newUserPassword + " " + newUserPhoneNumber + " " + newUserEmail + " " + newUserDorm);
+                addUserUsername.setText("");
+                addUserPassword.setText("");
+                addUserPhone.setText("");
+                addUserEmail.setText("");
+                addUserDorm.setText("");
+                crd.show(cPane, "adminScreen");
+            }
             case "confirmRegister" -> {
                 String username = registerUsername.getText();
                 String password = registerPassword.getText();
@@ -296,6 +351,9 @@ public class Cards extends JFrame implements ActionListener {
                 System.out.println(username + " " + password + " " + phoneNumber + " " + email + " " + dorm);
                 registerUsername.setText("");
                 registerPassword.setText("");
+                registerPhone.setText("");
+                registerEmail.setText("");
+                registerDorm.setText("");
                 crd.show(cPane, "loginSelection"); //change to confirmRegister on Register press
             }
             default -> crd.show(cPane, "loginSelection");
