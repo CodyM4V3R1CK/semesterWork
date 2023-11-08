@@ -11,7 +11,7 @@ public class Cards extends JFrame implements ActionListener {
     CardLayout crd;
     Container cPane;
     JButton login, register;    //main screen selection
-    JPanel loginSelectionScreen, loginScreen, registerScreen, userScreen, addBookScreen, getBooksScreen;
+    JPanel loginSelectionScreen, loginScreen, registerScreen, userScreen, addBookScreen, getBooksScreen, adminScreen;
 
     //login screen GUI parts
     JButton confirmLogin;
@@ -36,6 +36,7 @@ public class Cards extends JFrame implements ActionListener {
     JButton getBooksReturn;
 
     //admin screen GUI parts
+    JButton addBookButtonAdmin, getBooksButtonAdmin, removeBookButtonAdmin, addUserButtonAdmin;
 
     Cards(){
 
@@ -50,6 +51,7 @@ public class Cards extends JFrame implements ActionListener {
         userScreen = new JPanel();
         addBookScreen = new JPanel();
         getBooksScreen = new JPanel();
+        adminScreen = new JPanel();
 
         //creating buttons
         login = new JButton("Login");
@@ -61,6 +63,10 @@ public class Cards extends JFrame implements ActionListener {
         addBookReturn = new JButton("Back");
         getBooksButton = new JButton("Get Books");
         getBooksReturn = new JButton("Back");
+        addBookButtonAdmin = new JButton("Add New Book");
+        getBooksButtonAdmin = new JButton("Show All Books");
+        removeBookButtonAdmin = new JButton("Remove Book");
+        addUserButtonAdmin = new JButton("Add User");
 
         //adding listeners to buttons
         login.addActionListener(this);
@@ -72,6 +78,10 @@ public class Cards extends JFrame implements ActionListener {
         addBookReturn.addActionListener(this);
         getBooksButton.addActionListener(this);
         getBooksReturn.addActionListener(this);
+        addBookButtonAdmin.addActionListener(this);
+        getBooksButtonAdmin.addActionListener(this);
+        removeBookButtonAdmin.addActionListener(this);
+        addUserButtonAdmin.addActionListener(this);
 
         //creating text fields
         loginUsername = new JTextField(40);
@@ -191,6 +201,18 @@ public class Cards extends JFrame implements ActionListener {
 
         getBooksScreen.setLayout(new BoxLayout(getBooksScreen, BoxLayout.Y_AXIS));
 
+        //adding stuff to adminScreen
+        adminScreen.add(addBookButtonAdmin);
+        adminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        adminScreen.add(getBooksButtonAdmin);
+        adminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        adminScreen.add(removeBookButtonAdmin);
+        adminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        adminScreen.add(addUserButtonAdmin);
+
+        adminScreen.setLayout(new BoxLayout(adminScreen, BoxLayout.Y_AXIS));
+        adminScreen.setBorder(BorderFactory.createEmptyBorder(75, 200, 0, 0));
+
         //adding panels to cardLayout
         cPane.add("loginSelection", loginSelectionScreen);
         cPane.add("confirmLogin", loginScreen);
@@ -198,6 +220,7 @@ public class Cards extends JFrame implements ActionListener {
         cPane.add("userScreen", userScreen);
         cPane.add("addBook", addBookScreen);
         cPane.add("getBooks", getBooksScreen);
+        cPane.add("adminScreen", adminScreen);
     }
 
     /**
@@ -218,7 +241,8 @@ public class Cards extends JFrame implements ActionListener {
                 Test.testing();
                 loginUsername.setText("");
                 loginPassword.setText("");
-                if (Objects.equals(username, "admin") && Objects.equals(password, "admin")) crd.show(cPane, "userScreen");
+                if (Objects.equals(username, "user") && Objects.equals(password, "user")) crd.show(cPane, "userScreen");
+                if (Objects.equals(username, "admin") && Objects.equals(password, "admin")) crd.show(cPane, "adminScreen");
             }
             case "Add Book" -> crd.show(cPane, "addBook");
             case "Add This Book" -> {
