@@ -41,14 +41,20 @@ public class Cards extends JFrame implements ActionListener {
 
     //addBookAdmin screen GUI parts
 
+
     //getBooksAdmin screen GUI parts
+    JTextArea getBooksOutputAdmin;
+    JButton getBooksReturnAdmin;
 
     //removeBookAdmin screen GUI parts
+    JButton removeBookConfirmButtonAdmin;
+    JTextField removeBookName;
+    JLabel removeBookNameL;
 
     //addUserAdmin screen GUI parts
-    JButton removeBookConfirmButtonAdmin, addUserConfirmButtonAdmin;
-    JTextField removeBookName, addUserUsername, addUserPassword, addUserPhone, addUserEmail, addUserDorm;
-    JLabel removeBookNameL, addUserUsernameL, addUserPasswordL, addUserPhoneL, addUserEmailL, addUserDormL;
+    JButton addUserConfirmButtonAdmin;
+    JTextField addUserUsername, addUserPassword, addUserPhone, addUserEmail, addUserDorm;
+    JLabel addUserUsernameL, addUserPasswordL, addUserPhoneL, addUserEmailL, addUserDormL;
 
     Cards(){
 
@@ -76,11 +82,12 @@ public class Cards extends JFrame implements ActionListener {
         confirmRegister = new JButton("confirmRegister");
         addBookButton = new JButton("Add Book");
         addBookConfirm = new JButton("Add This Book");
-        addBookReturn = new JButton("Back");
+        addBookReturn = new JButton("Back To User Menu");
         getBooksButton = new JButton("Get Books");
-        getBooksReturn = new JButton("Back");
+        getBooksReturn = new JButton("Back To User Menu");
         addBookButtonAdmin = new JButton("Add New Book");
         getBooksButtonAdmin = new JButton("Show All Books");
+        getBooksReturnAdmin = new JButton("Back To Admin Menu");
         removeBookButtonAdmin = new JButton("Remove Book");
         removeBookConfirmButtonAdmin = new JButton("Remove This Book");
         addUserButtonAdmin = new JButton("Add User");
@@ -98,6 +105,7 @@ public class Cards extends JFrame implements ActionListener {
         getBooksReturn.addActionListener(this);
         addBookButtonAdmin.addActionListener(this);
         getBooksButtonAdmin.addActionListener(this);
+        getBooksReturnAdmin.addActionListener(this);
         removeBookButtonAdmin.addActionListener(this);
         addUserButtonAdmin.addActionListener(this);
         addUserConfirmButtonAdmin.addActionListener(this);
@@ -160,6 +168,7 @@ public class Cards extends JFrame implements ActionListener {
 
         //creating text areas
         getBooksOutput = new JTextArea();
+        getBooksOutputAdmin = new JTextArea();
 
         //adding stuff to loginSelection panel
         loginSelectionScreen.add(Box.createRigidArea(new Dimension(0, 50)));
@@ -255,6 +264,13 @@ public class Cards extends JFrame implements ActionListener {
         //adding stuff to addBookAdmin screen
 
         //adding stuff to getBooksAdmin screen
+        getBooksAdminScreen.add(Box.createRigidArea(new Dimension(20, 20)));
+        getBooksAdminScreen.add(getBooksOutputAdmin);
+        getBooksAdminScreen.add(Box.createRigidArea(new Dimension(100, 20)));
+        getBooksAdminScreen.add(getBooksReturnAdmin);
+
+        getBooksAdminScreen.setLayout(new BoxLayout(getBooksAdminScreen, BoxLayout.Y_AXIS));
+
 
         //adding stuff to removeBookAdmin screen
         removeBookAdminScreen.add(removeBookNameL);
@@ -335,9 +351,14 @@ public class Cards extends JFrame implements ActionListener {
                 crd.show(cPane, "getBooks");
                 getBooksOutput.setText(test);
             }
-            case "Back" -> crd.previous(cPane);
+            case "Back To User Menu" -> crd.show(cPane, "userScreen");
+            case "Back To Admin Menu" -> crd.show(cPane, "adminScreen");
             case "Add New Book" -> crd.show(cPane, "addBookAdminScreen");
-            case "Show All Books" -> crd.show(cPane, "getBooksAdminScreen");
+            case "Show All Books" -> {
+                String test = "Hell0 World";
+                crd.show(cPane, "getBooksAdminScreen");
+                getBooksOutputAdmin.setText(test);
+            }
             case "Remove Book" -> crd.show(cPane, "removeBookAdminScreen");
             case "Remove This Book" -> {
                 String bookName = removeBookName.getText();
