@@ -40,7 +40,9 @@ public class Cards extends JFrame implements ActionListener {
     JButton addBookButtonAdmin, getBooksButtonAdmin, removeBookButtonAdmin, addUserButtonAdmin;
 
     //addBookAdmin screen GUI parts
-
+    JButton addBookConfirmAdmin, addBookReturnAdmin;
+    JLabel addBookNameAdminL, addBookAuthorAdminL, addBookOwnerAdminL;
+    JTextField addBookNameAdmin, addBookAuthorAdmin, addBookOwnerAdmin;
 
     //getBooksAdmin screen GUI parts
     JTextArea getBooksOutputAdmin;
@@ -64,11 +66,14 @@ public class Cards extends JFrame implements ActionListener {
 
         //creating panels
         loginSelectionScreen = new JPanel();
+
         loginScreen = new JPanel();
         registerScreen = new JPanel();
+
         userScreen = new JPanel();
         addBookScreen = new JPanel();
         getBooksScreen = new JPanel();
+
         adminScreen = new JPanel();
         addBookAdminScreen = new JPanel();
         getBooksAdminScreen = new JPanel();
@@ -78,54 +83,83 @@ public class Cards extends JFrame implements ActionListener {
         //creating buttons
         login = new JButton("Login");
         register = new JButton("Register");
+
         confirmLogin = new JButton("confirmLogin");
         confirmRegister = new JButton("confirmRegister");
+
         addBookButton = new JButton("Add Book");
         addBookConfirm = new JButton("Add This Book");
         addBookReturn = new JButton("Back To User Menu");
+
         getBooksButton = new JButton("Get Books");
         getBooksReturn = new JButton("Back To User Menu");
+
         addBookButtonAdmin = new JButton("Add New Book");
+        addBookConfirmAdmin = new JButton("Add The Book");
+        addBookReturnAdmin = new JButton("Back To Admin Menu");
+
         getBooksButtonAdmin = new JButton("Show All Books");
         getBooksReturnAdmin = new JButton("Back To Admin Menu");
+
         removeBookButtonAdmin = new JButton("Remove Book");
         removeBookConfirmButtonAdmin = new JButton("Remove This Book");
+
         addUserButtonAdmin = new JButton("Add User");
         addUserConfirmButtonAdmin = new JButton("Add This User");
 
         //adding listeners to buttons
         login.addActionListener(this);
         register.addActionListener(this);
+
         confirmLogin.addActionListener(this);
         confirmRegister.addActionListener(this);
+
         addBookButton.addActionListener(this);
         addBookConfirm.addActionListener(this);
         addBookReturn.addActionListener(this);
+
         getBooksButton.addActionListener(this);
         getBooksReturn.addActionListener(this);
+
         addBookButtonAdmin.addActionListener(this);
+        addBookConfirmAdmin.addActionListener(this);
+        addBookReturnAdmin.addActionListener(this);
+
         getBooksButtonAdmin.addActionListener(this);
         getBooksReturnAdmin.addActionListener(this);
+
         removeBookButtonAdmin.addActionListener(this);
+
         addUserButtonAdmin.addActionListener(this);
         addUserConfirmButtonAdmin.addActionListener(this);
+
         removeBookConfirmButtonAdmin.addActionListener(this);
 
         //creating text fields
         loginUsername = new JTextField(40);
         loginPassword = new JTextField(40);
+
         registerUsername = new JTextField(40);
         registerPassword = new JTextField(40);
+
         registerPhone = new JTextField(40);
         registerEmail = new JTextField(40);
         registerDorm = new JTextField(40);
+
         addBookAuthor = new JTextField(40);
         addBookName = new JTextField(40);
         addBookOwner = new JTextField(40);
+
+        addBookNameAdmin = new JTextField(40);
+        addBookAuthorAdmin = new JTextField(40);
+        addBookOwnerAdmin = new JTextField(40);
+
         removeBookName = new JTextField(40);
+
         addUserUsername = new JTextField(40);
         addUserPassword = new JTextField(40);
         addUserPhone = new JTextField(40);
+
         addUserEmail = new JTextField(40);
         addUserDorm = new JTextField(40);
 
@@ -133,33 +167,51 @@ public class Cards extends JFrame implements ActionListener {
         //don't allow text fields to expand beyond given limit
         loginUsername.setMaximumSize(loginUsername.getPreferredSize());
         loginPassword.setMaximumSize(loginPassword.getPreferredSize());
+
         registerUsername.setMaximumSize(registerUsername.getPreferredSize());
         registerPassword.setMaximumSize(registerPassword.getPreferredSize());
+
         registerPhone.setMaximumSize(registerPhone.getPreferredSize());
         registerEmail.setMaximumSize(registerEmail.getPreferredSize());
         registerDorm.setMaximumSize(registerDorm.getPreferredSize());
+
         addBookAuthor.setMaximumSize(addBookAuthor.getPreferredSize());
         addBookName.setMaximumSize(addBookName.getPreferredSize());
         addBookOwner.setMaximumSize(addBookOwner.getPreferredSize());
+
         removeBookName.setMaximumSize(removeBookName.getPreferredSize());
+
+        addBookNameAdmin.setMaximumSize(addBookNameAdmin.getPreferredSize());
+        addBookAuthorAdmin.setMaximumSize(addBookAuthorAdmin.getPreferredSize());
+        addBookOwnerAdmin.setMaximumSize(addBookOwnerAdmin.getPreferredSize());
+
         addUserUsername.setMaximumSize(addUserUsername.getPreferredSize());
         addUserPassword.setMaximumSize(addUserPassword.getPreferredSize());
         addUserPhone.setMaximumSize(addUserPhone.getPreferredSize());
+
         addUserEmail.setMaximumSize(addUserEmail.getPreferredSize());
         addUserDorm.setMaximumSize(addUserDorm.getPreferredSize());
 
         //creating labels
-        usernameRegisterL = new JLabel("Username:");
-        passwordRegisterL = new JLabel("Password:");
         usernameLoginL = new JLabel("Username:");
         passwordLoginL = new JLabel("Password:");
+
+        usernameRegisterL = new JLabel("Username:");
+        passwordRegisterL = new JLabel("Password:");
         phoneRegisterL = new JLabel("Phone Number:");
         emailRegisterL = new JLabel("Email Address:");
         dormRegisterL = new JLabel("Dorm Room:");
+
         addBookNameL = new JLabel("Name");
         addBookAuthorL = new JLabel("Author:");
         addBookOwnerL = new JLabel("Book Owner:");
+
+        addBookNameAdminL = new JLabel("Book Name");
+        addBookAuthorAdminL = new JLabel("Book Author");
+        addBookOwnerAdminL = new JLabel("Book Owner");
+
         removeBookNameL = new JLabel("Book Name");
+
         addUserUsernameL = new JLabel("User Username:");
         addUserPasswordL = new JLabel("User Password:");
         addUserPhoneL = new JLabel("User Phone Number:");
@@ -262,6 +314,21 @@ public class Cards extends JFrame implements ActionListener {
         adminScreen.setBorder(BorderFactory.createEmptyBorder(75, 200, 0, 0));
 
         //adding stuff to addBookAdmin screen
+        addBookAdminScreen.add(addBookNameAdminL);
+        addBookAdminScreen.add(addBookNameAdmin);
+        addBookAdminScreen.add(Box.createRigidArea(new Dimension(0, 25)));
+        addBookAdminScreen.add(addBookAuthorAdminL);
+        addBookAdminScreen.add(addBookAuthorAdmin);
+        addBookAdminScreen.add(Box.createRigidArea(new Dimension(0, 25)));
+        addBookAdminScreen.add(addBookOwnerAdminL);
+        addBookAdminScreen.add(addBookOwnerAdmin);
+        addBookAdminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        addBookAdminScreen.add(addBookConfirmAdmin);
+        addBookAdminScreen.add(Box.createRigidArea(new Dimension(0, 25)));
+        addBookAdminScreen.add(addBookReturnAdmin);
+
+        addBookAdminScreen.setLayout(new BoxLayout(addBookAdminScreen, BoxLayout.Y_AXIS));
+        addBookAdminScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
 
         //adding stuff to getBooksAdmin screen
         getBooksAdminScreen.add(Box.createRigidArea(new Dimension(20, 20)));
@@ -270,7 +337,6 @@ public class Cards extends JFrame implements ActionListener {
         getBooksAdminScreen.add(getBooksReturnAdmin);
 
         getBooksAdminScreen.setLayout(new BoxLayout(getBooksAdminScreen, BoxLayout.Y_AXIS));
-
 
         //adding stuff to removeBookAdmin screen
         removeBookAdminScreen.add(removeBookNameL);
@@ -354,6 +420,13 @@ public class Cards extends JFrame implements ActionListener {
             case "Back To User Menu" -> crd.show(cPane, "userScreen");
             case "Back To Admin Menu" -> crd.show(cPane, "adminScreen");
             case "Add New Book" -> crd.show(cPane, "addBookAdminScreen");
+            case "Add The Book" -> {
+                String bookNameAdmin = addBookNameAdmin.getText();
+                String bookAuthorAdmin = addBookAuthorAdmin.getText();
+                String bookOwnerAdmin = addBookOwnerAdmin.getText();
+                System.out.println(bookNameAdmin + " " + bookAuthorAdmin + " " + bookOwnerAdmin);
+                crd.show(cPane, "adminScreen");
+            }
             case "Show All Books" -> {
                 String test = "Hell0 World";
                 crd.show(cPane, "getBooksAdminScreen");
