@@ -28,6 +28,7 @@ public class Cards extends JFrame implements ActionListener {
 
     //addBook screen GUI parts
     JButton addBookConfirm, addBookReturn;
+    JLabel addBookNameL, addBookAuthorL, addBookOwnerL;
     JTextField addBookName, addBookAuthor, addBookOwner;
 
     //getBooks screen GUI parts
@@ -103,6 +104,9 @@ public class Cards extends JFrame implements ActionListener {
         phoneRegisterL = new JLabel("Phone Number:");
         emailRegisterL = new JLabel("Email address:");
         dormRegisterL = new JLabel("Dorm Room:");
+        addBookNameL = new JLabel("Name");
+        addBookAuthorL = new JLabel("Author:");
+        addBookOwnerL = new JLabel("Book Owner:");
 
         //creating text areas
         getBooksOutput = new JTextArea();
@@ -162,11 +166,21 @@ public class Cards extends JFrame implements ActionListener {
         userScreen.setBorder(BorderFactory.createEmptyBorder(125, 200, 0, 0));
 
         //adding stuff to addBook panel
+        addBookScreen.add(addBookNameL);
+        addBookScreen.add(addBookName);
+        addBookScreen.add(Box.createRigidArea(new Dimension(0, 25)));
+        addBookScreen.add(addBookAuthorL);
+        addBookScreen.add(addBookAuthor);
+        addBookScreen.add(Box.createRigidArea(new Dimension(0, 25)));
+        addBookScreen.add(addBookOwnerL);
+        addBookScreen.add(addBookOwner);
+        addBookScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         addBookScreen.add(addBookConfirm);
+        addBookScreen.add(Box.createRigidArea(new Dimension(0, 25)));
         addBookScreen.add(addBookReturn);
 
         addBookScreen.setLayout(new BoxLayout(addBookScreen, BoxLayout.Y_AXIS));
-        //addBookScreen.setBorder(BorderFactory.createEmptyBorder(125, 200, 0, 0));
+        addBookScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
 
         //adding stuff to getBooks panel
         getBooksScreen.add(Box.createRigidArea(new Dimension(20, 20)));
