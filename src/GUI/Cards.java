@@ -11,7 +11,8 @@ public class Cards extends JFrame implements ActionListener {
     CardLayout crd;
     Container cPane;
     JButton login, register;    //main screen selection
-    JPanel loginSelectionScreen, loginScreen, registerScreen, userScreen, addBookScreen, getBooksScreen, adminScreen;
+    JPanel loginSelectionScreen, loginScreen, registerScreen, userScreen, addBookScreen, getBooksScreen,
+            adminScreen, addBookAdminScreen, getBooksAdminScreen, removeBookAdminScreen, addUserAdminScreen;
 
     //login screen GUI parts
     JButton confirmLogin;
@@ -38,6 +39,14 @@ public class Cards extends JFrame implements ActionListener {
     //admin screen GUI parts
     JButton addBookButtonAdmin, getBooksButtonAdmin, removeBookButtonAdmin, addUserButtonAdmin;
 
+    //addBookAdmin screen GUI parts
+
+    //getBooksAdmin screen GUI parts
+
+    //removeBookAdmin screen GUI parts
+
+    //addUserAdmin screen GUI parts
+
     Cards(){
 
         cPane = getContentPane();
@@ -52,6 +61,10 @@ public class Cards extends JFrame implements ActionListener {
         addBookScreen = new JPanel();
         getBooksScreen = new JPanel();
         adminScreen = new JPanel();
+        addBookAdminScreen = new JPanel();
+        getBooksAdminScreen = new JPanel();
+        removeBookAdminScreen = new JPanel();
+        addUserAdminScreen = new JPanel();
 
         //creating buttons
         login = new JButton("Login");
@@ -213,6 +226,14 @@ public class Cards extends JFrame implements ActionListener {
         adminScreen.setLayout(new BoxLayout(adminScreen, BoxLayout.Y_AXIS));
         adminScreen.setBorder(BorderFactory.createEmptyBorder(75, 200, 0, 0));
 
+        //adding stuff to addBookAdmin screen
+
+        //adding stuff to getBooksAdmin screen
+
+        //adding stuff to removeBookAdmin screen
+
+        //adding stuff to addUserAdmin screen
+
         //adding panels to cardLayout
         cPane.add("loginSelection", loginSelectionScreen);
         cPane.add("confirmLogin", loginScreen);
@@ -221,6 +242,10 @@ public class Cards extends JFrame implements ActionListener {
         cPane.add("addBook", addBookScreen);
         cPane.add("getBooks", getBooksScreen);
         cPane.add("adminScreen", adminScreen);
+        cPane.add("addBookAdminScreen", addBookAdminScreen);
+        cPane.add("getBooksAdminScreen", getBooksAdminScreen);
+        cPane.add("removeBookAdminScreen", removeBookAdminScreen);
+        cPane.add("addUserAdminScreen", addUserAdminScreen);
     }
 
     /**
@@ -258,6 +283,10 @@ public class Cards extends JFrame implements ActionListener {
                 getBooksOutput.setText(test);
             }
             case "Back" -> crd.previous(cPane);
+            case "Add New Book" -> crd.show(cPane, "addBookAdminScreen");
+            case "Show All Books" -> crd.show(cPane, "getBooksAdminScreen");
+            case "Remove Book" -> crd.show(cPane, "removeBookAdminScreen");
+            case "Add User" -> crd.show(cPane, "addUserAdminScreen");
             case "confirmRegister" -> {
                 String username = registerUsername.getText();
                 String password = registerPassword.getText();
