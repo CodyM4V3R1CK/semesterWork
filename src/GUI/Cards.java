@@ -28,6 +28,7 @@ public class Cards extends JFrame implements ActionListener {
 
     //addBook screen GUI parts
     JButton addBookConfirm, addBookReturn;
+    JTextField addBookName, addBookAuthor, addBookOwner;
 
     //getBooks screen GUI parts
     JTextArea getBooksOutput;
@@ -78,6 +79,9 @@ public class Cards extends JFrame implements ActionListener {
         registerPhone = new JTextField(40);
         registerEmail = new JTextField(40);
         registerDorm = new JTextField(40);
+        addBookAuthor = new JTextField(40);
+        addBookName = new JTextField(40);
+        addBookOwner = new JTextField(40);
 
         //don't allow text fields to expand beyond given limit
         loginUsername.setMaximumSize(loginUsername.getPreferredSize());
@@ -87,6 +91,9 @@ public class Cards extends JFrame implements ActionListener {
         registerPhone.setMaximumSize(registerPhone.getPreferredSize());
         registerEmail.setMaximumSize(registerEmail.getPreferredSize());
         registerDorm.setMaximumSize(registerDorm.getPreferredSize());
+        addBookAuthor.setMaximumSize(addBookAuthor.getPreferredSize());
+        addBookName.setMaximumSize(addBookName.getPreferredSize());
+        addBookOwner.setMaximumSize(addBookOwner.getPreferredSize());
 
         //creating labels
         usernameRegisterL = new JLabel("Username:");
@@ -146,16 +153,20 @@ public class Cards extends JFrame implements ActionListener {
         registerScreen.setBorder(BorderFactory.createEmptyBorder(0, 75, 0, 0));
 
         //adding stuff to userScreen panel
+        userScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         userScreen.add(addBookButton);
+        userScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         userScreen.add(getBooksButton);
 
         userScreen.setLayout(new BoxLayout(userScreen, BoxLayout.Y_AXIS));
+        userScreen.setBorder(BorderFactory.createEmptyBorder(125, 200, 0, 0));
 
         //adding stuff to addBook panel
         addBookScreen.add(addBookConfirm);
         addBookScreen.add(addBookReturn);
 
         addBookScreen.setLayout(new BoxLayout(addBookScreen, BoxLayout.Y_AXIS));
+        //addBookScreen.setBorder(BorderFactory.createEmptyBorder(125, 200, 0, 0));
 
         //adding stuff to getBooks panel
         getBooksScreen.add(Box.createRigidArea(new Dimension(20, 20)));
