@@ -220,7 +220,6 @@ public class Main {
             // terminate application
             System.exit(0);
             */
-
         } // end of while
     }
 }
