@@ -58,18 +58,26 @@ public class Main {
                         case "getBookInfo"://this function asks for name of a book and it returns info about the book
                             out.println("Zadaj nazov knizky");
                             index = Collections.binarySearch(bookList, new Book(in.readLine()), c);//here we are using binary search to find index of book with the choosen name
-                            out.println(bookList.get(index).getAuthor() + "#" + bookList.get(index).getOwner());//here we are returning book info
+                            if(index>=0){
+                                out.println(bookList.get(index).getAuthor() + "#" + bookList.get(index).getOwner());//here we are returning book info
+                            }else{
+                                out.println("Zly nazov");
+                            }
                             break;
                         case "addBook"://this function allows us to add a new book to our list
                             out.println("Zadaj nazov knizky");//ask for name
                             input = in.readLine();//get name
-                            bookList.add(new Book(input));//create new book with choosen name
-                            Collections.sort(bookList, c);
-                            index = Collections.binarySearch(bookList, new Book(input), c);//get index of the new book
-                            out.println("Zadaj nazov autora");//ask for author
-                            bookList.get(index).setAuthor(studentList.get(status).getName());//add author name to this book
-                            bookList.get(index).setOwner(in.readLine());//add owner name to this book
-                            out.println("Hotovo");//confirm
+                            if(Collections.binarySearch(bookList, new Book(input), c)<0){
+                                bookList.add(new Book(input));//create new book with choosen name
+                                Collections.sort(bookList, c);
+                                index = Collections.binarySearch(bookList, new Book(input), c);//get index of the new book
+                                out.println("Zadaj nazov autora");//ask for author
+                                bookList.get(index).setAuthor(in.readLine());//add author name to this book
+                                bookList.get(index).setOwner(in.readLine());//add owner name to this book
+                                out.println("Hotovo");//confirm
+                            }else{
+                                out.println("Kniha uz v zozname existuje");
+                            }
                             break;
                         default:
                             out.println("Unknown command. Available commands: getBooks, getBookInfo and addBook");
@@ -92,25 +100,37 @@ public class Main {
                         case "getBookInfo"://this function asks for name of a book and it returns info about the book
                             out.println("Zadaj nazov knizky");
                             index = Collections.binarySearch(bookList, new Book(in.readLine()), c);//here we are using binary search to find index of book with the choosen name
-                            out.println(bookList.get(index).getAuthor() + "#" + bookList.get(index).getOwner());//here we are returning book info
+                            if(index>=0){
+                                out.println(bookList.get(index).getAuthor() + "#" + bookList.get(index).getOwner());//here we are returning book info
+                            }else{
+                                out.println("Zly nazov");
+                            }
                             break;
                         case "addBook"://this function allows us to add a new book to our list
                             out.println("Zadaj nazov knizky");//ask for name
                             input = in.readLine();//get name
-                            bookList.add(new Book(input));//create new book with choosen name
-                            Collections.sort(bookList, c);
-                            index = Collections.binarySearch(bookList, new Book(input), c);//get index of the new book
-                            out.println("Zadaj nazov autora");//ask for author
-                            bookList.get(index).setAuthor(in.readLine());//add author name to this book
-                            out.println("Zadaj nazov vlastnika");//ask for owner
-                            bookList.get(index).setOwner(in.readLine());//add owner name to this book
-                            out.println("Hotovo");//confirm
+                            if(Collections.binarySearch(bookList, new Book(input), c)<0){
+                                bookList.add(new Book(input));//create new book with choosen name
+                                Collections.sort(bookList, c);
+                                index = Collections.binarySearch(bookList, new Book(input), c);//get index of the new book
+                                out.println("Zadaj nazov autora");//ask for author
+                                bookList.get(index).setAuthor(in.readLine());//add author name to this book
+                                out.println("Zadaj nazov vlastnika");//ask for owner
+                                bookList.get(index).setOwner(in.readLine());//add owner name to this book
+                                out.println("Hotovo");//confirm
+                            }else{
+                                out.println("Kniha uz v zozname existuje");
+                            }
                             break;
                         case "removeBook"://this function allows us to remove books
                             out.println("Zadaj nazov knizky");//ask for name
                             index = Collections.binarySearch(bookList, new Book(in.readLine()), c);//find index of the book
-                            bookList.remove(index);//remove it
-                            out.println("Hotovo");//confirm
+                            if(index>=0){
+                                bookList.remove(index);//remove it
+                                out.println("Hotovo");
+                            }else{
+                                out.println("Zly nazov");
+                            }
                             break;
                         default:
                             out.println("Unknown command. Avaiable commands: getBooks, getBookInfo, addBook and removeBook");
@@ -119,45 +139,49 @@ public class Main {
                 }
             }else{
                 String input;
-                while ((input = in.readLine()) != null && status == -1) {
+                while ((input = in.readLine()) != null && status < 0) {
                     int index = 0;
                     switch (input) {
                         case "signIn":
                             out.println("Zadaj meno:");
                             index = Collections.binarySearch(studentList, new Student(in.readLine()), sc);
-                            out.println("Zadaj heslo:");
-                            if(studentList.get(index).getPassword().compareTo(in.readLine())==0){
-                                if(index==0){
-                                    status=0;
-                                }else{
-                                    status=1;
-                                }
-                                out.println("Si prihlaseny");
+                            if(index<0){
+                                out.println("Zle meno");
                             }else{
-                                out.println("Zle meno/heslo");
+                                out.println("Zadaj heslo:");
+                                if(studentList.get(index).getPassword().compareTo(in.readLine())==0){
+                                    status=index;
+                                    out.println("Si prihlaseny");
+                                }else{
+                                    out.println("Zle heslo");
+                                }
                             }
                             break;
                         case "register":
                             out.println("Zadaj meno:");
                             input=in.readLine();
-                            studentList.add(new Student(input));
-                            Collections.sort(studentList, sc);
-                            index = Collections.binarySearch(studentList, new Student(input), sc);
-                            out.println("Zadaj heslo:");
-                            studentList.get(index).setPassword(in.readLine());
-                            out.println("Zadaj telefonne cislo:");
-                            studentList.get(index).setPhone(in.readLine());
-                            out.println("Zadaj email:");
-                            studentList.get(index).setEmail(in.readLine());
-                            out.println("Zadaj cislo izby:");
-                            studentList.get(index).setDormRoom(in.readLine());
-                            out.println("Si zaregistrovany");
+                            if(Collections.binarySearch(studentList, new Student(input), sc)<0){
+                                studentList.add(new Student(input));
+                                Collections.sort(studentList, sc);
+                                index = Collections.binarySearch(studentList, new Student(input), sc);
+                                out.println("Zadaj heslo:");
+                                studentList.get(index).setPassword(in.readLine());
+                                out.println("Zadaj telefonne cislo:");
+                                studentList.get(index).setPhone(in.readLine());
+                                out.println("Zadaj email:");
+                                studentList.get(index).setEmail(in.readLine());
+                                out.println("Zadaj cislo izby:");
+                                studentList.get(index).setDormRoom(in.readLine());
+                                out.println("Si zaregistrovany");
+                            }else{
+                                out.println("Uzivatel s takym menom existuje");
+                            }
                             break;
                         default:
                             out.println("You need to sign in [signIn] or register [register]");
                             break;
                     }
-                    if(status!=-1){
+                    if(status>=0){
                         break;
                     }
                 }
@@ -169,8 +193,7 @@ public class Main {
             kb.close();
             ss.close();
             s.close();
-            // terminate application
-            System.exit(0);
+            System.exit(0);// terminate application
             */
         } // end of while
     }
