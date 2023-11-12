@@ -8,5 +8,5 @@ features:
   show student info
 bonus:
   gui (in progress)
-  sql
+  sql (optional)
   docs (urgent)
