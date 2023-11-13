@@ -5,6 +5,7 @@ public class Book {
     private String name;
     private String author;
     private String owner;
+    private String currentOwner;
 
     public Book(String name){
         this.name = name;
@@ -32,5 +33,11 @@ public class Book {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+    public String getCurrentOwner(){
+        return currentOwner;
+    }
+    public void setCurrentOwner(String currentOwner){
+        this.currentOwner=currentOwner;
     }
 }
