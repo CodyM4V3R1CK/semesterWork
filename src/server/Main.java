@@ -143,7 +143,7 @@ public class Main {
                     int index = 0;
                     switch (input) {
                         case "signIn":
-                            out.println("Zadaj meno:");
+                            //out.println("Zadaj meno:");
                             index = Collections.binarySearch(studentList, new Student(in.readLine()), sc);
                             if(index<0){
                                 out.println("Zle meno");
@@ -152,6 +152,7 @@ public class Main {
                                 if(studentList.get(index).getPassword().compareTo(in.readLine())==0){
                                     status=index;
                                     out.println("Si prihlaseny");
+                                    out.println(index);
                                 }else{
                                     out.println("Zle heslo");
                                 }

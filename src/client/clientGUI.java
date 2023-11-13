@@ -407,18 +407,63 @@ public class clientGUI extends JFrame implements ActionListener {
                 }
                 crd.show(cPane, "confirmLogin"); //change to confirmLogin on Login press
             }
-            case "Register" -> crd.show(cPane, "confirmRegister"); //change to confirmRegister on Register press
+            case "Register" -> {
+                try {
+                    out.writeBytes("register\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                crd.show(cPane, "confirmRegister"); //change to confirmRegister on Register press
+            }
             case "confirmLogin" -> {
                 String username = loginUsername.getText();
                 String password = loginPassword.getText();
-                System.out.println(username + " " + password);
-                Test.testing();
+                String input;
+
                 loginUsername.setText("");
                 loginPassword.setText("");
-                //    out.writeBytes(output + "\n");// send to the server
-                //    System.out.println(server.readLine().replace("#","\n"));// receive from the server
-                if (Objects.equals(username, "user") && Objects.equals(password, "user")) crd.show(cPane, "userScreen");
-                if (Objects.equals(username, "admin") && Objects.equals(password, "admin")) crd.show(cPane, "adminScreen");
+
+                try {
+                    out.writeBytes(username + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                try {
+                    input = server.readLine();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                if(Objects.equals(input, "Zle meno")){
+                    crd.show(cPane, "confirmLogin");
+                }
+
+                try {
+                    out.writeBytes(password + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                try {
+                    input = server.readLine();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                if(Objects.equals(input, "Zle heslo")){
+                    crd.show(cPane, "confirmLogin");
+                }
+
+                try {
+                    input = server.readLine();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                if(Objects.equals(input, "0")){
+                    crd.show(cPane, "adminScreen");
+                }else if(Objects.equals(input, "1")){
+                    crd.show(cPane, "userScreen");
+                }
+
             }
             case "Add Book" -> crd.show(cPane, "addBook");
             case "Add This Book" -> {
