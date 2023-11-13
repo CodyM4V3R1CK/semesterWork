@@ -159,19 +159,19 @@ public class Main {
                             }
                             break;
                         case "register":
-                            out.println("Zadaj meno:");
+                            //out.println("Zadaj meno:");
                             input=in.readLine();
                             if(Collections.binarySearch(studentList, new Student(input), sc)<0){
                                 studentList.add(new Student(input));
                                 Collections.sort(studentList, sc);
                                 index = Collections.binarySearch(studentList, new Student(input), sc);
-                                out.println("Zadaj heslo:");
+                                //out.println("Zadaj heslo:");
                                 studentList.get(index).setPassword(in.readLine());
-                                out.println("Zadaj telefonne cislo:");
+                                //out.println("Zadaj telefonne cislo:");
                                 studentList.get(index).setPhone(in.readLine());
-                                out.println("Zadaj email:");
+                                //out.println("Zadaj email:");
                                 studentList.get(index).setEmail(in.readLine());
-                                out.println("Zadaj cislo izby:");
+                                //out.println("Zadaj cislo izby:");
                                 studentList.get(index).setDormRoom(in.readLine());
                                 out.println("Si zaregistrovany");
                             }else{

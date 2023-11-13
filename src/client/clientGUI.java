@@ -520,12 +520,42 @@ public class clientGUI extends JFrame implements ActionListener {
                 String phoneNumber = registerPhone.getText();
                 String email = registerEmail.getText();
                 String dorm = registerDorm.getText();
-                System.out.println(username + " " + password + " " + phoneNumber + " " + email + " " + dorm);
                 registerUsername.setText("");
                 registerPassword.setText("");
                 registerPhone.setText("");
                 registerEmail.setText("");
                 registerDorm.setText("");
+
+                try {
+                    out.writeBytes(username + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                try {
+                    out.writeBytes(password + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                try {
+                    out.writeBytes(phoneNumber + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                try {
+                    out.writeBytes(email + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                try {
+                    out.writeBytes(dorm + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
                 crd.show(cPane, "loginSelection"); //change to confirmRegister on Register press
             }
             default -> crd.show(cPane, "loginSelection");
