@@ -1,4 +1,6 @@
-package GUI;
+package client;
+
+import GUI.Test;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-public class Cards extends JFrame implements ActionListener {
+public class clientGUI extends JFrame implements ActionListener {
 
     CardLayout crd;
     Container cPane;
@@ -58,7 +60,7 @@ public class Cards extends JFrame implements ActionListener {
     JTextField addUserUsername, addUserPassword, addUserPhone, addUserEmail, addUserDorm;
     JLabel addUserUsernameL, addUserPasswordL, addUserPhoneL, addUserEmailL, addUserDormL;
 
-    Cards(){
+    clientGUI(){
 
         cPane = getContentPane();
         crd = new CardLayout();
