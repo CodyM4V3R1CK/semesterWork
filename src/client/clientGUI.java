@@ -6,7 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.Socket;
 import java.util.Objects;
+import java.io.*;
 
 public class clientGUI extends JFrame implements ActionListener {
 
@@ -60,7 +62,14 @@ public class clientGUI extends JFrame implements ActionListener {
     JTextField addUserUsername, addUserPassword, addUserPhone, addUserEmail, addUserDorm;
     JLabel addUserUsernameL, addUserPasswordL, addUserPhoneL, addUserEmailL, addUserDormL;
 
-    clientGUI(){
+    String output;
+    Socket s = new Socket("localhost", 1050);// Create client socket
+    DataOutputStream out = new DataOutputStream(s.getOutputStream());// to send data to the server
+    BufferedReader server = new BufferedReader(new InputStreamReader(s.getInputStream()));// to read data coming from the server
+    BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));// to read data from the keyboard
+
+
+    clientGUI() throws Exception {
 
         cPane = getContentPane();
         crd = new CardLayout();
@@ -380,6 +389,7 @@ public class clientGUI extends JFrame implements ActionListener {
     }
 
     /**
+     * Method for getting a command from button press
      * @param e the event to be processed
      */
     @Override
@@ -388,7 +398,16 @@ public class clientGUI extends JFrame implements ActionListener {
         String command = e.getActionCommand();
 
         switch (command) {
-            case "Login" -> crd.show(cPane, "confirmLogin"); //change to confirmLogin on Login press
+            case "Login" -> {
+                output = "SignIn";
+                try {
+                    out.writeBytes("SignIn\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                System.out.println("testing login");
+                crd.show(cPane, "confirmLogin"); //change to confirmLogin on Login press
+            }
             case "Register" -> crd.show(cPane, "confirmRegister"); //change to confirmRegister on Register press
             case "confirmLogin" -> {
                 String username = loginUsername.getText();
@@ -397,6 +416,8 @@ public class clientGUI extends JFrame implements ActionListener {
                 Test.testing();
                 loginUsername.setText("");
                 loginPassword.setText("");
+                //    out.writeBytes(output + "\n");// send to the server
+                //    System.out.println(server.readLine().replace("#","\n"));// receive from the server
                 if (Objects.equals(username, "user") && Objects.equals(password, "user")) crd.show(cPane, "userScreen");
                 if (Objects.equals(username, "admin") && Objects.equals(password, "admin")) crd.show(cPane, "adminScreen");
             }

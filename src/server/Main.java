@@ -133,7 +133,7 @@ public class Main {
                             }
                             break;
                         default:
-                            out.println("Unknown command. Avaiable commands: getBooks, getBookInfo, addBook and removeBook");
+                            out.println("Unknown command. Available commands: getBooks, getBookInfo, addBook and removeBook");
                             break;
                     }
                 }
