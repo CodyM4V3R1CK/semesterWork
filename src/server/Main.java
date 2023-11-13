@@ -150,8 +150,22 @@ public class Main {
                                 out.println("Zle meno");
                             }
                             break;
+                        case "addUser":
+                            out.println("Zadaj meno:");
+                            input=in.readLine();
+                            if(Collections.binarySearch(studentList, new Student(input), sc)<0){
+                                studentList.add(new Student(input));
+                                Collections.sort(studentList, sc);
+                                index = Collections.binarySearch(studentList, new Student(input), sc);
+                                out.println("Zadaj heslo:");
+                                studentList.get(index).setPassword(in.readLine());
+                                out.println("Uzivatel pridany");
+                            }else{
+                                out.println("Uzivatel s takym menom existuje");
+                            }
+                            break;
                         default:
-                            out.println("Unknown command. Avaiable commands: getBooks, getBookInfo, getUserInfo, addBook and removeBook");
+                            out.println("Unknown command. Avaiable commands: getBooks, getBookInfo, getUserInfo, addUser, addBook and removeBook");
                             break;
                     }
                 }
