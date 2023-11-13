@@ -109,7 +109,7 @@ public class Main {
                             }
                             break;
                         default:
-                            out.println("Unknown command. Available commands: getBooks, getBookInfo, getUserInfo and addBook");
+                            out.println("Unknown command. Available commands: getBooks, getBookInfo, getUserInfo, lendBook, returnBook and addBook");
                             break;
                     }
                 }
