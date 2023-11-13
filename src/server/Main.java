@@ -31,6 +31,7 @@ public class Main {
         studentList.add(new Student("Fero"));
         studentList.add(new Student("Palo"));
         studentList.get(0).setPassword("heslo");
+        studentList.get(1).setPassword("pass");
         studentList.get(1).setPhone("123");
         studentList.get(2).setEmail("abc");
         Comparator<Student> sc = new Comparator<Student>() {
@@ -166,14 +167,18 @@ public class Main {
                                 Collections.sort(studentList, sc);
                                 index = Collections.binarySearch(studentList, new Student(input), sc);
                                 //out.println("Zadaj heslo:");
-                                studentList.get(index).setPassword(in.readLine());
+                                input=in.readLine();
+                                studentList.get(index).setPassword(input);
                                 //out.println("Zadaj telefonne cislo:");
-                                studentList.get(index).setPhone(in.readLine());
+                                input=in.readLine();
+                                studentList.get(index).setPhone(input);
                                 //out.println("Zadaj email:");
-                                studentList.get(index).setEmail(in.readLine());
+                                input=in.readLine();
+                                studentList.get(index).setEmail(input);
                                 //out.println("Zadaj cislo izby:");
-                                studentList.get(index).setDormRoom(in.readLine());
-                                out.println("Si zaregistrovany");
+                                input=in.readLine();
+                                studentList.get(index).setDormRoom(input);
+                                //out.println("Si zaregistrovany");
                             }else{
                                 out.println("Uzivatel s takym menom existuje");
                             }
