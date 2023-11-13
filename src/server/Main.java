@@ -31,6 +31,7 @@ public class Main {
         studentList.add(new Student("Fero"));
         studentList.add(new Student("Palo"));
         studentList.get(0).setPassword("heslo");
+        studentList.get(1).setPassword("pass");
         studentList.get(1).setPhone("123");
         studentList.get(2).setEmail("abc");
         Comparator<Student> sc = new Comparator<Student>() {
@@ -207,7 +208,7 @@ public class Main {
                             break;
                         default:
                             out.println("Unknown command. Avaiable commands: getBooks, getBookInfo, getUserInfo, addUser, returnBook, addBook and removeBook");
-                            break;
+                          break;
                     }
                 }
             }else{
@@ -216,7 +217,7 @@ public class Main {
                     int index = 0;
                     switch (input) {
                         case "signIn":
-                            out.println("Zadaj meno:");
+                            //out.println("Zadaj meno:");
                             index = Collections.binarySearch(studentList, new Student(in.readLine()), sc);
                             if(index<0){
                                 out.println("Zle meno");
@@ -225,30 +226,35 @@ public class Main {
                                 if(studentList.get(index).getPassword().compareTo(in.readLine())==0){
                                     status=index;
                                     out.println("Si prihlaseny");
+                                    out.println(index);
                                 }else{
                                     out.println("Zle heslo");
                                 }
                             }
                             break;
                         case "register":
-                            out.println("Zadaj meno:");
+                            //out.println("Zadaj meno:");
                             input=in.readLine();
                             if(Collections.binarySearch(studentList, new Student(input), sc)<-1) {
                                 studentList.add(new Student(input));
                                 Collections.sort(studentList, sc);
                                 index = Collections.binarySearch(studentList, new Student(input), sc);
-                                out.println("Zadaj heslo:");
-                                studentList.get(index).setPassword(in.readLine());
-                                out.println("Zadaj telefonne cislo:");
-                                studentList.get(index).setPhone(in.readLine());
-                                out.println("Zadaj email:");
-                                studentList.get(index).setEmail(in.readLine());
-                                out.println("Zadaj cislo izby:");
-                                studentList.get(index).setDormRoom(in.readLine());
-                                out.println("Si zaregistrovany");
-                            } else if (Collections.binarySearch(studentList, new Student(input), sc)==-1) {
+                                //out.println("Zadaj heslo:");
+                                input=in.readLine();
+                                studentList.get(index).setPassword(input);
+                                //out.println("Zadaj telefonne cislo:");
+                                input=in.readLine();
+                                studentList.get(index).setPhone(input);
+                                //out.println("Zadaj email:");
+                                input=in.readLine();
+                                studentList.get(index).setEmail(input);
+                                //out.println("Zadaj cislo izby:");
+                                input=in.readLine();
+                                studentList.get(index).setDormRoom(input);
+                                //out.println("Si zaregistrovany");
+                            }else if (Collections.binarySearch(studentList, new Student(input), sc)==-1) {
                                 out.println("Na zaciatku mena nesmu byt cisla");
-                            } else{
+                            }else{
                                 out.println("Uzivatel s takym menom existuje");
                             }
                             break;
