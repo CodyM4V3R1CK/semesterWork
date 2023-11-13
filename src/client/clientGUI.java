@@ -401,11 +401,10 @@ public class clientGUI extends JFrame implements ActionListener {
             case "Login" -> {
                 output = "SignIn";
                 try {
-                    out.writeBytes("SignIn\n");
+                    out.writeBytes("signIn\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                System.out.println("testing login");
                 crd.show(cPane, "confirmLogin"); //change to confirmLogin on Login press
             }
             case "Register" -> crd.show(cPane, "confirmRegister"); //change to confirmRegister on Register press
