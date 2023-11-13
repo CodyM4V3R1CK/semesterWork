@@ -3,7 +3,7 @@ vulnerabilities fixes:
   add name restriction
 features:
   !admin can create users
-  admin can list users when choosing book owner
+  !admin can list users when choosing book owner
   implement book lending
   !show student info
 bonus:

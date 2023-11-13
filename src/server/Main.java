@@ -124,9 +124,20 @@ public class Main {
                                 index = Collections.binarySearch(bookList, new Book(input), c);//get index of the new book
                                 out.println("Zadaj nazov autora");//ask for author
                                 bookList.get(index).setAuthor(in.readLine());//add author name to this book
-                                out.println("Zadaj nazov vlastnika");//ask for owner
-                                bookList.get(index).setOwner(in.readLine());//add owner name to this book
-                                out.println("Hotovo");//confirm
+                                output="";
+                                for(int i=0;i<studentList.size();i++){
+                                    output+="#"+studentList.get(i).getName();
+                                }
+                                out.println("Zadaj nazov vlastnika"+output);//ask for owner
+                                input=in.readLine();
+                                if(Collections.binarySearch(studentList, new Student(input), sc)<0){
+                                    out.println("taky uzivatel neexistuje");
+                                    bookList.remove(Collections.binarySearch(bookList, new Book(bookList.get(index).getName()), c));
+
+                                }else{
+                                    bookList.get(index).setOwner(input);//add owner name to this book
+                                    out.println("Hotovo");//confirm
+                                }
                             }else{
                                 out.println("Kniha uz v zozname existuje");
                             }
