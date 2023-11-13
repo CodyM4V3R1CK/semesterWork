@@ -79,8 +79,17 @@ public class Main {
                                 out.println("Kniha uz v zozname existuje");
                             }
                             break;
+                        case "getUserInfo":
+                            out.println("Zadaj meno uzivatela");
+                            index = Collections.binarySearch(studentList, new Student(in.readLine()), sc);
+                            if (index >= 0) {
+                                out.println(studentList.get(index).getPhone() + "#" + studentList.get(index).getEmail() + "#" + studentList.get(index).getDormRoom());
+                            }else{
+                                out.println("Zle meno");
+                            }
+                            break;
                         default:
-                            out.println("Unknown command. Available commands: getBooks, getBookInfo and addBook");
+                            out.println("Unknown command. Available commands: getBooks, getBookInfo, getUserInfo and addBook");
                             break;
                     }
                 }
@@ -132,8 +141,17 @@ public class Main {
                                 out.println("Zly nazov");
                             }
                             break;
+                        case "getUserInfo":
+                            out.println("Zadaj meno uzivatela");
+                            index = Collections.binarySearch(studentList, new Student(in.readLine()), sc);
+                            if (index >= 0) {
+                                out.println(studentList.get(index).getPhone() + "#" + studentList.get(index).getEmail() + "#" + studentList.get(index).getDormRoom());
+                            }else{
+                                out.println("Zle meno");
+                            }
+                            break;
                         default:
-                            out.println("Unknown command. Avaiable commands: getBooks, getBookInfo, addBook and removeBook");
+                            out.println("Unknown command. Avaiable commands: getBooks, getBookInfo, getUserInfo, addBook and removeBook");
                             break;
                     }
                 }
