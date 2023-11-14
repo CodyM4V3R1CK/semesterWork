@@ -11,6 +11,7 @@ public class Main {
         System.out.println("Connection established");
         PrintStream out = new PrintStream(s.getOutputStream());// to send data to the client
         BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));// to read data coming from the client
+
         LinkedList<Book> bookList = new LinkedList<>();
         bookList.add(new Book("Matematika1"));
         bookList.add(new Book("Fyzika1"));
@@ -19,13 +20,14 @@ public class Main {
         bookList.get(0).setOwner("Fero");
         bookList.get(1).setAuthor("Newton");
         bookList.get(1).setOwner("Palo");
-        Comparator<Book> c = new Comparator<Book>() {
+        Comparator<Book> c = new Comparator<>() {
             @Override
             public int compare(Book o1, Book o2) {
                 return o1.getName().compareTo(o2.getName());
             }
         };
-        Collections.sort(bookList,c);//binary search needs sorted list
+        bookList.sort(c);//binary search needs sorted list
+
         LinkedList<Student> studentList = new LinkedList<>();
         studentList.add(new Student("0Admin"));
         studentList.add(new Student("Fero"));
@@ -34,19 +36,20 @@ public class Main {
         studentList.get(1).setPassword("pass");
         studentList.get(1).setPhone("123");
         studentList.get(2).setEmail("abc");
-        Comparator<Student> sc = new Comparator<Student>() {
+        Comparator<Student> sc = new Comparator<>() {
             @Override
             public int compare(Student o1, Student o2) {
                 return o1.getName().compareTo(o2.getName());
             }
         };
-        Collections.sort(studentList,sc);//binary search needs sorted list
+
+        studentList.sort(sc);//binary search needs sorted list
         int status = -1;//-1 not signed in, 0 admin, 1+ user
         while(true) {// server executes continuously
             if(status > 0){
                 String input, output;
                 while ((input = in.readLine()) != null) {
-                    int index = 0;
+                    int index;
                     switch (input) {
                         case "getBooks"://this function gives us names of all saved books
                             Iterator<Book> iterator = bookList.iterator();//this allows us to go through all the saved books one by one
@@ -70,7 +73,7 @@ public class Main {
                             input = in.readLine();//get name
                             if(Collections.binarySearch(bookList, new Book(input), c)<0){
                                 bookList.add(new Book(input));//create new book with choosen name
-                                Collections.sort(bookList, c);
+                                bookList.sort(c);
                                 index = Collections.binarySearch(bookList, new Book(input), c);//get index of the new book
                                 out.println("Zadaj nazov autora");//ask for author
                                 bookList.get(index).setAuthor(in.readLine());//add author name to this book
@@ -117,7 +120,7 @@ public class Main {
             } else if (status == 0) {
                 String input, output;
                 while ((input = in.readLine()) != null) {
-                    int index = 0;
+                    int index;
                     switch (input) {
                         case "getBooks"://this function gives us names of all saved books
                             Iterator<Book> iterator = bookList.iterator();//this allows us to go through all the saved books one by one
@@ -141,13 +144,13 @@ public class Main {
                             input = in.readLine();//get name
                             if(Collections.binarySearch(bookList, new Book(input), c)<0){
                                 bookList.add(new Book(input));//create new book with choosen name
-                                Collections.sort(bookList, c);
+                                bookList.sort(c);
                                 index = Collections.binarySearch(bookList, new Book(input), c);//get index of the new book
                                 out.println("Zadaj nazov autora");//ask for author
                                 bookList.get(index).setAuthor(in.readLine());//add author name to this book
                                 output="";
-                                for(int i=0;i<studentList.size();i++){
-                                    output+="#"+studentList.get(i).getName();
+                                for (Student student : studentList) {
+                                    output += "#" + student.getName();
                                 }
                                 out.println("Zadaj nazov vlastnika"+output);//ask for owner
                                 input=in.readLine();
@@ -187,7 +190,7 @@ public class Main {
                             input=in.readLine();
                             if(Collections.binarySearch(studentList, new Student(input), sc)<0){
                                 studentList.add(new Student(input));
-                                Collections.sort(studentList, sc);
+                                studentList.sort(sc);
                                 index = Collections.binarySearch(studentList, new Student(input), sc);
                                 out.println("Zadaj heslo:");
                                 studentList.get(index).setPassword(in.readLine());
@@ -213,7 +216,7 @@ public class Main {
                 }
             }else{
                 String input;
-                while ((input = in.readLine()) != null && status < 0) {
+                while ((input = in.readLine()) != null) {
                     int index = 0;
                     switch (input) {
                         case "signIn":
@@ -237,7 +240,7 @@ public class Main {
                             input=in.readLine();
                             if(Collections.binarySearch(studentList, new Student(input), sc)<-1) {
                                 studentList.add(new Student(input));
-                                Collections.sort(studentList, sc);
+                                studentList.sort(sc);
                                 index = Collections.binarySearch(studentList, new Student(input), sc);
                                 //out.println("Zadaj heslo:");
                                 input=in.readLine();
