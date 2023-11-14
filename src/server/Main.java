@@ -53,13 +53,13 @@ public class Main {
                     switch (input) {
                         case "getBooks"://this function gives us names of all saved books
                             Iterator<Book> iterator = bookList.iterator();//this allows us to go through all the saved books one by one
-                            output = "";//variable where we gonna save the books
+                            output = "";//variable where we're going to save the books
                             while (iterator.hasNext()) {//while loop that gets book names one by one and saves them in string
                                 output += iterator.next().getName() + "#";
                             }
                             out.println(output);//this returns the list of books
                             break;
-                        case "getBookInfo"://this function asks for name of a book and it returns info about the book
+                        case "getBookInfo"://this function asks for name of a book, and it returns info about the book
                             out.println("Zadaj nazov knizky");
                             index = Collections.binarySearch(bookList, new Book(in.readLine()), c);//here we are using binary search to find index of book with the choosen name
                             if(index>=0){
@@ -124,13 +124,13 @@ public class Main {
                     switch (input) {
                         case "getBooks"://this function gives us names of all saved books
                             Iterator<Book> iterator = bookList.iterator();//this allows us to go through all the saved books one by one
-                            output = "";//variable where we gonna save the books
+                            output = "";//variable where we're going to save the books
                             while (iterator.hasNext()) {//while loop that gets book names one by one and saves them in string
                                 output += iterator.next().getName() + "#";
                             }
                             out.println(output);//this returns the list of books
                             break;
-                        case "getBookInfo"://this function asks for name of a book and it returns info about the book
+                        case "getBookInfo"://this function asks for name of a book, and it returns info about the book
                             out.println("Zadaj nazov knizky");
                             index = Collections.binarySearch(bookList, new Book(in.readLine()), c);//here we are using binary search to find index of book with the choosen name
                             if(index>=0){
@@ -217,7 +217,7 @@ public class Main {
             }else{
                 String input;
                 while ((input = in.readLine()) != null) {
-                    int index = 0;
+                    int index;
                     switch (input) {
                         case "signIn":
                             //out.println("Zadaj meno:");
