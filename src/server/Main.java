@@ -20,12 +20,7 @@ public class Main {
         bookList.get(0).setOwner("Fero");
         bookList.get(1).setAuthor("Newton");
         bookList.get(1).setOwner("Palo");
-        Comparator<Book> c = new Comparator<>() {
-            @Override
-            public int compare(Book o1, Book o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        };
+        Comparator<Book> c = Comparator.comparing(Book::getName);
         bookList.sort(c);//binary search needs sorted list
 
         LinkedList<Student> studentList = new LinkedList<>();
@@ -36,12 +31,7 @@ public class Main {
         studentList.get(1).setPassword("pass");
         studentList.get(1).setPhone("123");
         studentList.get(2).setEmail("abc");
-        Comparator<Student> sc = new Comparator<>() {
-            @Override
-            public int compare(Student o1, Student o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        };
+        Comparator<Student> sc = Comparator.comparing(Student::getName);
 
         studentList.sort(sc);//binary search needs sorted list
         int status = -1;//-1 not signed in, 0 admin, 1+ user
