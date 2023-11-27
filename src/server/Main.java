@@ -133,7 +133,7 @@ public class Main {
                             out.println("Zadaj nazov knizky");//ask for name
                             input = in.readLine();//get name
                             if(Collections.binarySearch(bookList, new Book(input), c)<0){
-                                bookList.add(new Book(input));//create new book with choosen name
+                                bookList.add(new Book(input));//create new book with chosen name
                                 bookList.sort(c);
                                 index = Collections.binarySearch(bookList, new Book(input), c);//get index of the new book
                                 out.println("Zadaj nazov autora");//ask for author

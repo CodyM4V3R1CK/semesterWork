@@ -10,3 +10,11 @@ bonus:
   !gui (in progress)
   .sql (optional)
   docs (urgent)
+
+  --admin
+  get user info screen
+  return book screen
+
+  --user
+  get user info
+  lend book
