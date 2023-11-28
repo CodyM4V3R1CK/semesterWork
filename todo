@@ -16,5 +16,5 @@ bonus:
   return book screen
 
   --user
+  return book
   get user info
-  lend book
