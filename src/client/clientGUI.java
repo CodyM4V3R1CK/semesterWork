@@ -17,7 +17,8 @@ public class clientGUI extends JFrame implements ActionListener {
     JButton login, register;    //main screen selection
     JPanel loginSelectionScreen, loginScreen, registerScreen, userScreen, addBookScreen, getBooksScreen,
             adminScreen, addBookAdminScreen, getBooksAdminScreen, removeBookAdminScreen, addUserAdminScreen,
-            getBookInfoScreen, getBookInfoOutputScreen, getBookInfoAdminScreen, getBookInfoOutputAdminScreen;
+            getBookInfoScreen, getBookInfoOutputScreen, getBookInfoAdminScreen, getBookInfoOutputAdminScreen,
+            lendBookScreen;
 
     //login screen GUI parts
     JButton confirmLogin;
@@ -30,7 +31,7 @@ public class clientGUI extends JFrame implements ActionListener {
     JLabel usernameRegisterL, passwordRegisterL, phoneRegisterL, emailRegisterL, dormRegisterL;
 
     //user screen GUI parts
-    JButton addBookButton, getBooksButton, getBookInfoButton;
+    JButton addBookButton, getBooksButton, getBookInfoButton, lendBookButton;
 
     //addBook screen GUI parts
     JButton addBookConfirm, addBookReturn;
@@ -81,6 +82,11 @@ public class clientGUI extends JFrame implements ActionListener {
     JTextField addUserUsername, addUserPassword, addUserPhone, addUserEmail, addUserDorm;
     JLabel addUserUsernameL, addUserPasswordL, addUserPhoneL, addUserEmailL, addUserDormL;
 
+    //lendBook screen GUI parts
+    JButton lendBookConfirmButton, lendBookReturnButton;
+    JLabel lendBookNameL, lendBookUserL;
+    JTextField lendBookName, lendBookUser;
+
     String output;
     Socket s = new Socket("localhost", 1050);// Create client socket
     DataOutputStream out = new DataOutputStream(s.getOutputStream());// to send data to the server
@@ -115,6 +121,8 @@ public class clientGUI extends JFrame implements ActionListener {
 
         getBookInfoAdminScreen = new JPanel();
         getBookInfoOutputAdminScreen = new JPanel();
+
+        lendBookScreen = new JPanel();
 
         //creating buttons
         login = new JButton("Login");
@@ -155,6 +163,10 @@ public class clientGUI extends JFrame implements ActionListener {
         getBookInfoReturnAdminButton = new JButton("Back To Admin Screen");
 
         getBookInfoOutputReturnAdminButton = new JButton("Back To Admin Screen");
+
+        lendBookButton = new JButton("Lend Book");
+        lendBookConfirmButton = new JButton("Lend This Book");
+        lendBookReturnButton = new JButton("Back To User Menu");
 
         //adding listeners to buttons
         login.addActionListener(this);
@@ -198,6 +210,10 @@ public class clientGUI extends JFrame implements ActionListener {
 
         getBookInfoOutputReturnAdminButton.addActionListener(this);
 
+        lendBookButton.addActionListener(this);
+        lendBookConfirmButton.addActionListener(this);
+        lendBookReturnButton.addActionListener(this);
+
         //creating text fields
         loginUsername = new JTextField(40);
         loginPassword = new JTextField(40);
@@ -229,6 +245,8 @@ public class clientGUI extends JFrame implements ActionListener {
         addUserEmail = new JTextField(40);
         addUserDorm = new JTextField(40);
 
+        lendBookUser = new JTextField(40);
+        lendBookName = new JTextField(40);
 
         //don't allow text fields to expand beyond given limit
         loginUsername.setMaximumSize(loginUsername.getPreferredSize());
@@ -261,6 +279,9 @@ public class clientGUI extends JFrame implements ActionListener {
         addUserEmail.setMaximumSize(addUserEmail.getPreferredSize());
         addUserDorm.setMaximumSize(addUserDorm.getPreferredSize());
 
+        lendBookUser.setMaximumSize(lendBookUser.getPreferredSize());
+        lendBookName.setMaximumSize(lendBookName.getPreferredSize());
+
         //creating labels
         usernameLoginL = new JLabel("Username:");
         passwordLoginL = new JLabel("Password:");
@@ -289,6 +310,9 @@ public class clientGUI extends JFrame implements ActionListener {
         addUserPhoneL = new JLabel("User Phone Number:");
         addUserEmailL = new JLabel("User Email Address:");
         addUserDormL = new JLabel("User Dorm Room:");
+
+        lendBookNameL = new JLabel("Name Of A Book To Lend");
+        lendBookUserL = new JLabel("Name Of A User To Lend The Book To");
 
         //creating text areas
         getBooksOutput = new JTextArea();
@@ -343,12 +367,14 @@ public class clientGUI extends JFrame implements ActionListener {
         registerScreen.setBorder(BorderFactory.createEmptyBorder(0, 75, 0, 0));
 
         //adding stuff to userScreen panel
-        userScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        userScreen.add(Box.createRigidArea(new Dimension(0, 30)));
         userScreen.add(addBookButton);
-        userScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        userScreen.add(Box.createRigidArea(new Dimension(0, 30)));
         userScreen.add(getBooksButton);
-        userScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        userScreen.add(Box.createRigidArea(new Dimension(0, 30)));
         userScreen.add(getBookInfoButton);
+        userScreen.add(Box.createRigidArea(new Dimension(0, 30)));
+        userScreen.add(lendBookButton);
 
         userScreen.setLayout(new BoxLayout(userScreen, BoxLayout.Y_AXIS));
         userScreen.setBorder(BorderFactory.createEmptyBorder(50, 200, 0, 0));
@@ -482,6 +508,20 @@ public class clientGUI extends JFrame implements ActionListener {
 
         getBookInfoOutputAdminScreen.setLayout(new BoxLayout(getBookInfoOutputAdminScreen, BoxLayout.Y_AXIS));
 
+        //adding stuff to the lendBook screen
+
+        lendBookScreen.add(lendBookNameL);
+        lendBookScreen.add(lendBookName);
+        lendBookScreen.add(Box.createRigidArea(new Dimension(0, 25)));
+        lendBookScreen.add(lendBookUserL);
+        lendBookScreen.add(lendBookUser);
+        lendBookScreen.add(lendBookConfirmButton);
+        lendBookScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        lendBookScreen.add(lendBookReturnButton);
+
+        lendBookScreen.setLayout(new BoxLayout(lendBookScreen, BoxLayout.Y_AXIS));
+        lendBookScreen.setBorder(BorderFactory.createEmptyBorder(0, 125, 0, 0));
+
         //adding panels to cardLayout
         cPane.add("loginSelection", loginSelectionScreen);
         cPane.add("confirmLogin", loginScreen);
@@ -498,6 +538,7 @@ public class clientGUI extends JFrame implements ActionListener {
         cPane.add("getBookInfoOutput", getBookInfoOutputScreen);
         cPane.add("getBookInfoAdmin", getBookInfoAdminScreen);
         cPane.add("getBookInfoOutputAdmin", getBookInfoOutputAdminScreen);
+        cPane.add("lendBook", lendBookScreen);
     }
 
     /**
@@ -679,6 +720,12 @@ public class clientGUI extends JFrame implements ActionListener {
             case "Get Info On This Book" -> {
                 getBookInfoOutputAdmin.setText("test");
                 crd.show(cPane, "getBookInfoOutputAdmin");
+            }
+            case "Lend Book" -> crd.show(cPane, "lendBook");
+            case "Lend This Book" -> {
+                lendBookName.setText("");
+                lendBookUser.setText("");
+                crd.show(cPane, "userScreen");
             }
             default -> crd.show(cPane, "loginSelection");
         }
