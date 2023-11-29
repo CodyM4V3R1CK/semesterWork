@@ -1,7 +1,5 @@
 package client;
 
-import GUI.Test;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,12 +12,13 @@ public class clientGUI extends JFrame implements ActionListener {
 
     CardLayout crd;
     Container cPane;
-    JButton login, register;    //main screen selection
     JPanel loginSelectionScreen, loginScreen, registerScreen, userScreen, addBookScreen, getBooksScreen,
             adminScreen, addBookAdminScreen, getBooksAdminScreen, removeBookAdminScreen, addUserAdminScreen,
             getBookInfoScreen, getBookInfoOutputScreen, getBookInfoAdminScreen, getBookInfoOutputAdminScreen,
             lendBookScreen, returnBookScreen, returnBookAdminScreen;
 
+    //main screen GUI parts
+    JButton login, register;
     //login screen GUI parts
     JButton confirmLogin;
     JTextField loginUsername, loginPassword;
