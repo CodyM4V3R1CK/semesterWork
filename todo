@@ -13,8 +13,6 @@ bonus:
 
   --admin
   get user info screen
-  return book screen
 
   --user
-  return book
   get user info
