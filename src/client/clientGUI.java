@@ -15,7 +15,8 @@ public class clientGUI extends JFrame implements ActionListener {
     JPanel loginSelectionScreen, loginScreen, registerScreen, userScreen, addBookScreen, getBooksScreen,
             adminScreen, addBookAdminScreen, getBooksAdminScreen, removeBookAdminScreen, addUserAdminScreen,
             getBookInfoScreen, getBookInfoOutputScreen, getBookInfoAdminScreen, getBookInfoOutputAdminScreen,
-            lendBookScreen, returnBookScreen, returnBookAdminScreen;
+            lendBookScreen, returnBookScreen, returnBookAdminScreen, getUserInfoScreen, getUserInfoAdminScreen,
+            getUserInfoOutputScreen, getUserInfoOutputAdminScreen;
 
     //main screen GUI parts
     JButton login, register;
@@ -30,7 +31,7 @@ public class clientGUI extends JFrame implements ActionListener {
     JLabel usernameRegisterL, passwordRegisterL, phoneRegisterL, emailRegisterL, dormRegisterL;
 
     //user screen GUI parts
-    JButton addBookButton, getBooksButton, getBookInfoButton, lendBookButton, returnBookButton;
+    JButton addBookButton, getBooksButton, getBookInfoButton, lendBookButton, returnBookButton, getUserInfoButton;
 
     //addBook screen GUI parts
     JButton addBookConfirm, addBookReturn;
@@ -52,7 +53,7 @@ public class clientGUI extends JFrame implements ActionListener {
 
     //admin screen GUI parts
     JButton addBookButtonAdmin, getBooksButtonAdmin, removeBookButtonAdmin, addUserButtonAdmin, getBookInfoButtonAdmin,
-            returnBookAdminButton;
+            returnBookAdminButton, getUserInfoAdminButton;
 
     //addBookAdmin screen GUI parts
     JButton addBookConfirmAdmin, addBookReturnAdmin;
@@ -97,6 +98,24 @@ public class clientGUI extends JFrame implements ActionListener {
     JLabel returnBookNameAdminL;
     JTextField returnBookNameAdmin;
 
+    //getUserInfo screen GUI parts
+    JButton getUserInfoConfirmButton, getUserInfoReturnButton;
+    JLabel getUserInfoNameL;
+    JTextField getUserInfoName;
+
+    //getUserInfoOutput screen GUI parts
+    JButton getUserInfoOutputReturnButton;
+    JTextArea getUserInfoOutput;
+
+    //getUserInfoAdmin screen GUI parts
+    JButton getUserInfoConfirmAdminButton, getUserInfoReturnAdminButton;
+    JLabel getUserInfoNameAdminL;
+    JTextField getUserInfoNameAdmin;
+
+    //getUserInfoAdminOutput screen GUI parts
+    JButton getUserInfoOutputReturnAdminButton;
+    JTextArea getUserInfoOutputAdmin;
+
     String output;
     Socket s = new Socket("localhost", 1050);// Create client socket
     DataOutputStream out = new DataOutputStream(s.getOutputStream());// to send data to the server
@@ -137,10 +156,14 @@ public class clientGUI extends JFrame implements ActionListener {
         returnBookScreen = new JPanel();
         returnBookAdminScreen = new JPanel();
 
+        getUserInfoScreen = new JPanel();
+        getUserInfoOutputScreen = new JPanel();
+        getUserInfoAdminScreen = new JPanel();
+        getUserInfoOutputAdminScreen = new JPanel();
+
         //creating buttons
         login = new JButton("Login");
         register = new JButton("Register");
-
         confirmLogin = new JButton("confirmLogin");
         confirmRegister = new JButton("confirmRegister");
 
@@ -167,14 +190,11 @@ public class clientGUI extends JFrame implements ActionListener {
         getBookInfoButton = new JButton("Get Book Info");
         getBookConfirm = new JButton("Get This Book Info");
         getBookInfoReturnButton = new JButton("Back To User Menu");
-
         getBookInfoOutputReturnButton = new JButton("Back To User Menu");
 
         getBookInfoButtonAdmin = new JButton("Get The Book Info");
-
         getBookConfirmAdminButton = new JButton("Get Info On This Book");
         getBookInfoReturnAdminButton = new JButton("Back To Admin Menu");
-
         getBookInfoOutputReturnAdminButton = new JButton("Back To Admin Menu");
 
         lendBookButton = new JButton("Lend Book");
@@ -188,6 +208,16 @@ public class clientGUI extends JFrame implements ActionListener {
         returnBookAdminButton = new JButton("Return A Book");
         returnBookConfirmAdminButton = new JButton("Return");
         returnBookReturnAdminButton = new JButton("Back To Admin Menu");
+
+        getUserInfoButton = new JButton("Get User Info");
+        getUserInfoConfirmButton = new JButton("Get This User Info");
+        getUserInfoReturnButton = new JButton("Back To User Menu");
+        getUserInfoOutputReturnButton = new JButton("Back To User Menu");
+
+        getUserInfoAdminButton = new JButton("Get The User Info");
+        getUserInfoConfirmAdminButton = new JButton("Get Info On This User");
+        getUserInfoReturnAdminButton = new JButton("Back To Admin Menu");
+        getUserInfoOutputReturnAdminButton = new JButton("Back To Admin Menu");
 
         //adding listeners to buttons
         login.addActionListener(this);
@@ -243,13 +273,22 @@ public class clientGUI extends JFrame implements ActionListener {
         returnBookConfirmAdminButton.addActionListener(this);
         returnBookReturnAdminButton.addActionListener(this);
 
+        getUserInfoButton.addActionListener(this);
+        getUserInfoConfirmButton.addActionListener(this);
+        getUserInfoReturnButton.addActionListener(this);
+        getUserInfoOutputReturnButton.addActionListener(this);
+
+        getUserInfoAdminButton.addActionListener(this);
+        getUserInfoConfirmAdminButton.addActionListener(this);
+        getUserInfoReturnAdminButton.addActionListener(this);
+        getUserInfoOutputReturnAdminButton.addActionListener(this);
+
         //creating text fields
         loginUsername = new JTextField(40);
         loginPassword = new JTextField(40);
 
         registerUsername = new JTextField(40);
         registerPassword = new JTextField(40);
-
         registerPhone = new JTextField(40);
         registerEmail = new JTextField(40);
         registerDorm = new JTextField(40);
@@ -280,13 +319,15 @@ public class clientGUI extends JFrame implements ActionListener {
         returnBookName = new JTextField(40);
         returnBookNameAdmin = new JTextField(40);
 
+        getUserInfoName = new JTextField(40);
+        getUserInfoNameAdmin = new JTextField(40);
+
         //don't allow text fields to expand beyond given limit
         loginUsername.setMaximumSize(loginUsername.getPreferredSize());
         loginPassword.setMaximumSize(loginPassword.getPreferredSize());
 
         registerUsername.setMaximumSize(registerUsername.getPreferredSize());
         registerPassword.setMaximumSize(registerPassword.getPreferredSize());
-
         registerPhone.setMaximumSize(registerPhone.getPreferredSize());
         registerEmail.setMaximumSize(registerEmail.getPreferredSize());
         registerDorm.setMaximumSize(registerDorm.getPreferredSize());
@@ -316,6 +357,9 @@ public class clientGUI extends JFrame implements ActionListener {
 
         returnBookName.setMaximumSize(returnBookName.getPreferredSize());
         returnBookNameAdmin.setMaximumSize(returnBookNameAdmin.getPreferredSize());
+
+        getUserInfoName.setMaximumSize(getUserInfoName.getPreferredSize());
+        getUserInfoNameAdmin.setMaximumSize(getUserInfoNameAdmin.getPreferredSize());
 
         //creating labels
         usernameLoginL = new JLabel("Username:");
@@ -352,12 +396,18 @@ public class clientGUI extends JFrame implements ActionListener {
         returnBookNameL = new JLabel("Book Name");
         returnBookNameAdminL = new JLabel("Book Name");
 
+        getUserInfoNameL = new JLabel("User Name");
+        getUserInfoNameAdminL = new JLabel("User Name");
+
         //creating text areas
         getBooksOutput = new JTextArea();
         getBooksOutputAdmin = new JTextArea();
 
         getBookInfoOutput = new JTextArea();
         getBookInfoOutputAdmin = new JTextArea();
+
+        getUserInfoOutput = new JTextArea();
+        getUserInfoOutputAdmin = new JTextArea();
 
         //adding stuff to loginSelection panel
         loginSelectionScreen.add(Box.createRigidArea(new Dimension(0, 50)));
@@ -405,16 +455,18 @@ public class clientGUI extends JFrame implements ActionListener {
         registerScreen.setBorder(BorderFactory.createEmptyBorder(0, 75, 0, 0));
 
         //adding stuff to userScreen panel
-        userScreen.add(Box.createRigidArea(new Dimension(0, 30)));
+        userScreen.add(Box.createRigidArea(new Dimension(0, 25)));
         userScreen.add(addBookButton);
-        userScreen.add(Box.createRigidArea(new Dimension(0, 30)));
+        userScreen.add(Box.createRigidArea(new Dimension(0, 25)));
         userScreen.add(getBooksButton);
-        userScreen.add(Box.createRigidArea(new Dimension(0, 30)));
+        userScreen.add(Box.createRigidArea(new Dimension(0, 25)));
         userScreen.add(getBookInfoButton);
-        userScreen.add(Box.createRigidArea(new Dimension(0, 30)));
+        userScreen.add(Box.createRigidArea(new Dimension(0, 25)));
         userScreen.add(lendBookButton);
-        userScreen.add(Box.createRigidArea(new Dimension(0, 30)));
+        userScreen.add(Box.createRigidArea(new Dimension(0, 25)));
         userScreen.add(returnBookButton);
+        userScreen.add(Box.createRigidArea(new Dimension(0, 25)));
+        userScreen.add(getUserInfoButton);
 
         userScreen.setLayout(new BoxLayout(userScreen, BoxLayout.Y_AXIS));
         userScreen.setBorder(BorderFactory.createEmptyBorder(50, 200, 0, 0));
@@ -443,16 +495,18 @@ public class clientGUI extends JFrame implements ActionListener {
 
         //adding stuff to adminScreen
         adminScreen.add(addBookButtonAdmin);
-        adminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        adminScreen.add(Box.createRigidArea(new Dimension(0, 30)));
         adminScreen.add(getBooksButtonAdmin);
-        adminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        adminScreen.add(Box.createRigidArea(new Dimension(0, 30)));
         adminScreen.add(getBookInfoButtonAdmin);
-        adminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        adminScreen.add(Box.createRigidArea(new Dimension(0, 30)));
         adminScreen.add(removeBookButtonAdmin);
-        adminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        adminScreen.add(Box.createRigidArea(new Dimension(0, 30)));
         adminScreen.add(addUserButtonAdmin);
-        adminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        adminScreen.add(Box.createRigidArea(new Dimension(0, 30)));
         adminScreen.add(returnBookAdminButton);
+        adminScreen.add(Box.createRigidArea(new Dimension(0, 30)));
+        adminScreen.add(getUserInfoAdminButton);
 
         adminScreen.setLayout(new BoxLayout(adminScreen, BoxLayout.Y_AXIS));
         adminScreen.setBorder(BorderFactory.createEmptyBorder(50, 200, 0, 0));
@@ -562,7 +616,7 @@ public class clientGUI extends JFrame implements ActionListener {
         lendBookScreen.add(lendBookReturnButton);
 
         lendBookScreen.setLayout(new BoxLayout(lendBookScreen, BoxLayout.Y_AXIS));
-        lendBookScreen.setBorder(BorderFactory.createEmptyBorder(0, 125, 0, 0));
+        lendBookScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
 
         //adding stuff to the returnBook screen
 
@@ -586,6 +640,46 @@ public class clientGUI extends JFrame implements ActionListener {
         returnBookAdminScreen.setLayout(new BoxLayout(returnBookAdminScreen, BoxLayout.Y_AXIS));
         returnBookAdminScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
 
+        //adding stuff to the getUserInfo screen
+
+        getUserInfoScreen.add(getUserInfoNameL);
+        getUserInfoScreen.add(getUserInfoName);
+        getUserInfoScreen.add(getUserInfoConfirmButton);
+        getUserInfoScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        getUserInfoScreen.add(getUserInfoReturnButton);
+
+        getUserInfoScreen.setLayout(new BoxLayout(getUserInfoScreen, BoxLayout.Y_AXIS));
+        getUserInfoScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
+
+        //adding stuff to the getUserInfoOutput screen
+
+        getUserInfoOutputScreen.add(getUserInfoOutput);
+        getUserInfoOutputScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        getUserInfoOutputScreen.add(getUserInfoOutputReturnButton);
+
+        getUserInfoOutputScreen.setLayout(new BoxLayout(getUserInfoOutputScreen, BoxLayout.Y_AXIS));
+        getUserInfoOutputScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
+
+        //adding stuff to the getUserInfoAdmin screen
+
+        getUserInfoAdminScreen.add(getUserInfoNameAdminL);
+        getUserInfoAdminScreen.add(getUserInfoNameAdmin);
+        getUserInfoAdminScreen.add(getUserInfoConfirmAdminButton);
+        getUserInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        getUserInfoAdminScreen.add(getUserInfoReturnAdminButton);
+
+        getUserInfoAdminScreen.setLayout(new BoxLayout(getUserInfoAdminScreen, BoxLayout.Y_AXIS));
+        getUserInfoAdminScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
+
+        //adding stuff to the getUserInfoOutputAdmin screen
+
+        getUserInfoOutputAdminScreen.add(getUserInfoOutputAdmin);
+        getUserInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        getUserInfoOutputAdminScreen.add(getUserInfoOutputReturnAdminButton);
+
+        getUserInfoOutputAdminScreen.setLayout(new BoxLayout(getUserInfoOutputAdminScreen, BoxLayout.Y_AXIS));
+        getUserInfoAdminScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
+
         //adding panels to cardLayout
         cPane.add("loginSelection", loginSelectionScreen);
         cPane.add("confirmLogin", loginScreen);
@@ -605,6 +699,10 @@ public class clientGUI extends JFrame implements ActionListener {
         cPane.add("lendBook", lendBookScreen);
         cPane.add("returnBook", returnBookScreen);
         cPane.add("returnBookAdmin", returnBookAdminScreen);
+        cPane.add("getUserInfo", getUserInfoScreen);
+        cPane.add("getUserInfoOutput", getUserInfoOutputScreen);
+        cPane.add("getUserInfoAdmin", getUserInfoAdminScreen);
+        cPane.add("getUserInfoOutputAdmin", getUserInfoOutputAdminScreen);
     }
 
     /**
@@ -802,6 +900,18 @@ public class clientGUI extends JFrame implements ActionListener {
             case "Return" ->{
                 returnBookNameAdmin.setText("");
                 crd.show(cPane, "adminScreen");
+            }
+            case "Get User Info" -> crd.show(cPane, "getUserInfo");
+            case "Get This User Info" ->{
+                getUserInfoName.setText("");
+                getUserInfoOutput.setText("test");
+                crd.show(cPane, "getUserInfoOutput");
+            }
+            case "Get The User Info" -> crd.show(cPane, "getUserInfoAdmin");
+            case "Get Info On This User" -> {
+                getUserInfoNameAdmin.setText("");
+                getUserInfoOutputAdmin.setText("test");
+                crd.show(cPane, "getUserInfoOutputAdmin");
             }
             default -> crd.show(cPane, "loginSelection");
         }

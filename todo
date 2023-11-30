@@ -12,7 +12,12 @@ bonus:
   docs (urgent)
 
   --admin
-  get user info screen
+  add return to admin menu for 'addUser', 'removeBook'
 
   --user
-  get user info
+
+  --both if there's time
+  change button actions and names using setActionCommand and keep listener to 'this'
+  it should allow us to have 2 buttons with the same name doing 2 different actions
+
+  add a screen that's either gonna say something you did was successful or it failed (some feedback for the user)
