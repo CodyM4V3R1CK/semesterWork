@@ -15,10 +15,13 @@ bonus:
   implement: register screen
   --admin
   add return to admin menu button for 'addUser', 'removeBook'
-  implement: getBooks, getBookInfo, getUserInfo, addUser, returnBook, addBook and removeBook
+  implement: getBookInfo, getUserInfo, addUser, returnBook, addBook and removeBook
 
   --user
-  implement: add book, get books, get book info, lend book, return book, get user info
+  implement: add book, get book info, lend book, return book, get user info
+
+  bugs:
+  wrong password on login fucks everything up
 
   --both if there's time
   change button actions and names using setActionCommand and keep listener to 'this'

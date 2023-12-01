@@ -716,7 +716,6 @@ public class clientGUI extends JFrame implements ActionListener {
 
         switch (command) {
             case "Login" -> {
-                output = "SignIn";
                 try {
                     out.writeBytes("signIn\n");
                 } catch (IOException ex) {
@@ -790,9 +789,19 @@ public class clientGUI extends JFrame implements ActionListener {
                 crd.show(cPane, "userScreen");
             }
             case "Get Books" -> {
-                String test = "Hell0 World";
+                try {
+                    out.writeBytes("getBooks\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                String books;
+                try {
+                    books = server.readLine().replace("#","\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 crd.show(cPane, "getBooks");
-                getBooksOutput.setText(test);
+                getBooksOutput.setText(books);
             }
             case "Back To User Menu" -> crd.show(cPane, "userScreen");
             case "Back To Admin Menu" -> crd.show(cPane, "adminScreen");
@@ -805,9 +814,19 @@ public class clientGUI extends JFrame implements ActionListener {
                 crd.show(cPane, "adminScreen");
             }
             case "Show All Books" -> {
-                String test = "Hell0 World";
+                try {
+                    out.writeBytes("getBooks\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                String books;
+                try {
+                    books = server.readLine().replace("#","\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 crd.show(cPane, "getBooksAdminScreen");
-                getBooksOutputAdmin.setText(test);
+                getBooksOutputAdmin.setText(books);
             }
             case "Remove Book" -> crd.show(cPane, "removeBookAdminScreen");
             case "Remove This Book" -> {
