@@ -55,9 +55,9 @@ public class Main {
                             input = in.readLine();
                             index = Collections.binarySearch(bookList, new Book(input), c);//here we are using binary search to find index of book with the choosen name
                             if(index>=0){
-                                output = "Autor: " + bookList.get(index).getAuthor() + "#" +
-                                        "Majitel: " + bookList.get(index).getOwner() + "#" +
-                                        "U koho je: " + bookList.get(index).getCurrentOwner();
+                                output = "Author: " + bookList.get(index).getAuthor() + "#" +
+                                        "Owner: " + bookList.get(index).getOwner() + "#" +
+                                        "Held by: " + bookList.get(index).getCurrentOwner();
                                 out.println(output);//here we are returning book info
                             }else{
                                 out.println("Zly nazov");
@@ -130,9 +130,9 @@ public class Main {
                             input = in.readLine();
                             index = Collections.binarySearch(bookList, new Book(input), c);//here we are using binary search to find index of book with the choosen name
                             if(index>=0){
-                                output = "Autor: " + bookList.get(index).getAuthor() + "#" +
-                                        "Majitel: " + bookList.get(index).getOwner() + "#" +
-                                        "U koho je: " + bookList.get(index).getCurrentOwner();
+                                output = "Author: " + bookList.get(index).getAuthor() + "#" +
+                                        "Owner: " + bookList.get(index).getOwner() + "#" +
+                                        "Held by: " + bookList.get(index).getCurrentOwner();
                                 out.println(output);//here we are returning book info
                             }else{
                                 out.println("Zly nazov");
