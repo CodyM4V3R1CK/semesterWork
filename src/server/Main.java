@@ -166,14 +166,15 @@ public class Main {
                             }
                             break;
                         case "removeBook"://this function allows us to remove books
-                            out.println("Zadaj nazov knizky");//ask for name
-                            index = Collections.binarySearch(bookList, new Book(in.readLine()), c);//find index of the book
+                            //out.println("Zadaj nazov knizky");//ask for name
+                            input = in.readLine();
+                            index = Collections.binarySearch(bookList, new Book(input), c);//find index of the book
                             if(index>=0){
                                 bookList.remove(index);//remove it
-                                out.println("Hotovo");
-                            }else{
-                                out.println("Zly nazov");
-                            }
+                                //out.println("Hotovo");
+                            }//else{
+                                //out.println("Zly nazov");
+                            //}
                             break;
                         case "getUserInfo":
                             out.println("Zadaj meno uzivatela");

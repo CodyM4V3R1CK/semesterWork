@@ -14,7 +14,7 @@ bonus:
 
   --admin
   add return to admin menu button for 'addUser', 'removeBook'
-  implement: getUserInfo, addUser, returnBook, addBook and removeBook
+  implement: getUserInfo, addUser, returnBook, addBook
 
   --user
   implement: add book, lend book, return book, get user info

@@ -830,10 +830,21 @@ public class clientGUI extends JFrame implements ActionListener {
                 crd.show(cPane, "getBooksAdminScreen");
                 getBooksOutputAdmin.setText(books);
             }
-            case "Remove Book" -> crd.show(cPane, "removeBookAdminScreen");
+            case "Remove Book" -> {
+                try {
+                    out.writeBytes("removeBook\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                crd.show(cPane, "removeBookAdminScreen");
+            }
             case "Remove This Book" -> {
                 String bookName = removeBookName.getText();
-                System.out.println(bookName);
+                try {
+                    out.writeBytes(bookName + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 removeBookName.setText("");
                 crd.show(cPane, "adminScreen");
             }
