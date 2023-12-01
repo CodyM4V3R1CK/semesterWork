@@ -11,10 +11,14 @@ bonus:
   .sql (optional)
   docs (urgent)
 
+
+  implement: register screen
   --admin
-  add return to admin menu for 'addUser', 'removeBook'
+  add return to admin menu button for 'addUser', 'removeBook'
+  implement: getBooks, getBookInfo, getUserInfo, addUser, returnBook, addBook and removeBook
 
   --user
+  implement: add book, get books, get book info, lend book, return book, get user info
 
   --both if there's time
   change button actions and names using setActionCommand and keep listener to 'this'
