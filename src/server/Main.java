@@ -18,6 +18,7 @@ public class Main {
         bookList.add(new Book("Matematika2"));
         bookList.get(0).setAuthor("Polakovic");
         bookList.get(0).setOwner("Fero");
+        bookList.get(0).setOwner("Polakovic");
         bookList.get(1).setAuthor("Newton");
         bookList.get(1).setOwner("Palo");
         Comparator<Book> c = Comparator.comparing(Book::getName);
@@ -50,10 +51,14 @@ public class Main {
                             out.println(output);//this returns the list of books
                             break;
                         case "getBookInfo"://this function asks for name of a book, and it returns info about the book
-                            out.println("Zadaj nazov knizky");
-                            index = Collections.binarySearch(bookList, new Book(in.readLine()), c);//here we are using binary search to find index of book with the choosen name
+                            //out.println("Zadaj nazov knizky");
+                            input = in.readLine();
+                            index = Collections.binarySearch(bookList, new Book(input), c);//here we are using binary search to find index of book with the choosen name
                             if(index>=0){
-                                out.println(bookList.get(index).getAuthor() + "#" + bookList.get(index).getOwner() + "#" + bookList.get(index).getCurrentOwner());//here we are returning book info
+                                output = "Autor: " + bookList.get(index).getAuthor() + "#" +
+                                        "Majitel: " + bookList.get(index).getOwner() + "#" +
+                                        "U koho je: " + bookList.get(index).getCurrentOwner();
+                                out.println(output);//here we are returning book info
                             }else{
                                 out.println("Zly nazov");
                             }
@@ -121,10 +126,14 @@ public class Main {
                             out.println(output);//this returns the list of books
                             break;
                         case "getBookInfo"://this function asks for name of a book, and it returns info about the book
-                            out.println("Zadaj nazov knizky");
-                            index = Collections.binarySearch(bookList, new Book(in.readLine()), c);//here we are using binary search to find index of book with the choosen name
+                            //out.println("Zadaj nazov knizky");
+                            input = in.readLine();
+                            index = Collections.binarySearch(bookList, new Book(input), c);//here we are using binary search to find index of book with the choosen name
                             if(index>=0){
-                                out.println(bookList.get(index).getAuthor() + "#" + bookList.get(index).getOwner());//here we are returning book info
+                                output = "Autor: " + bookList.get(index).getAuthor() + "#" +
+                                        "Majitel: " + bookList.get(index).getOwner() + "#" +
+                                        "U koho je: " + bookList.get(index).getCurrentOwner();
+                                out.println(output);//here we are returning book info
                             }else{
                                 out.println("Zly nazov");
                             }

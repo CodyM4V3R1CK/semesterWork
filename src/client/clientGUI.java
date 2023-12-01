@@ -584,6 +584,7 @@ public class clientGUI extends JFrame implements ActionListener {
         getBookInfoOutputScreen.add(getBookInfoOutputReturnButton);
 
         getBookInfoOutputScreen.setLayout(new BoxLayout(getBookInfoOutputScreen, BoxLayout.Y_AXIS));
+        getBookInfoOutputScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
 
         //adding stuff to the getBookInfoAdmin screen
         getBookInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
@@ -603,6 +604,7 @@ public class clientGUI extends JFrame implements ActionListener {
         getBookInfoOutputAdminScreen.add(getBookInfoOutputReturnAdminButton);
 
         getBookInfoOutputAdminScreen.setLayout(new BoxLayout(getBookInfoOutputAdminScreen, BoxLayout.Y_AXIS));
+        getBookInfoOutputAdminScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
 
         //adding stuff to the lendBook screen
 
@@ -894,14 +896,56 @@ public class clientGUI extends JFrame implements ActionListener {
 
                 crd.show(cPane, "loginSelection"); //change to confirmRegister on Register press
             }
-            case "Get Book Info" -> crd.show(cPane, "getBookInfo");
+            case "Get Book Info" -> {
+                try {
+                    out.writeBytes("getBookInfo\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                crd.show(cPane, "getBookInfo");
+            }
             case "Get This Book Info" -> {
-                getBookInfoOutput.setText("test");
+                String bookName = getBookInfoName.getText();
+                try {
+                    out.writeBytes(bookName + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                String bookInfo;
+                try {
+                    bookInfo = server.readLine().replace("#","\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                getBookInfoOutput.setText(bookInfo);
                 crd.show(cPane, "getBookInfoOutput");
             }
-            case "Get The Book Info" -> crd.show(cPane, "getBookInfoAdmin");
+            case "Get The Book Info" -> {
+                try {
+                    out.writeBytes("getBookInfo\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                crd.show(cPane, "getBookInfoAdmin");
+            }
             case "Get Info On This Book" -> {
-                getBookInfoOutputAdmin.setText("test");
+                String bookName = getBookInfoNameAdmin.getText();
+                try {
+                    out.writeBytes(bookName + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                String bookInfo;
+                try {
+                    bookInfo = server.readLine().replace("#","\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                getBookInfoOutputAdmin.setText(bookInfo);
                 crd.show(cPane, "getBookInfoOutputAdmin");
             }
             case "Lend Book" -> crd.show(cPane, "lendBook");

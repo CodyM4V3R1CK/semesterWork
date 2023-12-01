@@ -12,13 +12,12 @@ bonus:
   docs (urgent)
 
 
-  implement: register screen
   --admin
   add return to admin menu button for 'addUser', 'removeBook'
-  implement: getBookInfo, getUserInfo, addUser, returnBook, addBook and removeBook
+  implement: getUserInfo, addUser, returnBook, addBook and removeBook
 
   --user
-  implement: add book, get book info, lend book, return book, get user info
+  implement: add book, lend book, return book, get user info
 
   bugs:
   wrong password on login fucks everything up
