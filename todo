@@ -13,7 +13,6 @@ bonus:
 
 
   --admin
-  add return to admin menu button for 'removeBook'
   implement: getUserInfo, addUser, returnBook, addBook
 
   --user
