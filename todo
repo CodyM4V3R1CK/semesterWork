@@ -13,10 +13,10 @@ bonus:
 
 
   --admin
-  implement: getUserInfo, addUser, returnBook, addBook
+  implement: addUser, returnBook, addBook
 
   --user
-  implement: add book, return book, get user info
+  implement: add book, return book
 
   bugs:
   wrong password on login fucks everything up

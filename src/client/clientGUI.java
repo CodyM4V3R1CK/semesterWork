@@ -661,7 +661,7 @@ public class clientGUI extends JFrame implements ActionListener {
         getUserInfoOutputScreen.add(getUserInfoOutputReturnButton);
 
         getUserInfoOutputScreen.setLayout(new BoxLayout(getUserInfoOutputScreen, BoxLayout.Y_AXIS));
-        getUserInfoOutputScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
+        getUserInfoOutputScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
 
         //adding stuff to the getUserInfoAdmin screen
 
@@ -677,11 +677,11 @@ public class clientGUI extends JFrame implements ActionListener {
         //adding stuff to the getUserInfoOutputAdmin screen
 
         getUserInfoOutputAdminScreen.add(getUserInfoOutputAdmin);
-        getUserInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        getUserInfoOutputAdminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         getUserInfoOutputAdminScreen.add(getUserInfoOutputReturnAdminButton);
 
         getUserInfoOutputAdminScreen.setLayout(new BoxLayout(getUserInfoOutputAdminScreen, BoxLayout.Y_AXIS));
-        getUserInfoAdminScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
+        getUserInfoOutputAdminScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
 
         //adding panels to cardLayout
         cPane.add("loginSelection", loginSelectionScreen);
@@ -988,16 +988,54 @@ public class clientGUI extends JFrame implements ActionListener {
                 returnBookNameAdmin.setText("");
                 crd.show(cPane, "adminScreen");
             }
-            case "Get User Info" -> crd.show(cPane, "getUserInfo");
-            case "Get This User Info" ->{
+            case "Get User Info" -> {
+                try {
+                    out.writeBytes("getUserInfo\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                crd.show(cPane, "getUserInfo");
+            }
+            case "Get This User Info" -> {
+                String userName = getUserInfoName.getText();
                 getUserInfoName.setText("");
-                getUserInfoOutput.setText("test");
+                try {
+                    out.writeBytes(userName + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                String userInfo;
+                try {
+                    userInfo = server.readLine().replace("#","\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                getUserInfoOutput.setText(userInfo);
                 crd.show(cPane, "getUserInfoOutput");
             }
-            case "Get The User Info" -> crd.show(cPane, "getUserInfoAdmin");
+            case "Get The User Info" -> {
+                try {
+                    out.writeBytes("getUserInfo\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                crd.show(cPane, "getUserInfoAdmin");
+            }
             case "Get Info On This User" -> {
+                String userName = getUserInfoNameAdmin.getText();
                 getUserInfoNameAdmin.setText("");
-                getUserInfoOutputAdmin.setText("test");
+                try {
+                    out.writeBytes(userName + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                String userInfo;
+                try {
+                    userInfo = server.readLine().replace("#","\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                getUserInfoOutputAdmin.setText(userInfo);
                 crd.show(cPane, "getUserInfoOutputAdmin");
             }
             default -> crd.show(cPane, "loginSelection");
