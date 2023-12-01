@@ -85,8 +85,8 @@ public class clientGUI extends JFrame implements ActionListener {
 
     //lendBook screen GUI parts
     JButton lendBookConfirmButton, lendBookReturnButton;
-    JLabel lendBookNameL, lendBookUserL;
-    JTextField lendBookName, lendBookUser;
+    JLabel lendBookNameL;
+    JTextField lendBookName;
 
     //returnBook screen GUI parts
     JButton returnBookConfirmButton, returnBookReturnButton;
@@ -317,7 +317,6 @@ public class clientGUI extends JFrame implements ActionListener {
         addUserEmail = new JTextField(40);
         addUserDorm = new JTextField(40);
 
-        lendBookUser = new JTextField(40);
         lendBookName = new JTextField(40);
 
         returnBookName = new JTextField(40);
@@ -356,7 +355,6 @@ public class clientGUI extends JFrame implements ActionListener {
         addUserEmail.setMaximumSize(addUserEmail.getPreferredSize());
         addUserDorm.setMaximumSize(addUserDorm.getPreferredSize());
 
-        lendBookUser.setMaximumSize(lendBookUser.getPreferredSize());
         lendBookName.setMaximumSize(lendBookName.getPreferredSize());
 
         returnBookName.setMaximumSize(returnBookName.getPreferredSize());
@@ -395,7 +393,6 @@ public class clientGUI extends JFrame implements ActionListener {
         addUserDormL = new JLabel("User Dorm Room:");
 
         lendBookNameL = new JLabel("Name Of A Book To Lend");
-        lendBookUserL = new JLabel("Name Of A User To Lend The Book To");
 
         returnBookNameL = new JLabel("Book Name");
         returnBookNameAdminL = new JLabel("Book Name");
@@ -617,9 +614,6 @@ public class clientGUI extends JFrame implements ActionListener {
 
         lendBookScreen.add(lendBookNameL);
         lendBookScreen.add(lendBookName);
-        lendBookScreen.add(Box.createRigidArea(new Dimension(0, 25)));
-        lendBookScreen.add(lendBookUserL);
-        lendBookScreen.add(lendBookUser);
         lendBookScreen.add(lendBookConfirmButton);
         lendBookScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         lendBookScreen.add(lendBookReturnButton);
@@ -966,10 +960,22 @@ public class clientGUI extends JFrame implements ActionListener {
                 getBookInfoOutputAdmin.setText(bookInfo);
                 crd.show(cPane, "getBookInfoOutputAdmin");
             }
-            case "Lend Book" -> crd.show(cPane, "lendBook");
+            case "Lend Book" -> {
+                try {
+                    out.writeBytes("lendBook\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                crd.show(cPane, "lendBook");
+            }
             case "Lend This Book" -> {
+                String bookName = lendBookName.getText();
                 lendBookName.setText("");
-                lendBookUser.setText("");
+                try {
+                    out.writeBytes(bookName + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 crd.show(cPane, "userScreen");
             }
             case "Return Book" -> crd.show(cPane, "returnBook");

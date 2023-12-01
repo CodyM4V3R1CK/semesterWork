@@ -88,14 +88,15 @@ public class Main {
                             }
                             break;
                         case "lendBook":
-                            out.println("Zadaj nazov knizky");
-                            index = Collections.binarySearch(bookList, new Book(in.readLine()), c);//here we are using binary search to find index of book with the choosen name
+                            //out.println("Zadaj nazov knizky");
+                            input = in.readLine();
+                            index = Collections.binarySearch(bookList, new Book(input), c);//here we are using binary search to find index of book with the choosen name
                             if(index>=0){
                                 bookList.get(index).setCurrentOwner(studentList.get(status).getName());
-                                out.println("hotovo");//here we are returning book info
-                            }else{
-                                out.println("Zly nazov");
-                            }
+                                //out.println("hotovo");//here we are returning book info
+                            }//else{
+                                //out.println("Zly nazov");
+                            //}
                             break;
                         case "returnBook":
                             out.println("Zadaj nazov knizky");
@@ -177,13 +178,17 @@ public class Main {
                             //}
                             break;
                         case "getUserInfo":
-                            out.println("Zadaj meno uzivatela");
-                            index = Collections.binarySearch(studentList, new Student(in.readLine()), sc);
+                            //out.println("Zadaj meno uzivatela");
+                            input = in.readLine();
+                            index = Collections.binarySearch(studentList, new Student(input), sc);
                             if (index >= 0) {
-                                out.println(studentList.get(index).getPhone() + "#" + studentList.get(index).getEmail() + "#" + studentList.get(index).getDormRoom());
-                            }else{
-                                out.println("Zle meno");
-                            }
+                                output = studentList.get(index).getPhone() + "#" +
+                                        studentList.get(index).getEmail() + "#" +
+                                        studentList.get(index).getDormRoom();
+                                out.println(output);
+                            }//else{
+                                //out.println("Zle meno");
+                            //}
                             break;
                         case "addUser":
                             out.println("Zadaj meno:");
