@@ -198,15 +198,16 @@ public class Main {
                             }
                             break;
                         case "addUser":
-                            out.println("Zadaj meno:");
-                            input=in.readLine();
+                            //out.println("Zadaj meno:");
+                            input = in.readLine();
                             if(Collections.binarySearch(studentList, new Student(input), sc)<0){
                                 studentList.add(new Student(input));
                                 studentList.sort(sc);
                                 index = Collections.binarySearch(studentList, new Student(input), sc);
-                                out.println("Zadaj heslo:");
-                                studentList.get(index).setPassword(in.readLine());
-                                out.println("Uzivatel pridany");
+                                //out.println("Zadaj heslo:");
+                                input = in.readLine();
+                                studentList.get(index).setPassword(input);
+                                //out.println("Uzivatel pridany");
                             }else{
                                 out.println("Uzivatel s takym menom existuje");
                             }

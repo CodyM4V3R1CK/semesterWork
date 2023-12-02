@@ -782,6 +782,8 @@ public class clientGUI extends JFrame implements ActionListener {
                 }
 
             }
+            case "Back To User Menu" -> crd.show(cPane, "userScreen");
+            case "Back To Admin Menu" -> crd.show(cPane, "adminScreen");
             case "Add Book" -> crd.show(cPane, "addBook");
             case "Add This Book" -> {
                 String bookName = addBookName.getText();
@@ -804,8 +806,6 @@ public class clientGUI extends JFrame implements ActionListener {
                 crd.show(cPane, "getBooks");
                 getBooksOutput.setText(books);
             }
-            case "Back To User Menu" -> crd.show(cPane, "userScreen");
-            case "Back To Admin Menu" -> crd.show(cPane, "adminScreen");
             case "Add New Book" -> crd.show(cPane, "addBookAdminScreen");
             case "Add The Book" -> {
                 String bookNameAdmin = addBookNameAdmin.getText();
@@ -847,17 +847,37 @@ public class clientGUI extends JFrame implements ActionListener {
             }
             case "Add User" -> crd.show(cPane, "addUserAdminScreen");
             case "Add This User" -> {
+                try {
+                    out.writeBytes("addUser\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
                 String newUserUsername = addUserUsername.getText();
-                String newUserPassword = addUserPassword.getText();
-                String newUserPhoneNumber = addUserPhone.getText();
-                String newUserEmail = addUserEmail.getText();
-                String newUserDorm = addUserDorm.getText();
-                System.out.println(newUserUsername + " " + newUserPassword + " " + newUserPhoneNumber + " " + newUserEmail + " " + newUserDorm);
                 addUserUsername.setText("");
+                try {
+                    out.writeBytes(newUserUsername + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                String newUserPassword = addUserPassword.getText();
                 addUserPassword.setText("");
+                try {
+                    out.writeBytes(newUserPassword + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                String newUserPhoneNumber = addUserPhone.getText();
                 addUserPhone.setText("");
+
+                String newUserEmail = addUserEmail.getText();
                 addUserEmail.setText("");
+
+                String newUserDorm = addUserDorm.getText();
                 addUserDorm.setText("");
+
                 crd.show(cPane, "adminScreen");
             }
             case "confirmRegister" -> {
