@@ -64,16 +64,18 @@ public class Main {
                             }
                             break;
                         case "addBook"://this function allows us to add a new book to our list
-                            out.println("Zadaj nazov knizky");//ask for name
+                            //out.println("Zadaj nazov knizky");//ask for name
                             input = in.readLine();//get name
                             if(Collections.binarySearch(bookList, new Book(input), c)<0){
                                 bookList.add(new Book(input));//create new book with choosen name
                                 bookList.sort(c);
                                 index = Collections.binarySearch(bookList, new Book(input), c);//get index of the new book
-                                out.println("Zadaj nazov autora");//ask for author
-                                bookList.get(index).setAuthor(in.readLine());//add author name to this book
-                                bookList.get(index).setOwner(in.readLine());//add owner name to this book
-                                out.println("Hotovo");//confirm
+                                //out.println("Zadaj nazov autora");//ask for author
+                                input = in.readLine();
+                                bookList.get(index).setAuthor(input);//add author name to this book
+                                bookList.get(index).setOwner(input);//add owner name to this book
+                                bookList.get(index).setCurrentOwner(input);//add currentOwner name to this book
+                                //out.println("Hotovo");//confirm
                             }else{
                                 out.println("Kniha uz v zozname existuje");
                             }

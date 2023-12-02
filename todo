@@ -16,7 +16,7 @@ bonus:
   implement: addUser(consulting in progress), addBook
 
   --user
-  implement: add book
+  implement:
 
   bugs:
   wrong password on login fucks everything up
