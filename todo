@@ -16,10 +16,11 @@ bonus:
   implement: addUser, returnBook, addBook
 
   --user
-  implement: add book, return book
+  implement: add book
 
   bugs:
   wrong password on login fucks everything up
+back to menu button screws up the server - MOVE COMMAND FOR WHAT SERVER DOES TO CONFIRM BUTTON PRESS
 
   --both if there's time
   change button actions and names using setActionCommand and keep listener to 'this'

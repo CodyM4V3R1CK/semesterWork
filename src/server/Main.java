@@ -104,11 +104,12 @@ public class Main {
                             }
                             break;
                         case "returnBook":
-                            out.println("Zadaj nazov knizky");
-                            index = Collections.binarySearch(bookList, new Book(in.readLine()), c);//here we are using binary search to find index of book with the choosen name
+                            //out.println("Zadaj nazov knizky");
+                            input = in.readLine();
+                            index = Collections.binarySearch(bookList, new Book(input), c);//here we are using binary search to find index of book with the choosen name
                             if(index>=0){
                                 bookList.get(index).setCurrentOwner(bookList.get(index).getOwner());
-                                out.println("hotovo");//here we are returning book info
+                                //out.println("hotovo");//here we are returning book info
                             }else{
                                 out.println("Zly nazov");
                             }

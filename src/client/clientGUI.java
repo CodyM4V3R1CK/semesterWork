@@ -918,6 +918,7 @@ public class clientGUI extends JFrame implements ActionListener {
             }
             case "Get This Book Info" -> {
                 String bookName = getBookInfoName.getText();
+                getBookInfoName.setText("");
                 try {
                     out.writeBytes(bookName + "\n");
                 } catch (IOException ex) {
@@ -944,6 +945,7 @@ public class clientGUI extends JFrame implements ActionListener {
             }
             case "Get Info On This Book" -> {
                 String bookName = getBookInfoNameAdmin.getText();
+                getBookInfoNameAdmin.setText("");
                 try {
                     out.writeBytes(bookName + "\n");
                 } catch (IOException ex) {
@@ -980,11 +982,27 @@ public class clientGUI extends JFrame implements ActionListener {
             }
             case "Return Book" -> crd.show(cPane, "returnBook");
             case "Return This Book" ->{
+                try {
+                    out.writeBytes("returnBook\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                String bookName = returnBookName.getText();
                 returnBookName.setText("");
+                try {
+                    out.writeBytes(bookName + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 crd.show(cPane, "userScreen");
             }
-            case "Return A Book" -> crd.show(cPane, "returnBookAdmin");
+            case "Return A Book" -> {
+
+                crd.show(cPane, "returnBookAdmin");
+            }
             case "Return" ->{
+
+
                 returnBookNameAdmin.setText("");
                 crd.show(cPane, "adminScreen");
             }
