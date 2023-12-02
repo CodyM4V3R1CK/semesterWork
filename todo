@@ -13,7 +13,7 @@ bonus:
 
 
   --admin
-  implement: addUser, returnBook, addBook
+  implement: addUser, addBook
 
   --user
   implement: add book
