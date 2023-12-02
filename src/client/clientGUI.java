@@ -491,6 +491,7 @@ public class clientGUI extends JFrame implements ActionListener {
         getBooksScreen.add(getBooksReturn);
 
         getBooksScreen.setLayout(new BoxLayout(getBooksScreen, BoxLayout.Y_AXIS));
+        getBooksScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
 
         //adding stuff to adminScreen
         adminScreen.add(addBookButtonAdmin);
@@ -534,6 +535,7 @@ public class clientGUI extends JFrame implements ActionListener {
         getBooksAdminScreen.add(getBooksReturnAdmin);
 
         getBooksAdminScreen.setLayout(new BoxLayout(getBooksAdminScreen, BoxLayout.Y_AXIS));
+        getBooksAdminScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
 
         //adding stuff to removeBookAdmin screen
         removeBookAdminScreen.add(removeBookNameL);
@@ -601,7 +603,6 @@ public class clientGUI extends JFrame implements ActionListener {
         getBookInfoAdminScreen.setBorder(BorderFactory.createEmptyBorder(0, 125, 0, 0));
 
         //adding stuff to the GetBookInfoOutputAdmin screen
-
         getBookInfoOutputAdminScreen.add(getBookInfoOutputAdmin);
         getBookInfoOutputAdminScreen.add(getBookInfoOutputReturnAdminButton);
 
@@ -609,7 +610,6 @@ public class clientGUI extends JFrame implements ActionListener {
         getBookInfoOutputAdminScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
 
         //adding stuff to the lendBook screen
-
         lendBookScreen.add(lendBookNameL);
         lendBookScreen.add(lendBookName);
         lendBookScreen.add(lendBookConfirmButton);
@@ -620,7 +620,6 @@ public class clientGUI extends JFrame implements ActionListener {
         lendBookScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
 
         //adding stuff to the returnBook screen
-
         returnBookScreen.add(returnBookNameL);
         returnBookScreen.add(returnBookName);
         returnBookScreen.add(returnBookConfirmButton);
@@ -631,7 +630,6 @@ public class clientGUI extends JFrame implements ActionListener {
         returnBookScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
 
         //adding stuff to the returnBookAdmin screen
-
         returnBookAdminScreen.add(returnBookNameAdminL);
         returnBookAdminScreen.add(returnBookNameAdmin);
         returnBookAdminScreen.add(returnBookConfirmAdminButton);
@@ -642,7 +640,6 @@ public class clientGUI extends JFrame implements ActionListener {
         returnBookAdminScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
 
         //adding stuff to the getUserInfo screen
-
         getUserInfoScreen.add(getUserInfoNameL);
         getUserInfoScreen.add(getUserInfoName);
         getUserInfoScreen.add(getUserInfoConfirmButton);
@@ -653,7 +650,6 @@ public class clientGUI extends JFrame implements ActionListener {
         getUserInfoScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
 
         //adding stuff to the getUserInfoOutput screen
-
         getUserInfoOutputScreen.add(getUserInfoOutput);
         getUserInfoOutputScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         getUserInfoOutputScreen.add(getUserInfoOutputReturnButton);
@@ -662,7 +658,6 @@ public class clientGUI extends JFrame implements ActionListener {
         getUserInfoOutputScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
 
         //adding stuff to the getUserInfoAdmin screen
-
         getUserInfoAdminScreen.add(getUserInfoNameAdminL);
         getUserInfoAdminScreen.add(getUserInfoNameAdmin);
         getUserInfoAdminScreen.add(getUserInfoConfirmAdminButton);
@@ -673,7 +668,6 @@ public class clientGUI extends JFrame implements ActionListener {
         getUserInfoAdminScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
 
         //adding stuff to the getUserInfoOutputAdmin screen
-
         getUserInfoOutputAdminScreen.add(getUserInfoOutputAdmin);
         getUserInfoOutputAdminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         getUserInfoOutputAdminScreen.add(getUserInfoOutputReturnAdminButton);
@@ -827,10 +821,36 @@ public class clientGUI extends JFrame implements ActionListener {
             }
             case "Add New Book" -> crd.show(cPane, "addBookAdminScreen");
             case "Add The Book" -> {
-                String bookNameAdmin = addBookNameAdmin.getText();
-                String bookAuthorAdmin = addBookAuthorAdmin.getText();
-                String bookOwnerAdmin = addBookOwnerAdmin.getText();
-                System.out.println(bookNameAdmin + " " + bookAuthorAdmin + " " + bookOwnerAdmin);
+                try {
+                    out.writeBytes("addBook\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                String bookName = addBookNameAdmin.getText();
+                addBookNameAdmin.setText("");
+                try {
+                    out.writeBytes(bookName + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                String bookAuthor = addBookAuthorAdmin.getText();
+                addBookAuthorAdmin.setText("");
+                try {
+                    out.writeBytes(bookAuthor + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                String bookOwner = addBookOwnerAdmin.getText();
+                addBookOwnerAdmin.setText("");
+                try {
+                    out.writeBytes(bookOwner + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
                 crd.show(cPane, "adminScreen");
             }
             case "Show All Books" -> {
@@ -872,29 +892,29 @@ public class clientGUI extends JFrame implements ActionListener {
                     throw new RuntimeException(ex);
                 }
 
-                String newUserUsername = addUserUsername.getText();
+                String username = addUserUsername.getText();
                 addUserUsername.setText("");
                 try {
-                    out.writeBytes(newUserUsername + "\n");
+                    out.writeBytes(username + "\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
 
-                String newUserPassword = addUserPassword.getText();
+                String password = addUserPassword.getText();
                 addUserPassword.setText("");
                 try {
-                    out.writeBytes(newUserPassword + "\n");
+                    out.writeBytes(password + "\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
 
-                String newUserPhoneNumber = addUserPhone.getText();
+                String phoneNumber = addUserPhone.getText();
                 addUserPhone.setText("");
 
-                String newUserEmail = addUserEmail.getText();
+                String email = addUserEmail.getText();
                 addUserEmail.setText("");
 
-                String newUserDorm = addUserDorm.getText();
+                String dorm = addUserDorm.getText();
                 addUserDorm.setText("");
 
                 crd.show(cPane, "adminScreen");
