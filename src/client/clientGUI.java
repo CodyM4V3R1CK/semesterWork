@@ -116,11 +116,9 @@ public class clientGUI extends JFrame implements ActionListener {
     JButton getUserInfoOutputReturnAdminButton;
     JTextArea getUserInfoOutputAdmin;
 
-    String output;
     Socket s = new Socket("localhost", 1050);// Create client socket
     DataOutputStream out = new DataOutputStream(s.getOutputStream());// to send data to the server
     BufferedReader server = new BufferedReader(new InputStreamReader(s.getInputStream()));// to read data coming from the server
-    //BufferedReader keyboard = new BufferedReader(new InputStreamReader(System.in));// to read data from the keyboard
 
 
     clientGUI() throws Exception {
