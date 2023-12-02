@@ -551,19 +551,19 @@ public class clientGUI extends JFrame implements ActionListener {
         //adding stuff to addUserAdmin screen
         addUserAdminScreen.add(addUserUsernameL);
         addUserAdminScreen.add(addUserUsername);
-        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         addUserAdminScreen.add(addUserPasswordL);
         addUserAdminScreen.add(addUserPassword);
-        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         addUserAdminScreen.add(addUserPhoneL);
         addUserAdminScreen.add(addUserPhone);
-        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         addUserAdminScreen.add(addUserEmailL);
         addUserAdminScreen.add(addUserEmail);
-        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         addUserAdminScreen.add(addUserDormL);
         addUserAdminScreen.add(addUserDorm);
-        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         addUserAdminScreen.add(addUserConfirmButtonAdmin);
         addUserAdminScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         addUserAdminScreen.add(addUserReturnAdminButton);
@@ -910,12 +910,27 @@ public class clientGUI extends JFrame implements ActionListener {
 
                 String phoneNumber = addUserPhone.getText();
                 addUserPhone.setText("");
+                try {
+                    out.writeBytes(phoneNumber + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
 
                 String email = addUserEmail.getText();
                 addUserEmail.setText("");
+                try {
+                    out.writeBytes(email + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
 
                 String dorm = addUserDorm.getText();
                 addUserDorm.setText("");
+                try {
+                    out.writeBytes(dorm + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
 
                 crd.show(cPane, "adminScreen");
             }

@@ -209,6 +209,15 @@ public class Main {
                                 //out.println("Zadaj heslo:");
                                 input = in.readLine();
                                 studentList.get(index).setPassword(input);
+                                //out.println("Zadaj telefon:");
+                                input = in.readLine();
+                                studentList.get(index).setPhone(input);
+                                //out.println("Zadaj email:");
+                                input = in.readLine();
+                                studentList.get(index).setEmail(input);
+                                //out.println("Zadaj izbu:");
+                                input = in.readLine();
+                                studentList.get(index).setDormRoom(input);
                                 //out.println("Uzivatel pridany");
                             }else{
                                 out.println("Uzivatel s takym menom existuje");
