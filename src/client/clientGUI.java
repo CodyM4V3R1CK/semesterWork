@@ -831,22 +831,20 @@ public class clientGUI extends JFrame implements ActionListener {
                 crd.show(cPane, "getBooksAdminScreen");
                 getBooksOutputAdmin.setText(books);
             }
-            case "Remove Book" -> {
+            case "Remove Book" -> crd.show(cPane, "removeBookAdminScreen");
+            case "Remove This Book" -> {
                 try {
                     out.writeBytes("removeBook\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                crd.show(cPane, "removeBookAdminScreen");
-            }
-            case "Remove This Book" -> {
                 String bookName = removeBookName.getText();
+                removeBookName.setText("");
                 try {
                     out.writeBytes(bookName + "\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                removeBookName.setText("");
                 crd.show(cPane, "adminScreen");
             }
             case "Add User" -> crd.show(cPane, "addUserAdminScreen");
@@ -908,15 +906,14 @@ public class clientGUI extends JFrame implements ActionListener {
 
                 crd.show(cPane, "loginSelection"); //change to confirmRegister on Register press
             }
-            case "Get Book Info" -> {
+            case "Get Book Info" -> crd.show(cPane, "getBookInfo");
+            case "Get This Book Info" -> {
                 try {
                     out.writeBytes("getBookInfo\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                crd.show(cPane, "getBookInfo");
-            }
-            case "Get This Book Info" -> {
+
                 String bookName = getBookInfoName.getText();
                 getBookInfoName.setText("");
                 try {
@@ -935,15 +932,14 @@ public class clientGUI extends JFrame implements ActionListener {
                 getBookInfoOutput.setText(bookInfo);
                 crd.show(cPane, "getBookInfoOutput");
             }
-            case "Get The Book Info" -> {
+            case "Get The Book Info" -> crd.show(cPane, "getBookInfoAdmin");
+            case "Get Info On This Book" -> {
                 try {
                     out.writeBytes("getBookInfo\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                crd.show(cPane, "getBookInfoAdmin");
-            }
-            case "Get Info On This Book" -> {
+
                 String bookName = getBookInfoNameAdmin.getText();
                 getBookInfoNameAdmin.setText("");
                 try {
@@ -962,15 +958,14 @@ public class clientGUI extends JFrame implements ActionListener {
                 getBookInfoOutputAdmin.setText(bookInfo);
                 crd.show(cPane, "getBookInfoOutputAdmin");
             }
-            case "Lend Book" -> {
+            case "Lend Book" -> crd.show(cPane, "lendBook");
+            case "Lend This Book" -> {
                 try {
                     out.writeBytes("lendBook\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                crd.show(cPane, "lendBook");
-            }
-            case "Lend This Book" -> {
+
                 String bookName = lendBookName.getText();
                 lendBookName.setText("");
                 try {
@@ -978,6 +973,7 @@ public class clientGUI extends JFrame implements ActionListener {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+
                 crd.show(cPane, "userScreen");
             }
             case "Return Book" -> crd.show(cPane, "returnBook");
@@ -996,25 +992,19 @@ public class clientGUI extends JFrame implements ActionListener {
                 }
                 crd.show(cPane, "userScreen");
             }
-            case "Return A Book" -> {
-
-                crd.show(cPane, "returnBookAdmin");
-            }
+            case "Return A Book" -> crd.show(cPane, "returnBookAdmin");
             case "Return" ->{
-
-
                 returnBookNameAdmin.setText("");
                 crd.show(cPane, "adminScreen");
             }
-            case "Get User Info" -> {
+            case "Get User Info" -> crd.show(cPane, "getUserInfo");
+            case "Get This User Info" -> {
                 try {
                     out.writeBytes("getUserInfo\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                crd.show(cPane, "getUserInfo");
-            }
-            case "Get This User Info" -> {
+
                 String userName = getUserInfoName.getText();
                 getUserInfoName.setText("");
                 try {
@@ -1022,24 +1012,25 @@ public class clientGUI extends JFrame implements ActionListener {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+
                 String userInfo;
                 try {
                     userInfo = server.readLine().replace("#","\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+
                 getUserInfoOutput.setText(userInfo);
                 crd.show(cPane, "getUserInfoOutput");
             }
-            case "Get The User Info" -> {
+            case "Get The User Info" -> crd.show(cPane, "getUserInfoAdmin");
+            case "Get Info On This User" -> {
                 try {
                     out.writeBytes("getUserInfo\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                crd.show(cPane, "getUserInfoAdmin");
-            }
-            case "Get Info On This User" -> {
+
                 String userName = getUserInfoNameAdmin.getText();
                 getUserInfoNameAdmin.setText("");
                 try {
@@ -1047,12 +1038,14 @@ public class clientGUI extends JFrame implements ActionListener {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+
                 String userInfo;
                 try {
                     userInfo = server.readLine().replace("#","\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+
                 getUserInfoOutputAdmin.setText(userInfo);
                 crd.show(cPane, "getUserInfoOutputAdmin");
             }
