@@ -745,7 +745,8 @@ public class clientGUI extends JFrame implements ActionListener {
                     throw new RuntimeException(ex);
                 }
                 if(Objects.equals(input, "Zle meno")){
-                    crd.show(cPane, "confirmLogin");
+                    crd.show(cPane, "loginSelection");
+                    break;
                 }
 
                 try {
@@ -760,7 +761,8 @@ public class clientGUI extends JFrame implements ActionListener {
                     throw new RuntimeException(ex);
                 }
                 if(Objects.equals(input, "Zle heslo")){
-                    crd.show(cPane, "confirmLogin");
+                    crd.show(cPane, "loginSelection");
+                    break;
                 }
 
                 try {

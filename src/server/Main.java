@@ -245,13 +245,15 @@ public class Main {
                     switch (input) {
                         case "signIn":
                             //out.println("Zadaj meno:");
-                            index = Collections.binarySearch(studentList, new Student(in.readLine()), sc);
+                            input = in.readLine();
+                            index = Collections.binarySearch(studentList, new Student(input), sc);
                             if(index<0){
                                 out.println("Zle meno");
                             }else{
-                                out.println("Zadaj heslo:");
-                                if(studentList.get(index).getPassword().compareTo(in.readLine())==0){
-                                    status=index;
+                                //out.println("Zadaj heslo:");
+                                input = in.readLine();
+                                if(studentList.get(index).getPassword().compareTo(input)==0){
+                                    status = index;
                                     out.println("Si prihlaseny");
                                     out.println(index);
                                 }else{
