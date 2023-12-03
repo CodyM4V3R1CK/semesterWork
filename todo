@@ -19,7 +19,6 @@ bonus:
   implement:
 
   bugs:
-  wrong password on login fucks everything up
 
   --both if there's time
   change button actions and names using setActionCommand and keep listener to 'this'
