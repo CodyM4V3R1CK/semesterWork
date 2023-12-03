@@ -21,12 +21,12 @@ public class clientGUI extends JFrame implements ActionListener {
     //main screen GUI parts
     JButton login, register;
     //login screen GUI parts
-    JButton confirmLogin;
+    JButton confirmLogin, loginReturn;
     JTextField loginUsername, loginPassword;
     JLabel usernameLoginL, passwordLoginL;
 
     //register screen GUI parts
-    JButton confirmRegister;
+    JButton confirmRegister, registerReturn;
     JTextField registerUsername, registerPassword, registerPhone, registerEmail, registerDorm;
     JLabel usernameRegisterL, passwordRegisterL, phoneRegisterL, emailRegisterL, dormRegisterL;
 
@@ -164,6 +164,8 @@ public class clientGUI extends JFrame implements ActionListener {
         register = new JButton("Register");
         confirmLogin = new JButton("confirmLogin");
         confirmRegister = new JButton("confirmRegister");
+        loginReturn = new JButton("Back To Login Selection");
+        registerReturn = new JButton("Back To Login Selection");
 
         addBookButton = new JButton("Add Book");
         addBookConfirm = new JButton("Add This Book");
@@ -225,6 +227,9 @@ public class clientGUI extends JFrame implements ActionListener {
 
         confirmLogin.addActionListener(this);
         confirmRegister.addActionListener(this);
+
+        loginReturn.addActionListener(this);
+        registerReturn.addActionListener(this);
 
         addBookButton.addActionListener(this);
         addBookConfirm.addActionListener(this);
@@ -419,39 +424,41 @@ public class clientGUI extends JFrame implements ActionListener {
 
 
         //adding stuff to loginScreen panel
-        loginScreen.add(Box.createRigidArea(new Dimension(0, 100)));
         loginScreen.add(usernameLoginL);
         loginScreen.add(loginUsername);
-        loginScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        loginScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         loginScreen.add(passwordLoginL);
         loginScreen.add(loginPassword);
-        loginScreen.add(Box.createRigidArea(new Dimension(75, 100)));
+        loginScreen.add(Box.createRigidArea(new Dimension(75, 50)));
         loginScreen.add(confirmLogin);
+        loginScreen.add(Box.createRigidArea(new Dimension(75, 50)));
+        loginScreen.add(loginReturn);
 
         loginScreen.setLayout(new BoxLayout(loginScreen, BoxLayout.Y_AXIS));
-        loginScreen.setBorder(BorderFactory.createEmptyBorder(0, 75, 0, 0));
+        loginScreen.setBorder(BorderFactory.createEmptyBorder(50, 75, 0, 0));
 
         //adding stuff to registerScreen panel
-        registerScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         registerScreen.add(usernameRegisterL);
         registerScreen.add(registerUsername);
-        registerScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        registerScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         registerScreen.add(passwordRegisterL);
         registerScreen.add(registerPassword);
-        registerScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        registerScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         registerScreen.add(phoneRegisterL);
         registerScreen.add(registerPhone);
-        registerScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        registerScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         registerScreen.add(emailRegisterL);
         registerScreen.add(registerEmail);
-        registerScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        registerScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         registerScreen.add(dormRegisterL);
         registerScreen.add(registerDorm);
         registerScreen.add(Box.createRigidArea(new Dimension(75, 40)));
         registerScreen.add(confirmRegister);
+        registerScreen.add(Box.createRigidArea(new Dimension(75, 40)));
+        registerScreen.add(registerReturn);
 
         registerScreen.setLayout(new BoxLayout(registerScreen, BoxLayout.Y_AXIS));
-        registerScreen.setBorder(BorderFactory.createEmptyBorder(0, 75, 0, 0));
+        registerScreen.setBorder(BorderFactory.createEmptyBorder(20, 75, 0, 0));
 
         //adding stuff to userScreen panel
         userScreen.add(Box.createRigidArea(new Dimension(0, 25)));
@@ -710,23 +717,15 @@ public class clientGUI extends JFrame implements ActionListener {
         String command = e.getActionCommand();
 
         switch (command) {
-            case "Login" -> {
+            case "Login" -> crd.show(cPane, "confirmLogin"); //change to confirmLogin on Login press
+            case "Register" -> crd.show(cPane, "confirmRegister"); //change to confirmRegister on Register press
+            case "confirmLogin" -> {
                 try {
                     out.writeBytes("signIn\n");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                crd.show(cPane, "confirmLogin"); //change to confirmLogin on Login press
-            }
-            case "Register" -> {
-                try {
-                    out.writeBytes("register\n");
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-                crd.show(cPane, "confirmRegister"); //change to confirmRegister on Register press
-            }
-            case "confirmLogin" -> {
+
                 String username = loginUsername.getText();
                 String password = loginPassword.getText();
                 String input;
@@ -776,6 +775,57 @@ public class clientGUI extends JFrame implements ActionListener {
                 }
 
             }
+            case "confirmRegister" -> {
+                try {
+                    out.writeBytes("register\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                String username = registerUsername.getText();
+                String password = registerPassword.getText();
+                String phoneNumber = registerPhone.getText();
+                String email = registerEmail.getText();
+                String dorm = registerDorm.getText();
+                registerUsername.setText("");
+                registerPassword.setText("");
+                registerPhone.setText("");
+                registerEmail.setText("");
+                registerDorm.setText("");
+
+                try {
+                    out.writeBytes(username + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                try {
+                    out.writeBytes(password + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                try {
+                    out.writeBytes(phoneNumber + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                try {
+                    out.writeBytes(email + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                try {
+                    out.writeBytes(dorm + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+                crd.show(cPane, "loginSelection"); //change to confirmRegister on Register press
+            }
+            case "Back To Login Selection" -> crd.show(cPane, "loginSelection");
             case "Back To User Menu" -> crd.show(cPane, "userScreen");
             case "Back To Admin Menu" -> crd.show(cPane, "adminScreen");
             case "Add Book" -> crd.show(cPane, "addBook");
@@ -933,50 +983,6 @@ public class clientGUI extends JFrame implements ActionListener {
                 }
 
                 crd.show(cPane, "adminScreen");
-            }
-            case "confirmRegister" -> {
-                String username = registerUsername.getText();
-                String password = registerPassword.getText();
-                String phoneNumber = registerPhone.getText();
-                String email = registerEmail.getText();
-                String dorm = registerDorm.getText();
-                registerUsername.setText("");
-                registerPassword.setText("");
-                registerPhone.setText("");
-                registerEmail.setText("");
-                registerDorm.setText("");
-
-                try {
-                    out.writeBytes(username + "\n");
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-                try {
-                    out.writeBytes(password + "\n");
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-                try {
-                    out.writeBytes(phoneNumber + "\n");
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-                try {
-                    out.writeBytes(email + "\n");
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-                try {
-                    out.writeBytes(dorm + "\n");
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-
-                crd.show(cPane, "loginSelection"); //change to confirmRegister on Register press
             }
             case "Get Book Info" -> crd.show(cPane, "getBookInfo");
             case "Get This Book Info" -> {

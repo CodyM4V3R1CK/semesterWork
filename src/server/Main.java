@@ -261,7 +261,7 @@ public class Main {
                             break;
                         case "register":
                             //out.println("Zadaj meno:");
-                            input=in.readLine();
+                            input = in.readLine();
                             if(Collections.binarySearch(studentList, new Student(input), sc)<-1) {
                                 studentList.add(new Student(input));
                                 studentList.sort(sc);
