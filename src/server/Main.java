@@ -250,7 +250,7 @@ public class Main {
                             if(index<0){
                                 out.println("Zle meno");
                             }else{
-                                //out.println("Zadaj heslo:");
+                                out.println("Zadaj heslo:");
                                 input = in.readLine();
                                 if(studentList.get(index).getPassword().compareTo(input)==0){
                                     status = index;

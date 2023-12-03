@@ -67,7 +67,7 @@ public class clientGUI extends JFrame implements ActionListener {
     //getBookInfoAdmin screen GUI parts
     JLabel getBookInfoNameAdminL;
     JTextField getBookInfoNameAdmin;
-    JButton getBookConfirmAdminButton, getBookInfoReturnAdminButton;
+    JButton getBookInfoConfirmAdminButton, getBookInfoReturnAdminButton;
 
     //getBookInfoAdminOutput screen GUI parts
     JTextArea getBookInfoOutputAdmin;
@@ -136,37 +136,35 @@ public class clientGUI extends JFrame implements ActionListener {
         userScreen = new JPanel();
         addBookScreen = new JPanel();
         getBooksScreen = new JPanel();
+        getBookInfoScreen = new JPanel();
+        getBookInfoOutputScreen = new JPanel();
+        lendBookScreen = new JPanel();
+        returnBookScreen = new JPanel();
+        getUserInfoScreen = new JPanel();
+        getUserInfoOutputScreen = new JPanel();
 
         adminScreen = new JPanel();
         addBookAdminScreen = new JPanel();
         getBooksAdminScreen = new JPanel();
-        removeBookAdminScreen = new JPanel();
-        addUserAdminScreen = new JPanel();
-
-        getBookInfoScreen = new JPanel();
-        getBookInfoOutputScreen = new JPanel();
-
         getBookInfoAdminScreen = new JPanel();
         getBookInfoOutputAdminScreen = new JPanel();
-
-        lendBookScreen = new JPanel();
-
-        returnBookScreen = new JPanel();
+        removeBookAdminScreen = new JPanel();
+        addUserAdminScreen = new JPanel();
         returnBookAdminScreen = new JPanel();
-
-        getUserInfoScreen = new JPanel();
-        getUserInfoOutputScreen = new JPanel();
         getUserInfoAdminScreen = new JPanel();
         getUserInfoOutputAdminScreen = new JPanel();
 
         //creating buttons
+        //login selection
         login = new JButton("Login");
         register = new JButton("Register");
+
         confirmLogin = new JButton("confirmLogin");
         confirmRegister = new JButton("confirmRegister");
         loginReturn = new JButton("Back To Login Selection");
         registerReturn = new JButton("Back To Login Selection");
 
+        //user screen
         addBookButton = new JButton("Add Book");
         addBookConfirm = new JButton("Add This Book");
         addBookReturn = new JButton("Back To User Menu");
@@ -174,30 +172,10 @@ public class clientGUI extends JFrame implements ActionListener {
         getBooksButton = new JButton("Get Books");
         getBooksReturn = new JButton("Back To User Menu");
 
-        addBookButtonAdmin = new JButton("Add New Book");
-        addBookConfirmAdmin = new JButton("Add The Book");
-        addBookReturnAdmin = new JButton("Back To Admin Menu");
-
-        getBooksButtonAdmin = new JButton("Show All Books");
-        getBooksReturnAdmin = new JButton("Back To Admin Menu");
-
-        removeBookButtonAdmin = new JButton("Remove Book");
-        removeBookConfirmButtonAdmin = new JButton("Remove This Book");
-        removeBookReturnAdminButton = new JButton("Back To Admin Menu");
-
-        addUserButtonAdmin = new JButton("Add User");
-        addUserConfirmButtonAdmin = new JButton("Add This User");
-        addUserReturnAdminButton = new JButton("Back To Admin Menu");
-
         getBookInfoButton = new JButton("Get Book Info");
         getBookConfirm = new JButton("Get This Book Info");
         getBookInfoReturnButton = new JButton("Back To User Menu");
         getBookInfoOutputReturnButton = new JButton("Back To User Menu");
-
-        getBookInfoButtonAdmin = new JButton("Get The Book Info");
-        getBookConfirmAdminButton = new JButton("Get Info On This Book");
-        getBookInfoReturnAdminButton = new JButton("Back To Admin Menu");
-        getBookInfoOutputReturnAdminButton = new JButton("Back To Admin Menu");
 
         lendBookButton = new JButton("Lend Book");
         lendBookConfirmButton = new JButton("Lend This Book");
@@ -207,14 +185,35 @@ public class clientGUI extends JFrame implements ActionListener {
         returnBookConfirmButton = new JButton("Return This Book");
         returnBookReturnButton = new JButton("Back To User Menu");
 
-        returnBookAdminButton = new JButton("Return A Book");
-        returnBookConfirmAdminButton = new JButton("Return");
-        returnBookReturnAdminButton = new JButton("Back To Admin Menu");
-
         getUserInfoButton = new JButton("Get User Info");
         getUserInfoConfirmButton = new JButton("Get This User Info");
         getUserInfoReturnButton = new JButton("Back To User Menu");
         getUserInfoOutputReturnButton = new JButton("Back To User Menu");
+
+        //admin screen
+        addBookButtonAdmin = new JButton("Add New Book");
+        addBookConfirmAdmin = new JButton("Add The Book");
+        addBookReturnAdmin = new JButton("Back To Admin Menu");
+
+        getBooksButtonAdmin = new JButton("Show All Books");
+        getBooksReturnAdmin = new JButton("Back To Admin Menu");
+
+        getBookInfoButtonAdmin = new JButton("Get The Book Info");
+        getBookInfoConfirmAdminButton = new JButton("Get Info On This Book");
+        getBookInfoReturnAdminButton = new JButton("Back To Admin Menu");
+        getBookInfoOutputReturnAdminButton = new JButton("Back To Admin Menu");
+
+        removeBookButtonAdmin = new JButton("Remove Book");
+        removeBookConfirmButtonAdmin = new JButton("Remove This Book");
+        removeBookReturnAdminButton = new JButton("Back To Admin Menu");
+
+        addUserButtonAdmin = new JButton("Add User");
+        addUserConfirmButtonAdmin = new JButton("Add This User");
+        addUserReturnAdminButton = new JButton("Back To Admin Menu");
+
+        returnBookAdminButton = new JButton("Return A Book");
+        returnBookConfirmAdminButton = new JButton("Return");
+        returnBookReturnAdminButton = new JButton("Back To Admin Menu");
 
         getUserInfoAdminButton = new JButton("Get The User Info");
         getUserInfoConfirmAdminButton = new JButton("Get Info On This User");
@@ -222,15 +221,16 @@ public class clientGUI extends JFrame implements ActionListener {
         getUserInfoOutputReturnAdminButton = new JButton("Back To Admin Menu");
 
         //adding listeners to buttons
+        //login selection
         login.addActionListener(this);
         register.addActionListener(this);
 
         confirmLogin.addActionListener(this);
         confirmRegister.addActionListener(this);
-
         loginReturn.addActionListener(this);
         registerReturn.addActionListener(this);
 
+        //user screen
         addBookButton.addActionListener(this);
         addBookConfirm.addActionListener(this);
         addBookReturn.addActionListener(this);
@@ -238,35 +238,10 @@ public class clientGUI extends JFrame implements ActionListener {
         getBooksButton.addActionListener(this);
         getBooksReturn.addActionListener(this);
 
-        addBookButtonAdmin.addActionListener(this);
-        addBookConfirmAdmin.addActionListener(this);
-        addBookReturnAdmin.addActionListener(this);
-
-        getBooksButtonAdmin.addActionListener(this);
-        getBooksReturnAdmin.addActionListener(this);
-
-        getBookInfoButtonAdmin.addActionListener(this);
-        getBookInfoReturnAdminButton.addActionListener(this);
-
-        removeBookButtonAdmin.addActionListener(this);
-        removeBookReturnAdminButton.addActionListener(this);
-
-        addUserButtonAdmin.addActionListener(this);
-        addUserConfirmButtonAdmin.addActionListener(this);
-        addUserReturnAdminButton.addActionListener(this);
-
-        removeBookConfirmButtonAdmin.addActionListener(this);
-
         getBookInfoButton.addActionListener(this);
-        getBookInfoReturnButton.addActionListener(this);
-
         getBookConfirm.addActionListener(this);
+        getBookInfoReturnButton.addActionListener(this);
         getBookInfoOutputReturnButton.addActionListener(this);
-
-        getBookConfirmAdminButton.addActionListener(this);
-        getBookInfoReturnAdminButton.addActionListener(this);
-
-        getBookInfoOutputReturnAdminButton.addActionListener(this);
 
         lendBookButton.addActionListener(this);
         lendBookConfirmButton.addActionListener(this);
@@ -276,14 +251,35 @@ public class clientGUI extends JFrame implements ActionListener {
         returnBookConfirmButton.addActionListener(this);
         returnBookReturnButton.addActionListener(this);
 
-        returnBookAdminButton.addActionListener(this);
-        returnBookConfirmAdminButton.addActionListener(this);
-        returnBookReturnAdminButton.addActionListener(this);
-
         getUserInfoButton.addActionListener(this);
         getUserInfoConfirmButton.addActionListener(this);
         getUserInfoReturnButton.addActionListener(this);
         getUserInfoOutputReturnButton.addActionListener(this);
+
+        //admin screen
+        addBookButtonAdmin.addActionListener(this);
+        addBookConfirmAdmin.addActionListener(this);
+        addBookReturnAdmin.addActionListener(this);
+
+        getBooksButtonAdmin.addActionListener(this);
+        getBooksReturnAdmin.addActionListener(this);
+
+        getBookInfoButtonAdmin.addActionListener(this);
+        getBookInfoConfirmAdminButton.addActionListener(this);
+        getBookInfoReturnAdminButton.addActionListener(this);
+        getBookInfoOutputReturnAdminButton.addActionListener(this);
+
+        removeBookButtonAdmin.addActionListener(this);
+        removeBookConfirmButtonAdmin.addActionListener(this);
+        removeBookReturnAdminButton.addActionListener(this);
+
+        addUserButtonAdmin.addActionListener(this);
+        addUserConfirmButtonAdmin.addActionListener(this);
+        addUserReturnAdminButton.addActionListener(this);
+
+        returnBookAdminButton.addActionListener(this);
+        returnBookConfirmAdminButton.addActionListener(this);
+        returnBookReturnAdminButton.addActionListener(this);
 
         getUserInfoAdminButton.addActionListener(this);
         getUserInfoConfirmAdminButton.addActionListener(this);
@@ -291,6 +287,7 @@ public class clientGUI extends JFrame implements ActionListener {
         getUserInfoOutputReturnAdminButton.addActionListener(this);
 
         //creating text fields
+        //login selection
         loginUsername = new JTextField(40);
         loginPassword = new JTextField(40);
 
@@ -300,35 +297,30 @@ public class clientGUI extends JFrame implements ActionListener {
         registerEmail = new JTextField(40);
         registerDorm = new JTextField(40);
 
+        //user screen
         addBookAuthor = new JTextField(40);
         addBookName = new JTextField(40);
-
         getBookInfoName = new JTextField(40);
+        lendBookName = new JTextField(40);
+        returnBookName = new JTextField(40);
+        getUserInfoName = new JTextField(40);
 
+        //user screen
         addBookNameAdmin = new JTextField(40);
         addBookAuthorAdmin = new JTextField(40);
         addBookOwnerAdmin = new JTextField(40);
-
         getBookInfoNameAdmin = new JTextField(40);
-
         removeBookName = new JTextField(40);
-
         addUserUsername = new JTextField(40);
         addUserPassword = new JTextField(40);
         addUserPhone = new JTextField(40);
-
         addUserEmail = new JTextField(40);
         addUserDorm = new JTextField(40);
-
-        lendBookName = new JTextField(40);
-
-        returnBookName = new JTextField(40);
         returnBookNameAdmin = new JTextField(40);
-
-        getUserInfoName = new JTextField(40);
         getUserInfoNameAdmin = new JTextField(40);
 
         //don't allow text fields to expand beyond given limit
+        //login selection
         loginUsername.setMaximumSize(loginUsername.getPreferredSize());
         loginPassword.setMaximumSize(loginPassword.getPreferredSize());
 
@@ -338,35 +330,30 @@ public class clientGUI extends JFrame implements ActionListener {
         registerEmail.setMaximumSize(registerEmail.getPreferredSize());
         registerDorm.setMaximumSize(registerDorm.getPreferredSize());
 
+        //user screen
         addBookAuthor.setMaximumSize(addBookAuthor.getPreferredSize());
         addBookName.setMaximumSize(addBookName.getPreferredSize());
-
         getBookInfoName.setMaximumSize(getBookInfoName.getPreferredSize());
+        lendBookName.setMaximumSize(lendBookName.getPreferredSize());
+        returnBookName.setMaximumSize(returnBookName.getPreferredSize());
+        getUserInfoName.setMaximumSize(getUserInfoName.getPreferredSize());
 
-        removeBookName.setMaximumSize(removeBookName.getPreferredSize());
-
+        //admin screen
         addBookNameAdmin.setMaximumSize(addBookNameAdmin.getPreferredSize());
         addBookAuthorAdmin.setMaximumSize(addBookAuthorAdmin.getPreferredSize());
         addBookOwnerAdmin.setMaximumSize(addBookOwnerAdmin.getPreferredSize());
-
         getBookInfoNameAdmin.setMaximumSize(getBookInfoNameAdmin.getPreferredSize());
-
+        removeBookName.setMaximumSize(removeBookName.getPreferredSize());
         addUserUsername.setMaximumSize(addUserUsername.getPreferredSize());
         addUserPassword.setMaximumSize(addUserPassword.getPreferredSize());
         addUserPhone.setMaximumSize(addUserPhone.getPreferredSize());
-
         addUserEmail.setMaximumSize(addUserEmail.getPreferredSize());
         addUserDorm.setMaximumSize(addUserDorm.getPreferredSize());
-
-        lendBookName.setMaximumSize(lendBookName.getPreferredSize());
-
-        returnBookName.setMaximumSize(returnBookName.getPreferredSize());
         returnBookNameAdmin.setMaximumSize(returnBookNameAdmin.getPreferredSize());
-
-        getUserInfoName.setMaximumSize(getUserInfoName.getPreferredSize());
         getUserInfoNameAdmin.setMaximumSize(getUserInfoNameAdmin.getPreferredSize());
 
         //creating labels
+        //login selection
         usernameLoginL = new JLabel("Username:");
         passwordLoginL = new JLabel("Password:");
 
@@ -376,41 +363,37 @@ public class clientGUI extends JFrame implements ActionListener {
         emailRegisterL = new JLabel("Email Address:");
         dormRegisterL = new JLabel("Dorm Room:");
 
+        //user screen
         addBookNameL = new JLabel("Name:");
         addBookAuthorL = new JLabel("Author:");
-
         getBookInfoNameL = new JLabel("Name Of The Book:");
+        lendBookNameL = new JLabel("Name Of A Book To Lend");
+        returnBookNameL = new JLabel("Book Name");
+        getUserInfoNameL = new JLabel("User Name");
 
+        //admin screen
         addBookNameAdminL = new JLabel("Book Name:");
         addBookAuthorAdminL = new JLabel("Book Author:");
         addBookOwnerAdminL = new JLabel("Book Owner:");
-
         getBookInfoNameAdminL = new JLabel("Name Of The Book:");
-
         removeBookNameL = new JLabel("Book Name:");
-
         addUserUsernameL = new JLabel("User Username:");
         addUserPasswordL = new JLabel("User Password:");
         addUserPhoneL = new JLabel("User Phone Number:");
         addUserEmailL = new JLabel("User Email Address:");
         addUserDormL = new JLabel("User Dorm Room:");
-
-        lendBookNameL = new JLabel("Name Of A Book To Lend");
-
-        returnBookNameL = new JLabel("Book Name");
         returnBookNameAdminL = new JLabel("Book Name");
-
-        getUserInfoNameL = new JLabel("User Name");
         getUserInfoNameAdminL = new JLabel("User Name");
 
         //creating text areas
+        //user screen
         getBooksOutput = new JTextArea();
-        getBooksOutputAdmin = new JTextArea();
-
         getBookInfoOutput = new JTextArea();
-        getBookInfoOutputAdmin = new JTextArea();
-
         getUserInfoOutput = new JTextArea();
+
+        //admin screen
+        getBooksOutputAdmin = new JTextArea();
+        getBookInfoOutputAdmin = new JTextArea();
         getUserInfoOutputAdmin = new JTextArea();
 
         //adding stuff to loginSelection panel
@@ -602,7 +585,7 @@ public class clientGUI extends JFrame implements ActionListener {
         getBookInfoAdminScreen.add(getBookInfoNameAdminL);
         getBookInfoAdminScreen.add(getBookInfoNameAdmin);
         getBookInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
-        getBookInfoAdminScreen.add(getBookConfirmAdminButton);
+        getBookInfoAdminScreen.add(getBookInfoConfirmAdminButton);
         getBookInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
         getBookInfoAdminScreen.add(getBookInfoReturnAdminButton);
 
