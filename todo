@@ -10,3 +10,16 @@ bonus:
   !gui (in progress)
   .sql (optional)
   docs (urgent)
+
+
+  --admin
+  implement:
+
+  --user
+  implement:
+
+  bugs:
+
+  --both if there's time
+
+  add a screen that's either gonna say something you did was successful or it failed (some feedback for the user)
