@@ -727,7 +727,6 @@ public class clientGUI extends JFrame implements ActionListener {
     //declaring commands
     @Override
     public void actionPerformed(ActionEvent e) {
-        //get current command (command name = button text)
         String command = e.getActionCommand();
 
         switch (command) {
