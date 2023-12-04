@@ -5,6 +5,11 @@ import java.net.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Main {
+    /*
+    this is client side application
+    this function initiates connection to server, defines buffers for keyboard input, server input and server output
+    and it runs in a loop until 
+     */
     public static void main(String[] args) throws Exception {
         //Socket s = new Socket("localhost", 1050);// Create client socket
         //DataOutputStream out = new DataOutputStream(s.getOutputStream());// to send data to the server

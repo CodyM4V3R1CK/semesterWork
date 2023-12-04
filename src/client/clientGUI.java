@@ -10,6 +10,7 @@ import java.io.*;
 
 public class clientGUI extends JFrame implements ActionListener {
 
+    //defining gui components
     CardLayout crd;
     Container cPane;
     JPanel loginSelectionScreen, loginScreen, registerScreen, userScreen, addBookScreen, getBooksScreen,
@@ -116,12 +117,16 @@ public class clientGUI extends JFrame implements ActionListener {
     JButton getUserInfoOutputReturnAdminButton;
     JTextArea getUserInfoOutputAdmin;
 
+    //initializing connection, buffers, etc.
+
     Socket s = new Socket("localhost", 1050);// Create client socket
     DataOutputStream out = new DataOutputStream(s.getOutputStream());// to send data to the server
     BufferedReader server = new BufferedReader(new InputStreamReader(s.getInputStream()));// to read data coming from the server
 
 
     clientGUI() throws Exception {
+
+        //initializing pages
 
         cPane = getContentPane();
         crd = new CardLayout();
@@ -717,10 +722,7 @@ public class clientGUI extends JFrame implements ActionListener {
         cPane.add("getUserInfoOutputAdmin", getUserInfoOutputAdminScreen);
     }
 
-    /**
-     * Method for getting a command from button press
-     * @param e the event to be processed
-     */
+    //declaring commands
     @Override
     public void actionPerformed(ActionEvent e) {
         //get current command (command name = button text)
