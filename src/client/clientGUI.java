@@ -488,14 +488,13 @@ public class clientGUI extends JFrame implements ActionListener {
         addBookScreen.add(addBookAuthor);
         addBookScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         addBookScreen.add(addBookConfirm);
-        addBookScreen.add(Box.createRigidArea(new Dimension(0, 25)));
+        addBookScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         addBookScreen.add(addBookReturn);
 
         addBookScreen.setLayout(new BoxLayout(addBookScreen, BoxLayout.Y_AXIS));
         addBookScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
 
         //adding stuff to getBooks panel
-        getBooksScreen.add(Box.createRigidArea(new Dimension(20, 20)));
         getBooksScreen.add(getBooksOutput);
         getBooksScreen.add(Box.createRigidArea(new Dimension(100, 20)));
         getBooksScreen.add(getBooksReturn);
@@ -504,19 +503,19 @@ public class clientGUI extends JFrame implements ActionListener {
         getBooksScreen.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 20));
 
         //adding stuff to getBookInfo screen
-        getBookInfoScreen.add(Box.createRigidArea(new Dimension(0, 40)));
         getBookInfoScreen.add(getBookInfoNameL);
         getBookInfoScreen.add(getBookInfoName);
-        getBookInfoScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        getBookInfoScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         getBookInfoScreen.add(getBookConfirm);
-        getBookInfoScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        getBookInfoScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         getBookInfoScreen.add(getBookInfoReturnButton);
 
         getBookInfoScreen.setLayout(new BoxLayout(getBookInfoScreen, BoxLayout.Y_AXIS));
-        getBookInfoScreen.setBorder(BorderFactory.createEmptyBorder(0, 125, 0, 0));
+        getBookInfoScreen.setBorder(BorderFactory.createEmptyBorder(50, 125, 0, 0));
 
         //adding stuff to getBookInfoOutput screen
         getBookInfoOutputScreen.add(getBookInfoOutput);
+        lendBookScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         getBookInfoOutputScreen.add(getBookInfoOutputReturnButton);
 
         getBookInfoOutputScreen.setLayout(new BoxLayout(getBookInfoOutputScreen, BoxLayout.Y_AXIS));
@@ -525,6 +524,7 @@ public class clientGUI extends JFrame implements ActionListener {
         //adding stuff to the lendBook screen
         lendBookScreen.add(lendBookNameL);
         lendBookScreen.add(lendBookName);
+        lendBookScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         lendBookScreen.add(lendBookConfirmButton);
         lendBookScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         lendBookScreen.add(lendBookReturnButton);
@@ -535,6 +535,7 @@ public class clientGUI extends JFrame implements ActionListener {
         //adding stuff to the returnBook screen
         returnBookScreen.add(returnBookNameL);
         returnBookScreen.add(returnBookName);
+        returnBookScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         returnBookScreen.add(returnBookConfirmButton);
         returnBookScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         returnBookScreen.add(returnBookReturnButton);
@@ -545,6 +546,7 @@ public class clientGUI extends JFrame implements ActionListener {
         //adding stuff to the getUserInfo screen
         getUserInfoScreen.add(getUserInfoNameL);
         getUserInfoScreen.add(getUserInfoName);
+        getUserInfoScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         getUserInfoScreen.add(getUserInfoConfirmButton);
         getUserInfoScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         getUserInfoScreen.add(getUserInfoReturnButton);
@@ -608,9 +610,9 @@ public class clientGUI extends JFrame implements ActionListener {
         getBookInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
         getBookInfoAdminScreen.add(getBookInfoNameAdminL);
         getBookInfoAdminScreen.add(getBookInfoNameAdmin);
-        getBookInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        getBookInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
         getBookInfoAdminScreen.add(getBookInfoConfirmAdminButton);
-        getBookInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 40)));
+        getBookInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         getBookInfoAdminScreen.add(getBookInfoReturnAdminButton);
 
         getBookInfoAdminScreen.setLayout(new BoxLayout(getBookInfoAdminScreen, BoxLayout.Y_AXIS));
@@ -660,8 +662,9 @@ public class clientGUI extends JFrame implements ActionListener {
         //adding stuff to the returnBookAdmin screen
         returnBookAdminScreen.add(returnBookNameAdminL);
         returnBookAdminScreen.add(returnBookNameAdmin);
-        returnBookAdminScreen.add(returnBookConfirmAdminButton);
         returnBookAdminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        returnBookAdminScreen.add(returnBookConfirmAdminButton);
+        returnBookAdminScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         returnBookAdminScreen.add(returnBookReturnAdminButton);
 
         returnBookAdminScreen.setLayout(new BoxLayout(returnBookAdminScreen, BoxLayout.Y_AXIS));
@@ -670,8 +673,9 @@ public class clientGUI extends JFrame implements ActionListener {
         //adding stuff to the getUserInfoAdmin screen
         getUserInfoAdminScreen.add(getUserInfoNameAdminL);
         getUserInfoAdminScreen.add(getUserInfoNameAdmin);
-        getUserInfoAdminScreen.add(getUserInfoConfirmAdminButton);
         getUserInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        getUserInfoAdminScreen.add(getUserInfoConfirmAdminButton);
+        getUserInfoAdminScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         getUserInfoAdminScreen.add(getUserInfoReturnAdminButton);
 
         getUserInfoAdminScreen.setLayout(new BoxLayout(getUserInfoAdminScreen, BoxLayout.Y_AXIS));
@@ -679,7 +683,7 @@ public class clientGUI extends JFrame implements ActionListener {
 
         //adding stuff to the getUserInfoOutputAdmin screen
         getUserInfoOutputAdminScreen.add(getUserInfoOutputAdmin);
-        getUserInfoOutputAdminScreen.add(Box.createRigidArea(new Dimension(0, 50)));
+        getUserInfoOutputAdminScreen.add(Box.createRigidArea(new Dimension(0, 20)));
         getUserInfoOutputAdminScreen.add(getUserInfoOutputReturnAdminButton);
 
         getUserInfoOutputAdminScreen.setLayout(new BoxLayout(getUserInfoOutputAdminScreen, BoxLayout.Y_AXIS));
@@ -1108,7 +1112,18 @@ public class clientGUI extends JFrame implements ActionListener {
             }
             case "Return Book Admin" -> crd.show(cPane, "returnBookAdmin");
             case "Return Book Confirm Admin" ->{
+                try {
+                    out.writeBytes("returnBook\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                String bookName = returnBookNameAdmin.getText();
                 returnBookNameAdmin.setText("");
+                try {
+                    out.writeBytes(bookName + "\n");
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 crd.show(cPane, "adminScreen");
             }
             case "Get User Info Admin" -> crd.show(cPane, "getUserInfoAdmin");
