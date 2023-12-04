@@ -23,12 +23,14 @@ public class clientGUI extends JFrame implements ActionListener {
     JButton login, register;
     //login screen GUI parts
     JButton confirmLogin, loginReturn;
-    JTextField loginUsername, loginPassword;
+    JTextField loginUsername;
+    JPasswordField loginPassword;
     JLabel usernameLoginL, passwordLoginL;
 
     //register screen GUI parts
     JButton confirmRegister, registerReturn;
-    JTextField registerUsername, registerPassword, registerPhone, registerEmail, registerDorm;
+    JTextField registerUsername, registerPhone, registerEmail, registerDorm;
+    JTextField registerPassword;
     JLabel usernameRegisterL, passwordRegisterL, phoneRegisterL, emailRegisterL, dormRegisterL;
 
     //user screen GUI parts
@@ -314,10 +316,10 @@ public class clientGUI extends JFrame implements ActionListener {
         //creating text fields
         //login selection
         loginUsername = new JTextField(40);
-        loginPassword = new JTextField(40);
+        loginPassword = new JPasswordField(40);
 
         registerUsername = new JTextField(40);
-        registerPassword = new JTextField(40);
+        registerPassword = new JPasswordField(40);
         registerPhone = new JTextField(40);
         registerEmail = new JTextField(40);
         registerDorm = new JTextField(40);
